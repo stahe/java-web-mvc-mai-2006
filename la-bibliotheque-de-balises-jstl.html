@@ -1,0 +1,1259 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Les bases du développement web MVC en Java par l'exemple">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/java-web-mvc-mai-2006/la-bibliotheque-de-balises-jstl.html">
+      
+      
+        <link rel="prev" href="application-web-mvc-personne---version-3.html">
+      
+      
+        <link rel="next" href="application-web-mvc-personne---version-4.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>8. La bibliothèque de balises JSTL - Les bases du développement web MVC en Java par l'exemple</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Les bases du développement web MVC en Java par l'exemple";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#8-la-bibliotheque-de-balises-jstl" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Les bases du développement web MVC en Java par l&#39;exemple" class="md-header__button md-logo" aria-label="Les bases du développement web MVC en Java par l'exemple" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Les bases du développement web MVC en Java par l'exemple
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8. La bibliothèque de balises JSTL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer au mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer au mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/java-web-mvc-mai-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Les bases du développement web MVC en Java par l&#39;exemple" class="md-nav__button md-logo" aria-label="Les bases du développement web MVC en Java par l'exemple" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Les bases du développement web MVC en Java par l'exemple
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/java-web-mvc-mai-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="les-outils-utilises-dans-le-document.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Les outils utilisés dans le document
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="les-bases-du-developpement-web-en-java.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Les bases du développement web en Java
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="developpement-mvc-modele---vue---controleur.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Développement MVC (Modèle – Vue – Contrôleur)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-personne---version-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Application web MVC [personne] – version 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-personne---version-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Application web MVC [personne] – version 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-personne---version-3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Application web MVC [personne] – version 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. La bibliothèque de balises JSTL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="la-bibliotheque-de-balises-jstl.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. La bibliothèque de balises JSTL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#801-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.0.1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#802-installer-et-decouvrir-la-bibliotheque-jstl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.0.2. Installer et découvrir la bibliothèque JSTL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#803-utiliser-jstl-dans-une-application-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.0.3. Utiliser JSTL dans une application web
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-personne---version-4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Application web MVC [personne] – version 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-personne---version-5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Application web MVC [personne] – version 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-personne---version-6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Application web MVC [personne] – version 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-personne---version-7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Application web MVC [personne] – version 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-personne---version-8.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Application web MVC [personne] – version 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-dans-une-architecture-3tier---exemple-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Application web MVC dans une architecture 3tier – Exemple 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spring-ioc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Spring IoC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-dans-une-architecture-3tier---exemple-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Application web MVC dans une architecture 3tier – Exemple 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-dans-une-architecture-3tier---exemple-3---sgbd-firebird.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Application web MVC dans une architecture 3tier – Exemple 3 – Sgbd Firebird
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-dans-une-architecture-3tier---exemple-4-postgres.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. Application web MVC dans une architecture 3tier – Exemple 4, Postgres
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-dans-une-architecture-3tier---exemple-5-mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Application web MVC dans une architecture 3tier – Exemple 5, MySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-web-mvc-dans-une-architecture-3tier---exemple-6-sql-server-express.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Application web MVC dans une architecture 3tier – Exemple 6, SQL Server Express
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Conclusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="le-code-de-larticle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Le code de l'article
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="8-la-bibliotheque-de-balises-jstl">8. La bibliothèque de balises JSTL</h1>
+<h3 id="801-introduction">8.0.1. Introduction</h3>
+<p>Considérons la vue [erreurs.jsp] qui affiche une liste d&#x27;erreurs :</p>
+<p><img src="images/100000000000019D000000E0A74E030E.png" style="width:7.65cm;height:4.15cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000019D000000E0A74E030E.png" /></p>
+<p>Il y a plusieurs façons d&#x27;écrire une telle page. Nous ne nous intéressons ici qu&#x27;à la partie affichage des erreurs. Une première solution est d&#x27;utiliser du code Java comme il a été fait :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">page </span><span style="color:#7f007f">language</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;java&quot; </span><span style="color:#7f007f">contentType</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;text/html; charset=ISO-8859-1&quot;</span></span>
+<span class="odt-code-line"><span style="color:#2a00ff">    </span><span style="color:#7f007f">pageEncoding</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;ISO-8859-1&quot;</span><span style="color:#bf5f3f">%&gt;</span></span>
+<span class="odt-code-line"><span style="color:#008080">&lt;!</span><span style="color:#3f7f7f">DOCTYPE </span><span style="color:#000080">HTML </span><span style="color:#808080">PUBLIC </span><span style="color:#000080">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">page </span><span style="color:#7f007f">import</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;java.util.ArrayList&quot; </span><span style="color:#bf5f3f">%&gt;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">&lt;%</span>
+<span class="odt-code-line">// on récupère les données du modèle</span>
+<span class="odt-code-line"><span style="color:#000000">  ArrayList erreurs=(ArrayList)request.getAttribute(</span><span style="color:#2a00ff">&quot;erreurs&quot;</span><span style="color:#000000">); </span></span>
+<span class="odt-code-line"><span style="color:#000000">  String lienRetourFormulaire=(String)request.getAttribute(</span><span style="color:#2a00ff">&quot;lienRetourFormulaire&quot;</span><span style="color:#000000">);</span></span>
+<span class="odt-code-line">%&gt;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">html</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span><span style="color:#000000">Personne</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">body</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h2</span><span style="color:#008080">&gt;</span><span style="color:#000000">Les erreurs suivantes se sont produites</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">h2</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">ul</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#bf5f3f">&lt;%</span></span>
+<span class="odt-code-line"><span style="color:#000000">          </span><span style="font-weight:bold;color:#7f0055">for</span><span style="color:#000000">(</span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> i=0;i&lt;erreurs.size();i++){</span></span>
+<span class="odt-code-line"><span style="color:#000000">            out.println(</span><span style="color:#2a00ff">&quot;&lt;li&gt;&quot;</span><span style="color:#000000"> + (String) erreurs.get(i) + </span><span style="color:#2a00ff">&quot;&lt;/li&gt;\n&quot;</span><span style="color:#000000">);</span></span>
+<span class="odt-code-line"><span style="color:#000000">        }</span><span style="color:#3f7f5f">//for</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#bf5f3f">%&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">ul</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">br</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">form </span><span style="color:#7f007f">name</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;frmPersonne&quot; </span><span style="color:#7f007f">method</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;post&quot;</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">input </span><span style="color:#7f007f">type</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;hidden&quot; </span><span style="color:#7f007f">name</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;action&quot; </span><span style="color:#7f007f">value</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;retourFormulaire&quot;</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">form</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">a </span><span style="color:#7f007f">href</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;javascript:document.frmPersonne.submit();&quot;</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#bf5f3f">&lt;%=</span><span style="color:#000000"> lienRetourFormulaire </span><span style="color:#bf5f3f">%&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">a</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">body</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">html</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"></span>
+</code></pre></div>
+
+<p>La page JSP récupère la liste des erreurs dans la requête (ligne 8) et l&#x27;affiche à l&#x27;aide d&#x27;une boucle Java (lignes 19-23). La page mélange code HTML et code Java, ce qui peut être problématique si la page doit être maintenue par un infographiste qui en général ne comprendra pas le code Java. Pour éviter ce mélange, on utilise des bibliothèques de balises qui vont apporter des possibilités nouvelles aux pages JSP. Avec la bibliothèque de balises JSTL (Java Standard Tag Library), la vue précédente devient la suivante :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">page </span><span style="color:#7f007f">language</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;java&quot; </span><span style="color:#7f007f">contentType</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;text/html; charset=ISO-8859-1&quot;</span></span>
+<span class="odt-code-line"><span style="color:#2a00ff">    </span><span style="color:#7f007f">pageEncoding</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;ISO-8859-1&quot;</span><span style="color:#bf5f3f">%&gt;</span></span>
+<span class="odt-code-line"><span style="color:#008080">&lt;!</span><span style="color:#3f7f7f">DOCTYPE </span><span style="color:#000080">HTML </span><span style="color:#808080">PUBLIC </span><span style="color:#000080">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">taglib </span><span style="color:#7f007f">uri</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;/WEB-INF/c.tld&quot; </span><span style="color:#7f007f">prefix</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;c&quot; </span><span style="color:#bf5f3f">%&gt;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">html</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span><span style="color:#000000">Personne</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">body</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h2</span><span style="color:#008080">&gt;</span><span style="color:#000000">Les erreurs suivantes se sont produites</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">h2</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">ul</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">c:forEach </span><span style="color:#7f007f">var</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;erreur&quot; </span><span style="color:#7f007f">items</span><span style="color:#000000">=</span>&quot;<span style="color:#000000">${erreurs}</span>&quot;<span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">                </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">li</span><span style="color:#008080">&gt;</span><span style="color:#000000">${erreur}</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">li</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">            </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">c:forEach</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">ul</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">br</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">form </span><span style="color:#7f007f">name</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;frmPersonne&quot; </span><span style="color:#7f007f">method</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;post&quot;</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">input </span><span style="color:#7f007f">type</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;hidden&quot; </span><span style="color:#7f007f">name</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;action&quot; </span><span style="color:#7f007f">value</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;retourFormulaire&quot;</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">form</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">a </span><span style="color:#7f007f">href</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;javascript:document.frmPersonne.submit();&quot;</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line">      ${lienRetourFormulaire}</span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">a</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">body</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">html</span><span style="color:#008080">&gt;</span></span>
+</code></pre></div>
+
+<p>La balise (ligne 4)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;%@ taglib uri=&quot;/WEB-INF/c.tld&quot; prefix=&quot;c&quot; %&gt;
+</code></pre></div>
+<p>signale l&#x27;utilisation d&#x27;une bibliothèque de balises dont la définition se trouve dans le fichier [/WEB-INF/c.tld]. Ces balises seront utilisées dans le code de la page, préfixées du mot <strong>c</strong> (prefix=&quot;c&quot;). On peut utiliser tout préfixe de son choix. Ici <strong>c</strong> signifie [core]. Les préfixes permettent d&#x27;utiliser des bibliothèques de balises qui pourraient avoir les mêmes noms pour certaines balises. L&#x27;utilisation du préfixe lève l&#x27;ambiguïté. La nouvelle page <strong>n&#x27;a plus de code Java</strong> aux deux endroits où elle en avait précédemment :</p>
+<ul>
+<li>la récupération du modèle de la page [erreurs, lienRetourFormulaire] (partie disparue)</li>
+<li>l&#x27;affichage de la liste des erreurs (lignes 13-15)</li>
+</ul>
+<p>La boucle d&#x27;affichage des erreurs a été remplacée par code suivant :</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">c:forEach </span><span style="color:#7f007f">var</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;erreur&quot; </span><span style="color:#7f007f">items</span><span style="color:#000000">=</span>&quot;<span style="color:#000000">${erreurs}</span>&quot;<span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">                </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">li</span><span style="color:#008080">&gt;</span><span style="color:#000000">${erreur}</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">li</span><span style="color:#008080">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#000000">            </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">c:forEach</span><span style="color:#008080">&gt;</span></span>
+</code></pre></div>
+
+<ul>
+<li>la balise <strong>&lt;forEach&gt;</strong> sert à délimiter une boucle</li>
+<li>la notation <strong>${variable}</strong> sert à écrire la valeur d&#x27;une variable</li>
+</ul>
+<p>La balise <strong>&lt;forEach&gt;</strong> a ici deux attributs :</p>
+<ul>
+<li><strong>items=&quot;${erreurs}&quot;</strong> indique la collection d&#x27;objets sur laquelle il faut itérer. Ici, la collection est l&#x27;objet <strong>erreurs</strong>. Où celui-ci est-il trouvé ? La page JSP va chercher un attribut s&#x27;appelant &quot;erreurs&quot; successivement et dans l&#x27;ordre dans  :<ul>
+<li>l&#x27;objet [request] qui représente la requête transmise par le contrôleur : <strong>request.getAttribute(&quot;erreurs&quot;)</strong></li>
+<li>l&#x27;objet [session] qui représente la session du client : <strong>session.getAttribute(&quot;erreurs&quot;)</strong></li>
+<li>l&#x27;objet [application] qui représente le contexte de l&#x27;application web : <strong>application.getAttribute(&quot;erreurs&quot;)</strong></li>
+</ul>
+</li>
+</ul>
+<p>La collection désignée par l&#x27;attribut <strong>items</strong> peut avoir diverses formes : <em>tableau</em>, <em>ArrayList</em>, objet implémentant l&#x27;interface <em>List</em>, ...</p>
+<ul>
+<li><strong>var=&quot;erreur&quot;</strong> sert à donner un nom à l&#x27;élément courant de la collection en cours de traitement. La boucle &lt;forEach&gt; va être exécutée successivement pour chaque élément de la collection <strong>items</strong>. A l&#x27;intérieur de la boucle, l&#x27;élément de la collection en cours de traitement sera donc désigné ici par <strong>erreur</strong>.</li>
+</ul>
+<p>La notation <strong>${erreur}</strong> insère la valeur de la variable <strong>erreur</strong> dans le texte. Cette variable n&#x27;est pas nécessairement une chaîne de caractères. JSTL utilise la méthode <strong>erreur.toString()</strong> pour insérer la valeur de la variable <strong>erreur</strong>. A la place de la notation <strong>${erreur}</strong>, on peut également utiliser la balise <strong>&lt;c:out value=&quot;${erreur}&quot;/&gt;</strong>.</p>
+<p>Pour en revenir à notre exemple d&#x27;affichage des erreurs :</p>
+<ul>
+<li>le contrôleur mettra dans la requête transmise à la page JSP un <em>ArrayList</em> de messages d&#x27;erreurs, donc un <em>ArrayList</em> d&#x27;objets <em>String</em> : <strong>request.setAttribute(&quot;erreurs&quot;,erreurs)</strong> où <strong>erreurs</strong> est le <em>ArrayList</em> ;</li>
+<li>à cause de l&#x27;attribut <strong>items=&quot;${erreurs}&quot;</strong>, la page JSP va chercher un attribut appelé <strong>erreurs</strong>, successivement dans la <strong>requête</strong>, la <strong>session</strong>, l<strong>&#x27;application</strong>. Elle va le trouver dans la requête : <strong>request.getAttribute(&quot;erreurs&quot;)</strong> va rendre le <em>ArrayList</em> placé dans la requête par le contrôleur ;</li>
+<li>la variable <em>erreur</em> de l&#x27;attribut <strong>var=&quot;erreur&quot;</strong> va donc désigner l&#x27;élément courant du <em>ArrayList</em>, donc un objet <em>String</em>. La méthode <strong>erreur.toString()</strong> va insérer la valeur de ce <em>String</em>, ici un message d&#x27;erreur, dans le flux HTML de la page.</li>
+</ul>
+<p>Les objets de la collection traitée par la balise &lt;forEach&gt; peuvent être plus complexes que de simples chaînes de caractères. Prenons l&#x27;exemple d&#x27;une page JSP qui affiche une liste d&#x27;articles :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>            <span class="p">&lt;</span><span class="nt">c:forEach</span> <span class="na">var</span><span class="o">=</span><span class="s">&quot;article&quot;</span> <span class="na">items</span><span class="o">=</span><span class="s">&quot;${listarticles}&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>                    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">c:out</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;${article.nom}&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>                    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">c:out</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;${article.prix}&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>                    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;&lt;c:url value=&quot;</span><span class="err">?</span><span class="na">action</span><span class="o">=</span><span class="s">infos&amp;id=${article.id}&quot;/</span><span class="p">&gt;</span>&quot;&gt;Infos<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>     <span class="p">&lt;/</span><span class="nt">c:forEach</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>où [listarticles] est un <em>ArrayList</em> d&#x27;objets de type [Article] qu&#x27;on suppose être un Javabean avec les champs [id, nom, prix, stockActuel, stockMinimum], chacun de ces champs étant accompagné de ses méthodes <strong>get</strong> et <strong>set</strong>. L&#x27;objet [listarticles] a été placé dans la requête par le contrôleur. La page JSP précédente va le récupérer dans l&#x27;attribut <strong>items</strong> de la balise <strong>forEach</strong>. L&#x27;objet courant <strong>article</strong> (var=&quot;article&quot;) désigne donc un objet de type [Article]. Considérons la balise de la ligne 3 :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&lt;c:out value=&quot;${article.nom}&quot;/&gt;
+</code></pre></div>
+<p>Que signifie <em>${article.nom}</em> ? En fait diverses choses selon la nature de l&#x27;objet <strong>article</strong>. Pour obtenir la valeur de <strong>article.nom</strong>, la page JSP va essayer deux choses :</p>
+<ol>
+<li><strong>article.getNom()</strong> - on notera l&#x27;orthographe <strong>getNom</strong> pour récupérer le champ <strong>nom</strong> (norme Javabean)</li>
+<li><strong>article.get(&quot;nom&quot;)</strong></li>
+</ol>
+<p>L&#x27;objet [article] peut donc être un bean avec un <strong>champ nom</strong>, ou un dictionnaire avec une <strong>clé nom</strong>.</p>
+<p>Il n&#x27;y a pas de limites à la hiérarchie de l&#x27;objet traité. Ainsi la balise </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&lt;c:out value=&quot;${individu.enfants[1].nom}&quot;/&gt;
+</code></pre></div>
+<p>permet de traiter un objet [individu] de type suivant :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>class Individu{
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    private String nom;
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    private String prénom;
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    private Individu[] enfants;
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    // méthodes de la norme Javabean
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    public String getNom(){ return nom;}
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    public String getPrénom(){ return prénom;}
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    public Individu getEnfants(int i){ return enfants[i];}
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>}
+</code></pre></div>
+<p>Pour obtenir la valeur de <strong>${individu.enfants[1].nom}</strong>, la page JSP va essayer diverses méthodes dont celle-ci qui réussira :</p>
+<p><strong>individu.getEnfants(1).getNom()</strong> où <strong>individu</strong> désigne un objet de type <strong>Individu</strong>.</p>
+<h3 id="802-installer-et-decouvrir-la-bibliotheque-jstl">8.0.2. Installer et découvrir la bibliothèque JSTL</h3>
+<p>Les explications données précédemment suffiront pour l&#x27;application qui nous intéresse mais la bibliothèque de balises JSTL offre d&#x27;autres balises que celles présentées. Pour les découvrir, on peut installer un tutoriel fourni dans le paquetage de la bibliothèque.</p>
+<p>Nous utiliserons l&#x27;implémentation JSTL 1.1 du projet [Jakarta Taglibs] disponible à l&#x27;Url [http://jakarta.apache.org/taglibs/] (mai 2006) :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000186000001C4E7F0C560.png" style="display:inline-block; margin:4px;width:7.22cm;height:8.37cm;" class="odt-zoomable" data-zoom-src="images/1000000000000186000001C4E7F0C560.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000023D00000165B503AE20.png" style="display:inline-block; margin:4px;width:8.999cm;height:5.606cm;" class="odt-zoomable" data-zoom-src="images/100000000000023D00000165B503AE20.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000239000000CBD3AD20D0.png" style="display:inline-block; margin:4px;width:8.28cm;height:2.949cm;" class="odt-zoomable" data-zoom-src="images/1000000000000239000000CBD3AD20D0.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000018B000000B72CDDEBBD.png" style="display:inline-block; margin:4px;width:7.31cm;height:3.39cm;" class="odt-zoomable" data-zoom-src="images/100000000000018B000000B72CDDEBBD.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001660000009A06C1020D.png" style="display:inline-block; margin:4px;width:6.63cm;height:2.85cm;" class="odt-zoomable" data-zoom-src="images/10000000000001660000009A06C1020D.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000018F000000A52D565636.png" style="display:inline-block; margin:4px;width:7.391cm;height:3.06cm;" class="odt-zoomable" data-zoom-src="images/100000000000018F000000A52D565636.png" /></td></tr></table>
+
+<p>Le fichier zip téléchargé a un contenu analogue au suivant :</p>
+<p><img src="images/10000000000000C0000000CC673C6073.png" style="width:3.56cm;height:3.78cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C0000000CC673C6073.png" /></p>
+<p>Les deux fichiers de suffixe .war sont des archives d&#x27;applications web :</p>
+<ul>
+<li>standard-doc : documentation sur les balises JSTL</li>
+<li>standard-examples : exemples d&#x27;utilisation des balises</li>
+</ul>
+<p><a id="jstl-deploiement-doc"></a>Nous allons déployer cette dernière application au sein de Tomcat. Nous lançons ce dernier via l&#x27;option adéquate du menu [Démarrer] puis nous demandons l&#x27;Url [http://localhost:8080] et suivons le lien [Tomcat Manager] :</p>
+<p><img src="images/10000000000001530000012EC9798919.png" style="width:6.279cm;height:5.59cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001530000012EC9798919.png" /></p>
+<p>Nous obtenons alors une page d&#x27;authentification. Nous nous identifions comme <em>manager / manager</em><strong><em> ou </em></strong><em>admin / admin</em>, comme il a été montré au paragraphe <a href="les-outils-utilises-dans-le-document.html#tomcat-manager">2.3.3</a>.</p>
+<p><img src="images/10000000000001F8000000D67A462871.png" style="width:9.329cm;height:3.96cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F8000000D67A462871.png" /></p>
+<p>Nous obtenons une page listant les applications actuellement déployées dans Tomcat :</p>
+<p><img src="images/100000000000039F0000016C59E0553F.png" style="width:17.17cm;height:6.74cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000039F0000016C59E0553F.png" /></p>
+<p>Nous pouvons ajouter une nouvelle application grâce à des formulaires placés en bas de la page :</p>
+<p><img src="images/100000000000024D0000007303A3AD27.png" style="width:10.91cm;height:2.131cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024D0000007303A3AD27.png" /></p>
+<p>Nous utilisons le bouton [Parcourir] pour désigner un fichier .war à déployer.</p>
+<p><img src="images/100000000000024F0000006B8D265A8B.png" style="width:10.94cm;height:1.981cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024F0000006B8D265A8B.png" /></p>
+<p>La copie d&#x27;écran ne le montre pas, mais nous avons sélectionné le fichier [standard-examples.war] de la distribution JSTL téléchargée. Le bouton [Deploy] enregistre et déploie cette application au sein de Tomcat.</p>
+<p><img src="images/10000000000002D200000072144A90DD.png" style="width:13.37cm;height:2.11cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002D200000072144A90DD.png" /></p>
+<p>L&#x27;application [/standard-examples] a bien été déployée. Nous la lançons :</p>
+<p><img src="images/10000000000001D30000019D2D8DA0CD.png" style="width:8.65cm;height:7.65cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D30000019D2D8DA0CD.png" /></p>
+<p>Le lecteur est invité à suivre les différents liens offerts par cette page lorsqu&#x27;il cherche des exemples d&#x27;utilisation des balises JSTL.</p>
+<p>L&#x27;application [standard-doc] pourra être déployée de la même façon à partir du fichier [standard-doc.war]. Elle donne accès à des informations assez techniques sur la bibliothèque JSTL. Elle présente moins d&#x27;intérêt pour le débutant.</p>
+<h3 id="803-utiliser-jstl-dans-une-application-web">8.0.3. Utiliser JSTL dans une application web</h3>
+<p>Dans les exemples livrés avec la bibliothèque JSTL 1.2, les pages JSP ont en début de fichier la balise suivante :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+</code></pre></div>
+<p>Nous avons déjà rencontré cette balise au paragraphe <a href="#balise-taglib">8.1.1</a>, et nous en avons donné une courte explication :</p>
+<ul>
+<li>[uri] : URI (Uniform Resource Identifier) où l&#x27;on trouve la définition des balises utilisées dans la page. Cette URI va être utilisée par le serveur web lorsque la page JSP va être traduite en code Java pour devenir une servlet. Elle est également utilisée par les outils de développement de pages web pour vérifier la bonne syntaxe des balises utilisées dans la page ou pour proposer une aide à la frappe. Lorsqu&#x27;on commence l&#x27;écriture d&#x27;une balise, un outil connaissant la bibliothèque peut alors proposer à l&#x27;utilisateur les attributs possibles pour cette balise.</li>
+<li>[prefix] : préfixe qui identifie ces balises dans la page</li>
+</ul>
+<p>L&#x27;uri [http://java.sun.com/jsp/jstl/core] n&#x27;est pas utilisable si on n&#x27;est pas raccordé à l&#x27;internet public. Dans ce cas, on peut placer localement, le fichier de définition des balises. Plusieurs tels fichiers sont fournis avec la distribution JSTL 1.2 dans le dossier [tld] (Tag Language Definition) :</p>
+<p><img src="images/10000000000000C90000012E11247D3A.png" style="width:3.72cm;height:5.59cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C90000012E11247D3A.png" /></p>
+<p>JSTL est en fait un ensemble de bibliothèque de balises. Nous n&#x27;utiliserons que la bibliothèque [c.tld] dite bibliothèque &quot; core &quot;. Nous placerons le fichier [c.tld] ci-dessus dans le dossier [WEB-INF] de nos applications :</p>
+<p><img src="images/1000000000000076000000440B082809.png" style="width:2.18cm;height:1.259cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000076000000440B082809.png" /></p>
+<p>et mettrons la balise suivante dans nos pages JSP pour déclarer l&#x27;utilisation de la bibliothèque &quot; core &quot; :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>&lt;%@ taglib uri=&quot;/WEB-INF/c.tld&quot; prefix=&quot;c&quot; %&gt;
+</code></pre></div>
+<p>Si l&#x27;utilisation de bibliothèques de balises nous permet d&#x27;éviter de mettre du code Java dans les pages JSP, ces balises sont bien sûr traduite en code Java lors de la traduction de la page JSP en servlet Java. Elles utilisent des classes définies dans deux archives [jstl.jar, standard.jar] qu&#x27;on trouve dans le dossier [lib] de la distribution JSTL :</p>
+<p><img src="images/10000000000000760000005B7B91247B.png" style="width:2.191cm;height:1.679cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000760000005B7B91247B.png" /></p>
+<p>Ces deux archives sont placées dans le dossier [WEB-INF/lib] de nos applications :</p>
+<p><img src="images/100000000000009D000000613B95D366.png" style="width:2.91cm;height:1.799cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000009D000000613B95D366.png" /></p>
+<p>Nous avons maintenant les bases pour aborder la version suivante de notre application exemple.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://tahe.developpez.com" target="_blank">
+          https://tahe.developpez.com
+        </a>
+        <br>
+        Ce cours-tutoriel écrit par <strong>Serge Tahé</strong> est mis à disposition du public selon les termes de la
+        <em>Licence Creative Commons Attribution – Pas d’Utilisation Commerciale –
+        Partage dans les Mêmes Conditions 3.0 non transposé</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
