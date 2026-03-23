@@ -1110,16 +1110,24 @@
 <p>Le lecteur est invité à relire les principes d&#x27;une application web MVC dans une architecture 3tier s&#x27;il les a oubliés, au paragraphe <a href="developpement-mvc-modele---vue---controleur.html#mvc-3tier">4</a>.</p>
 <p>L’application web que nous allons écrire va permettre de gérer un groupe de personnes avec quatre opérations :</p>
 <ul>
-<li>liste des personnes du groupe</li>
-<li>ajout d’une personne au groupe</li>
-<li>modification d’une personne du groupe</li>
-<li>suppression d’une personne du groupe</li>
+  <li>liste des personnes du groupe
+  </li>
+  <li>ajout d’une personne au groupe
+  </li>
+  <li>modification d’une personne du groupe
+  </li>
+  <li>suppression d’une personne du groupe
+  </li>
 </ul>
+
 <p>On reconnaîtra les quatre opérations de base sur une table de base de données. Nous écrirons deux versions de cette application :</p>
 <ul>
-<li>dans la version 1, la couche [dao] n’utilisera pas de base de données. Les personnes du groupe seront stockées dans un simple objet [ArrayList] géré en interne par la couche [dao]. Cela permettra au lecteur de tester l’application sans contrainte de base de données.</li>
-<li>dans la version 2, nous placerons le groupe de personnes dans une table de base de données. Nous montrerons que cela se fera sans impact sur la couche web de la version 1 qui restera inchangée.</li>
+  <li>dans la version 1, la couche [dao] n’utilisera pas de base de données. Les personnes du groupe seront stockées dans un simple objet [ArrayList] géré en interne par la couche [dao]. Cela permettra au lecteur de tester l’application sans contrainte de base de données.
+  </li>
+  <li>dans la version 2, nous placerons le groupe de personnes dans une table de base de données. Nous montrerons que cela se fera sans impact sur la couche web de la version 1 qui restera inchangée.
+  </li>
 </ul>
+
 <p>Les <a id="spring-mvc-37-ecrans"></a>copies d’écran qui suivent montrent les pages que l’application échange avec l’utilisateur.</p>
 <p><img src="images/100000000000055D0000023092DBB54D.png" style="width:17.997cm;height:7.34cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000055D0000023092DBB54D.png" /></p>
 <p><img src="images/10000000000005500000022710654993.png" style="width:17.992cm;height:7.29cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005500000022710654993.png" /></p>
@@ -1135,12 +1143,18 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004650000016ABB6F1D91.png" style="display:inline-block; margin:4px;width:14.884cm;height:4.789cm;" class="odt-zoomable" data-zoom-src="images/10000000000004650000016ABB6F1D91.png" /></td></tr></table>
 
 <ul>
-<li>la couche [dao] est contenue dans le paquetage [istia.st.mvc.personnes.dao]</li>
-<li>la couche [metier] ou [service] est contenue dans le paquetage [istia.st.mvc.personnes.service]</li>
-<li>la couche [web] ou [ui] est contenue dans le paquetage [istia.st.mvc.personnes.web]</li>
-<li>le paquetage [istia.st.mvc.personnes.entites] contient les objets partagés entre différentes couches </li>
-<li>le paquetage [istia.st.mvc.personnes.tests] contient les tests Junit des couches [dao] et [service]</li>
+  <li>la couche [dao] est contenue dans le paquetage [istia.st.mvc.personnes.dao]
+  </li>
+  <li>la couche [metier] ou [service] est contenue dans le paquetage [istia.st.mvc.personnes.service]
+  </li>
+  <li>la couche [web] ou [ui] est contenue dans le paquetage [istia.st.mvc.personnes.web]
+  </li>
+  <li>le paquetage [istia.st.mvc.personnes.entites] contient les objets partagés entre différentes couches 
+  </li>
+  <li>le paquetage [istia.st.mvc.personnes.tests] contient les tests Junit des couches [dao] et [service]
+  </li>
 </ul>
+
 <p>Nous allons explorer successivement les trois couches [dao], [service] et [web]. Parce que ce serait trop long à écrire et peut-être trop ennuyeux à lire, nous serons peut-être parfois un peu rapides sur les explications sauf lorsque ce qui est présenté est nouveau.</p>
 <h2 id="143-la-representation-dune-personne">14.3. La représentation d’une personne</h2>
 <p>L’application gère un groupe de personnes. Les copies d’écran paragraphe <a href="#spring-mvc-37-ecrans">14.1</a> ont montré certaines des caractéristiques d’une personne. Formellement, celles-ci sont représentées par une classe [Personne] :</p>
@@ -1267,33 +1281,50 @@
 <a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>une personne est identifiée par les informations suivantes :<ul>
-<li><strong>id</strong> : un n° identifiant de façon unique une personne</li>
-<li><strong>nom</strong> : le nom de la personne</li>
-<li><strong>prenom</strong> : son prenom</li>
-<li><strong>dateNaissance</strong> : sa date de naissance</li>
-<li><strong>marie</strong> : son état marié ou non</li>
-<li><strong>nbEnfants</strong> : son nombre d’enfants</li>
+  <li>une personne est identifiée par les informations suivantes :
+    <ul>
+      <li><b>id</b> : un n° identifiant de façon unique une personne
+      </li>
+      <li><b>nom</b> : le nom de la personne
+      </li>
+      <li><b>prenom</b> : son prenom
+      </li>
+      <li><b>dateNaissance</b> : sa date de naissance
+      </li>
+      <li><b>marie</b> : son état marié ou non
+      </li>
+      <li><b>nbEnfants</b> : son nombre d’enfants
+      </li>
+    </ul>
+  </li>
+  <li>l’attribut [<b>version</b>] est un attribut artificiellement ajouté pour les besoins de l’application. D’un point de vue objet, il aurait été sans doute préférable d’ajouter cet attribut dans une classe dérivée de [Personne]. Son besoin apparaît lorsqu’on fait des cas d’usage de l’application web. L’un d’entre-eux est le suivant :
+  </li>
 </ul>
-</li>
-<li>l’attribut [<strong>version</strong>] est un attribut artificiellement ajouté pour les besoins de l’application. D’un point de vue objet, il aurait été sans doute préférable d’ajouter cet attribut dans une classe dérivée de [Personne]. Son besoin apparaît lorsqu’on fait des cas d’usage de l’application web. L’un d’entre-eux est le suivant :</li>
-</ul>
+
 <p>Au temps T1, un utilisateur U1 entre en modification d’une personne P.  A ce moment, le nombre d’enfants est 0. Il passe ce nombre à 1 mais avant qu’il ne valide sa modification, un utilisateur U2 entre en modification de la même personne P. Puisque U1 n’a pas encore validé sa modification, U2 voit le nombre d’enfants à 0. U2 passe le nom de la personne P en majuscules. Puis U1 et U2 valident leurs modifications dans cet ordre. C’est la modification de U2 qui va gagner : le nom va passer en majuscules et le nombre d’enfants va rester à zéro alors même que U1 croit l’avoir changé en 1.</p>
 <p>La notion de version de personne nous aide à résoudre ce problème. On reprend le même cas d’usage :</p>
 <p>Au temps T1, un utilisateur U1 entre en modification d’une personne P.  A ce moment, le nombre d’enfants est 0 et la version V1. Il passe le nombre d’enfants à 1 mais avant qu’il ne valide sa modification, un utilisateur U2 entre en modification de la même personne P. Puisque U1 n’a pas encore validé sa modification, U2 voit le nombre d’enfants à 0 et la version à V1. U2 passe le nom de la personne P en majuscules. Puis U1 et U2 valident leurs modifications dans cet ordre. Avant de valider une modification, on vérifie que celui qui modifie une personne P détient la même version que la personne P actuellement enregistrée. Ce sera le cas de l’utilisateur U1. Sa modification est donc acceptée et on change alors la version de la personne modifiée de V1 à V2 pour noter le fait que la personne a subi un changement. Lors de la validation de la modification de U2, on va s’apercevoir qu’il détient une version V1 de la personne P, alors qu’actuellement la version de celle-ci est V2. On va alors pouvoir dire à l’utilisateur U2 que quelqu’un est passé avant lui et qu’il doit repartir de la nouvelle version de la personne P. Il le fera, récupèrera une personne P de version V2 qui a maintenant un enfant, passera le nom en majuscules, validera. Sa modification sera acceptée si la personne P enregistrée a toujours la version V2. Au final, les modifications faites par U1 et U2 seront prises en compte alors que dans le cas d’usage sans version, l’une des modifications était perdue.</p>
 <ul>
-<li>lignes 32-40 : un constructeur capable d’initialiser les champs d’une personne. On omet le champ [version].</li>
-<li>lignes 43-51 : un constructeur qui crée une copie de la personne qu’on lui passe en paramètre. On a alors deux objets de contenu identique mais référencés par deux pointeurs différents.</li>
-<li>ligne 55 : la méthode [toString] est redéfinie pour rendre une chaîne de caractères représentant l’état de la personne</li>
+  <li>lignes 32-40 : un constructeur capable d’initialiser les champs d’une personne. On omet le champ [version].
+  </li>
+  <li>lignes 43-51 : un constructeur qui crée une copie de la personne qu’on lui passe en paramètre. On a alors deux objets de contenu identique mais référencés par deux pointeurs différents.
+  </li>
+  <li>ligne 55 : la méthode [toString] est redéfinie pour rendre une chaîne de caractères représentant l’état de la personne
+  </li>
 </ul>
+
 <h2 id="144-la-couche-dao">14.4. La couche [dao]</h2>
 <p>La couche [dao] est constituée des classes et interfaces suivantes :</p>
 <p><img src="images/10000000000000C300000042CC4C4778.png" style="width:3.611cm;height:1.221cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C300000042CC4C4778.png" /></p>
 <ul>
-<li>[IDao] est l’interface présentée par la couche [dao]</li>
-<li>[DaoImpl] est une implémentation de celle-ci où le groupe de personnes est encapsulé dans un objet [ArrayList]</li>
-<li>[DaoException] est un type d’exceptions non contrôlées (unchecked), lancées par la couche [dao]</li>
+  <li>[IDao] est l’interface présentée par la couche [dao]
+  </li>
+  <li>[DaoImpl] est une implémentation de celle-ci où le groupe de personnes est encapsulé dans un objet [ArrayList]
+  </li>
+  <li>[DaoException] est un type d’exceptions non contrôlées (unchecked), lancées par la couche [dao]
+  </li>
 </ul>
+
 <p>L’interface [<a id="spring-mvc-37-idao"></a>IDao] est la suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
@@ -1328,14 +1359,20 @@
 <a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>l’interface a quatre méthodes pour les quatre opérations que l’on souhaite faire sur le groupe de personnes :<ul>
-<li><strong>getAll</strong> : pour obtenir une collection de personnes</li>
-<li><strong>getOne</strong> : pour obtenir une personne ayant un <em>id</em> précis</li>
-<li><strong>saveOne</strong> : pour ajouter une personne (<em>id</em>=-1) ou modifier une personne existante (<em>id</em> &lt;&gt; -1)</li>
-<li><strong>deleteOne</strong> : pour supprimer une personne ayant un <em>id</em> précis</li>
+  <li>l’interface a quatre méthodes pour les quatre opérations que l’on souhaite faire sur le groupe de personnes :
+    <ul>
+      <li><b>getAll</b> : pour obtenir une collection de personnes
+      </li>
+      <li><b>getOne</b> : pour obtenir une personne ayant un <i>id</i> précis
+      </li>
+      <li><b>saveOne</b> : pour ajouter une personne (<i>id</i>=-1) ou modifier une personne existante (<i>id</i> &lt;&gt; -1)
+      </li>
+      <li><b>deleteOne</b> : pour supprimer une personne ayant un <i>id</i> précis
+      </li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
+
 <p>La couche [dao] est susceptible de lancer des exceptions. Celles-ci seront de type [<a id="spring-mvc-37-daoexception"></a>DaoException] :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
@@ -1372,24 +1409,32 @@
 <a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 3 : la classe [DaoException] dérivant de [RuntimeException] est un type d’exception non contrôlée : le compilateur ne nous oblige pas à :<ul>
-<li>gérer ce type d’exceptions avec un try / catch lorsqu’on appelle une méthode pouvant la lancer</li>
-<li>mettre le marqueur &quot; throws DaoException &quot; dans la signature d’une méthode susceptible de lancer l’exception</li>
+  <li>ligne 3 : la classe [DaoException] dérivant de [RuntimeException] est un type d’exception non contrôlée : le compilateur ne nous oblige pas à :
+    <ul>
+      <li>gérer ce type d’exceptions avec un try / catch lorsqu’on appelle une méthode pouvant la lancer
+      </li>
+      <li>mettre le marqueur &quot; throws DaoException &quot; dans la signature d’une méthode susceptible de lancer l’exception
+      </li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
+
 <p>Cette technique nous évite d’avoir à signer les méthodes de l’interface [IDao] avec des exceptions d’un type particulier. Toute implémentation lançant des exceptions non contrôlées sera alors acceptable amenant ainsi de la souplesse dans l’architecture.</p>
 <ul>
-<li>
-<p>ligne 6 : un code d’erreur. La couche [dao] lancera diverses exceptions qui seront identifiées par des codes d’erreur différents. Cela permettra à la couche qui décidera de gérer l’exception de connaître l’origine exacte de l’erreur et de prendre ainsi les mesures appropriées. Il y a d’autres façons d’arriver au même résultat. L’une d’elles est de créer un type d’exception pour chaque type d’erreur possible, par exemple NomManquantException, PrenomManquantException, AgeIncorrectException, ...</p>
-</li>
-<li>
-<p>lignes 13-16 : le constructeur qui permettra de créer une exception identifiée par un code d’erreur ainsi qu’un message d’erreur.</p>
-</li>
-<li>
-<p>lignes 8-10 : la méthode qui permettra au code de gestion d’une exception d’en récupérer le code d’erreur.</p>
-</li>
+  <li>ligne 6 : un code d’erreur. La couche [dao] lancera diverses exceptions qui seront identifiées par des codes d’erreur différents. Cela permettra à la couche qui décidera de gérer l’exception de connaître l’origine exacte de l’erreur et de prendre ainsi les mesures appropriées. Il y a d’autres façons d’arriver au même résultat. L’une d’elles est de créer un type d’exception pour chaque type d’erreur possible, par exemple NomManquantException, PrenomManquantException, AgeIncorrectException, ...
+  </li>
 </ul>
+
+<ul>
+  <li>lignes 13-16 : le constructeur qui permettra de créer une exception identifiée par un code d’erreur ainsi qu’un message d’erreur.
+  </li>
+</ul>
+
+<ul>
+  <li>lignes 8-10 : la méthode qui permettra au code de gestion d’une exception d’en récupérer le code d’erreur.
+  </li>
+</ul>
+
 <p>La classe [<a id="spring-mvc-37-daoimpl"></a>DaoImpl] implémente l’interface [IDao] :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">  1</a></span>
 <span class="normal"><a href="#__codelineno-3-2">  2</a></span>
@@ -1729,40 +1774,62 @@
 </code></pre></div></td></tr></table></div>
 <p>Nous n’allons donner que les grandes lignes de ce code. Nous passerons cependant un peu de temps sur les parties les plus délicates.</p>
 <ul>
-<li>ligne 13 : l’objet [ArrayList] qui va contenir le groupe de personnes</li>
-<li>ligne 16 : l’identifiant de la dernière personne ajoutée. A chaque nouvel ajout, cet identifiant va être incrémenté de 1.</li>
+  <li>ligne 13 : l’objet [ArrayList] qui va contenir le groupe de personnes
+  </li>
+  <li>ligne 16 : l’identifiant de la dernière personne ajoutée. A chaque nouvel ajout, cet identifiant va être incrémenté de 1.
+  </li>
 </ul>
+
 <p>La classe [DaoImpl] va être instanciée en un unique exemplaire. C’est ce qu’on appelle un singleton. Une application web  sert ses utilisateurs de façon simultanée. Il y a à un moment donné plusieurs threads exécutés par le serveur web. Ceux-ci se partagent les singletons : </p>
 <ul>
-<li>celui de la couche [dao]</li>
-<li>celui de la couche [service]</li>
-<li>ceux des différents contrôleurs, validateurs de données, ... de la couche web</li>
+  <li>celui de la couche [dao]
+  </li>
+  <li>celui de la couche [service]
+  </li>
+  <li>ceux des différents contrôleurs, validateurs de données, ... de la couche web
+  </li>
 </ul>
+
 <p>Si un singleton a des champs privés, il faut tout de suite se demander pourquoi il en a. Sont-ils justifiés ? En effet, ils vont être partagés entre différents threads. S’ils sont en lecture seule, cela ne pose pas de problème s’ils peuvent être initialisés à un moment où on est sûr qu’il n’y a qu’un thread actif. On sait en général trouver ce moment. C’est celui du démarrage de l’application web alors qu’elle n’a pas commencé à servir des clients. S’ils sont en lecture / écriture alors il faut mettre en place une synchronisation d’accès aux champs sinon on court à la catastrophe. Nous illustrerons ce problème lorsque nous testerons la couche [dao].</p>
 <ul>
-<li>la classe [DaoImpl] n’a pas de constructeur. C’est donc son constructeur par défaut qui sera utilisé.</li>
-<li>lignes 19-38 : la méthode [init] sera appelée au moment de l’instanciation du singleton de la couche [dao]. Elle crée une liste de trois personnes.</li>
-<li>lignes 41-43 : implémente la méthode [getAll] de l’interface [IDao]. Elle rend une référence sur la liste des personnes.</li>
-<li>lignes 46-55 : implémente la méthode [getOne] de l’interface [IDao]. Son paramètre est l’id de la personne cherchée.</li>
+  <li>la classe [DaoImpl] n’a pas de constructeur. C’est donc son constructeur par défaut qui sera utilisé.
+  </li>
+  <li>lignes 19-38 : la méthode [init] sera appelée au moment de l’instanciation du singleton de la couche [dao]. Elle crée une liste de trois personnes.
+  </li>
+  <li>lignes 41-43 : implémente la méthode [getAll] de l’interface [IDao]. Elle rend une référence sur la liste des personnes.
+  </li>
+  <li>lignes 46-55 : implémente la méthode [getOne] de l’interface [IDao]. Son paramètre est l’id de la personne cherchée.
+  </li>
 </ul>
+
 <p>Pour la récupérer, on fait appel à une méthode privée [getPosition] des lignes 113-126. Cette méthode rend la position dans la liste, de la personne cherchée ou -1 si la personne n’a pas été trouvée.</p>
 <p>Si la personne a été trouvée, la méthode [getOne] rend une référence (ligne 51) sur une <strong>copie</strong> de cette personne et non sur la personne elle-même. En effet, lorsqu’un utilisateur va vouloir modifier une personne, les informations sur celle-ci vont-être demandées à la couche [dao] et remontées jusqu’à la couche [web] pour modification, sous la forme d’une référence sur un objet [Personne]. Cette référence va servir de conteneur de saisies dans le formulaire de modification. Lorsque dans la couche web, l’utilisateur va poster ses modifications, le contenu du conteneur de saisies va être modifié. Si le conteneur est une référence sur la personne réelle du [ArrayList] de la couche [dao], alors celle-ci est modifiée alors même que les modifications n’ont pas été présentées aux couches [service] et [dao]. Cette dernière est la seule habilitée à gérer la liste des personnes. Aussi faut-il que la couche web travaille sur une copie de la personne à modifier. Ici la couche [dao] délivre cette copie.</p>
 <p>Si la personne cherchée n’est pas trouvée, une exception de type [DaoException] est lancée avec le code d’erreur 2  (ligne 53).</p>
 <ul>
-<li>
-<p>lignes 94-104 : implémente la méthode [deleteOne] de l’interface [IDao]. Son paramètre est l’id de la personne à supprimer. Si la personne à supprimer n’existe pas,  une exception de type [DaoException] est lancée avec le code d’erreur 2.</p>
-</li>
-<li>
-<p>lignes 58-91 : implémente la méthode [saveOne] de l’interface [IDao].  Son paramètre est un objet [Personne]. Si cet objet à un id=-1, alors il s’agit d’un ajout de personne. Sinon, il s’agit de modifier la personne de la liste ayant cet id avec les valeurs du paramètre.</p>
+  <li>lignes 94-104 : implémente la méthode [deleteOne] de l’interface [IDao]. Son paramètre est l’id de la personne à supprimer. Si la personne à supprimer n’existe pas,  une exception de type [DaoException] est lancée avec le code d’erreur 2.
+  </li>
+</ul>
+
 <ul>
-<li>ligne 60 : la validité du paramètre [Personne] est vérifiée par une méthode privée [check] définie aux lignes 129-155. Cette méthode fait des vérifications basiques sur la valeur des différents champs de [Personne]. A chaque fois qu’une anomalie est détectée, une [DaoException] avec un code d’erreur spécifique est lancé. Comme la méthode [saveOne] ne gère pas cette exception, elle remontera à la méthode appelante.</li>
-<li>lignes 62 : si le paramètre [Personne] a son id égal à -1, alors il s’agit d’un ajout. L’objet [Personne] est ajouté à la liste interne des personnes (ligne 66), avec le 1er id disponible (ligne 64), et un n° de version égal à 1 (ligne 65).</li>
-<li>si  le paramètre [Personne] a un [id] différent de -1, il s’agit de modifier la personne de la liste interne ayant cet [id]. Tout d’abord, on vérifie (lignes 70-75) que la personne à modifier existe. Si ce n’est pas le cas, on lance une exception de type [DaoException] avec le code d’erreur 2.</li>
-<li>si la personne est bien présente, on vérifie que sa version actuelle est la même que celle du paramètre [Personne] qui contient les modifications à apporter à l’original. Si ce n’est pas le cas, cela signifie que celui qui veut faire la modification de la personne n’en détient pas la dernière version. On le lui dit en lançant  une exception de type [DaoException] avec le code d’erreur 3 (lignes 79-80).</li>
-<li>si tout va bien, les modifications sont faites sur l’original de la personne (lignes 85-90)</li>
+  <li>lignes 58-91 : implémente la méthode [saveOne] de l’interface [IDao].  Son paramètre est un objet [Personne]. Si cet objet à un id=-1, alors il s’agit d’un ajout de personne. Sinon, il s’agit de modifier la personne de la liste ayant cet id avec les valeurs du paramètre.
+  </li>
 </ul>
-</li>
-</ul>
+
+<ol>
+    <ul>
+      <li>ligne 60 : la validité du paramètre [Personne] est vérifiée par une méthode privée [check] définie aux lignes 129-155. Cette méthode fait des vérifications basiques sur la valeur des différents champs de [Personne]. A chaque fois qu’une anomalie est détectée, une [DaoException] avec un code d’erreur spécifique est lancé. Comme la méthode [saveOne] ne gère pas cette exception, elle remontera à la méthode appelante.
+      </li>
+      <li>lignes 62 : si le paramètre [Personne] a son id égal à -1, alors il s’agit d’un ajout. L’objet [Personne] est ajouté à la liste interne des personnes (ligne 66), avec le 1er id disponible (ligne 64), et un n° de version égal à 1 (ligne 65).
+      </li>
+      <li>si  le paramètre [Personne] a un [id] différent de -1, il s’agit de modifier la personne de la liste interne ayant cet [id]. Tout d’abord, on vérifie (lignes 70-75) que la personne à modifier existe. Si ce n’est pas le cas, on lance une exception de type [DaoException] avec le code d’erreur 2.
+      </li>
+      <li>si la personne est bien présente, on vérifie que sa version actuelle est la même que celle du paramètre [Personne] qui contient les modifications à apporter à l’original. Si ce n’est pas le cas, cela signifie que celui qui veut faire la modification de la personne n’en détient pas la dernière version. On le lui dit en lançant  une exception de type [DaoException] avec le code d’erreur 3 (lignes 79-80).
+      </li>
+      <li>si tout va bien, les modifications sont faites sur l’original de la personne (lignes 85-90)
+      </li>
+    </ul>
+</ol>
+
 <p>On sent bien que cette méthode doit être synchronisée. Par exemple, entre le moment où on vérifie que la personne à modifier est bien là et celui où la modification va être faite, la personne a pu être supprimée de la liste par quelqu’un d’autre. La méthode devrait être donc déclarée [synchronized] afin de s’assurer qu’un seul thread à la fois l’exécute. Il en est de même pour les autres méthodes de l’interface [IDao]. Nous ne le faisons pas, préférant déplacer cette synchronisation dans la couche [service]. Pour mettre en lumière les problèmes de synchronisation, lors des tests de la couche [dao] nous arrêterons l’exécution de [saveOne] pendant 10 ms (ligne 83) entre le moment où on sait qu’on peut faire la modification et le moment où on la fait réellement. Le thread qui exécute [saveOne] perdra alors le processeur au profit d’un autre. Nous augmentons ainsi nos chances de voir apparaître des conflits d’accès à la liste des personnes.</p>
 <h2 id="145-tests-de-la-couche-dao">14.5. Tests de la couche [dao]</h2>
 <p>Un test JUnit est écrit pour la couche [dao] :</p>
@@ -1867,9 +1934,12 @@
 <a id="__codelineno-4-48" name="__codelineno-4-48"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 9 : référence sur l&#x27;implémentation de la couche [dao] testée</li>
-<li>lignes 12-15 : le constructeur du test JUnit. Il crée une instance de type [DaoImpl] de la couche [dao] à tester et l&#x27;initialise.</li>
+  <li>ligne 9 : référence sur l&#x27;implémentation de la couche [dao] testée
+  </li>
+  <li>lignes 12-15 : le constructeur du test JUnit. Il crée une instance de type [DaoImpl] de la couche [dao] à tester et l&#x27;initialise.
+  </li>
 </ul>
+
 <p>La méthode [test1] teste les quatre méthodes de l’interface [IDao] de la façon suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
@@ -1948,24 +2018,36 @@
 <a id="__codelineno-5-38" name="__codelineno-5-38"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 3 : on demande la liste des personnes</li>
-<li>ligne 6 : on affiche celle-ci</li>
+  <li>ligne 3 : on demande la liste des personnes
+  </li>
+  <li>ligne 6 : on affiche celle-ci
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[1,1,Joachim,Major,13/01/1984,true,2]
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>[2,1,Mélanie,Humbort,12/01/1985,false,1]
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>[3,1,Charles,Lemarchand,01/01/1986,false,0]
 </code></pre></div>
 <p>Le test ensuite ajoute une personne, la modifie et la supprime. Ainsi les quatre méthodes de l’interface [IDao] sont-elles utilisées.</p>
 <ul>
-<li>lignes 8-10 : on ajoute une nouvelle personne (id=-1).</li>
-<li>ligne 11 : on récupère l’id de la personne ajoutée car l’ajout lui en a donné un. Avant elle n’en avait pas.</li>
-<li>ligne 13-14 : on demande à la couche [dao] une copie de la personne qui vient d’être ajoutée. Il faut se rappeler que si la personne demandée n’est pas trouvée, la couche [dao] lance une exception. On aura alors un plantage ligne 13. On aurait pu gérer ce cas plus proprement. Ligne 14, on vérifie le nom de la personne retrouvée.</li>
-<li>lignes 16-17 : on modifie ce nom et on demande à la couche [dao] d’enregistrer les modifications.</li>
-<li>lignes 19-20 :  on demande à la couche [dao] une copie de la personne qui vient d’être ajoutée et on vérifie son nouveau nom.</li>
-<li>ligne 22 : on supprime la personne ajoutée au début du test.</li>
-<li>lignes 23-34 : on demande à la couche [dao] une copie de la personne qui vient d’être supprimée. On doit obtenir une [DaoException] de code 2.</li>
-<li>lignes 36-37 : la liste des personnes est redemandée. On doit obtenir la même qu’au début du test.</li>
+  <li>lignes 8-10 : on ajoute une nouvelle personne (id=-1).
+  </li>
+  <li>ligne 11 : on récupère l’id de la personne ajoutée car l’ajout lui en a donné un. Avant elle n’en avait pas.
+  </li>
+  <li>ligne 13-14 : on demande à la couche [dao] une copie de la personne qui vient d’être ajoutée. Il faut se rappeler que si la personne demandée n’est pas trouvée, la couche [dao] lance une exception. On aura alors un plantage ligne 13. On aurait pu gérer ce cas plus proprement. Ligne 14, on vérifie le nom de la personne retrouvée.
+  </li>
+  <li>lignes 16-17 : on modifie ce nom et on demande à la couche [dao] d’enregistrer les modifications.
+  </li>
+  <li>lignes 19-20 :  on demande à la couche [dao] une copie de la personne qui vient d’être ajoutée et on vérifie son nouveau nom.
+  </li>
+  <li>ligne 22 : on supprime la personne ajoutée au début du test.
+  </li>
+  <li>lignes 23-34 : on demande à la couche [dao] une copie de la personne qui vient d’être supprimée. On doit obtenir une [DaoException] de code 2.
+  </li>
+  <li>lignes 36-37 : la liste des personnes est redemandée. On doit obtenir la même qu’au début du test.
+  </li>
 </ul>
+
 <p>La méthode [test4] cherche à mettre en lumière les problèmes d’accès concurrents aux méthodes de la couche [dao]. Rappelons que celles-ci n’ont pas été synchronisées. Le code du test est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
@@ -2040,18 +2122,28 @@
 <a id="__codelineno-7-36" name="__codelineno-7-36"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 3-6 : on ajoute dans la liste une personne P avec aucun enfant. On note son [id] (ligne 6).</li>
-<li>lignes 7-13 : on lance N threads. Chacun d’eux va incrémenter le nombre d’enfants de la personne P de 1 unité. Au final, la personne P devra avoir N enfants.</li>
-<li>lignes 15-17 : la méthode [test4] qui a lancé les N threads attend qu’ils aient terminé leur travail avant de regarder le nouveau nombre d’enfants de la personne P.</li>
-<li>lignes 18-21 : on récupère la personne P et on vérifie que son nombre d’enfants est N.</li>
-<li>lignes 22-35 : la personne P est supprimée puis on vérifie qu’elle n’existe plus dans la liste.</li>
+  <li>lignes 3-6 : on ajoute dans la liste une personne P avec aucun enfant. On note son [id] (ligne 6).
+  </li>
+  <li>lignes 7-13 : on lance N threads. Chacun d’eux va incrémenter le nombre d’enfants de la personne P de 1 unité. Au final, la personne P devra avoir N enfants.
+  </li>
+  <li>lignes 15-17 : la méthode [test4] qui a lancé les N threads attend qu’ils aient terminé leur travail avant de regarder le nouveau nombre d’enfants de la personne P.
+  </li>
+  <li>lignes 18-21 : on récupère la personne P et on vérifie que son nombre d’enfants est N.
+  </li>
+  <li>lignes 22-35 : la personne P est supprimée puis on vérifie qu’elle n’existe plus dans la liste.
+  </li>
 </ul>
+
 <p>Ligne 11, on voit que les threads sont de type [ThreadDaoMajEnfants]. Le constructeur de ce type a trois paramètres :</p>
 <ol>
-<li>le nom donné au thread, ceci pour le suivre au moyen de logs</li>
-<li>une référence sur la couche [dao] afin que le thread y ait accès</li>
-<li>l’id de la personne sur laquelle le thread doit travailler</li>
+  <li>le nom donné au thread, ceci pour le suivre au moyen de logs
+  </li>
+  <li>une référence sur la couche [dao] afin que le thread y ait accès
+  </li>
+  <li>l’id de la personne sur laquelle le thread doit travailler
+  </li>
 </ol>
+
 <p>Le type [ThreadDaoMajEnfants] est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
@@ -2218,33 +2310,49 @@
 <a id="__codelineno-8-82" name="__codelineno-8-82"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 9 : [ThreadDaoMajEnfants] est bien un thread</li>
-<li>lignes 18-22 : le constructeur qui initialise le thread avec trois informations <ol>
-<li>le nom [name] donné au thread</li>
-<li>une référence [dao] sur la couche [dao]. On notera qu’une nouvelle fois, nous travaillons avec le type de l’interface [IDao] et non celui de l’implémentation [DaoImpl].</li>
-<li>l’identifiant [id] de la personne sur laquelle le thread doit travailler</li>
-</ol>
-</li>
+  <li>ligne 9 : [ThreadDaoMajEnfants] est bien un thread
+  </li>
+  <li>lignes 18-22 : le constructeur qui initialise le thread avec trois informations 
+    <ol>
+      <li>le nom [name] donné au thread
+      </li>
+      <li>une référence [dao] sur la couche [dao]. On notera qu’une nouvelle fois, nous travaillons avec le type de l’interface [IDao] et non celui de l’implémentation [DaoImpl].
+      </li>
+      <li>l’identifiant [id] de la personne sur laquelle le thread doit travailler
+      </li>
+    </ol>
+  </li>
 </ul>
+
 <p>Lorsque [test4] lance un thread [ThreadDaoMajEnfants] (ligne 12 de test4), la méthode [run] (ligne 25) de celui-ci est exécutée :</p>
 <ul>
-<li>lignes 78-81 : la méthode privée [suivi] permet de faire des logs écran. La méthode [run] en use pour permettre le suivi du thread dans son exécution.</li>
-<li>le thread va chercher à incrémenter de 1 le nombre d’enfants de la personne P d’identifiant [id]. Cette mise à jour peut nécessiter plusieurs tentatives. Prenons deux threads [TH1] et [TH2]. [TH1] demande une copie de la personne P à la couche [dao]. Il l’obtient et constate qu’elle a la version V1. [TH1] est interrompu. [TH2] qui le suivait fait la même chose et obtient la même version V1 de la personne P. [TH2] est interrompu. [TH2] reprend la main, incrémente le nombre d’enfants de P et sauvegarde ses modifications. Nous savons qu’alors, celles-ci sont sauvegardées et que la version de P va passer à V2. [TH1] a fini son travail. [TH2] reprend la main et fait de même. Sa mise à jour de P sera refusée car il détient une copie de P de version V1 alors que l’original P a désormais la version V2. [TH2] doit alors reprendre tout le cycle [lecture -&gt; mise à jour -&gt; sauvegarde]. C’est pourquoi, nous trouvons la boucle des lignes 32-72. Dans celle-ci, le thread :</li>
-<li>demande une copie de la personne P à modifier (ligne 34)</li>
-<li>attend 10 ms (ligne 43). Ceci est artificiel et vise à interrompre le thread entre la lecture de la personne P et sa mise à jour effective dans la liste des personnes afin d’augmenter la probabilité de conflits.</li>
-<li>incrémente le nombre d’enfants de P (ligne 54) et sauvegarde P (ligne 56). Si le thread n’a pas la bonne version de P, une exception sera déclenchée par la couche [dao]. On récupère alors le code de l’exception (ligne 61) pour vérifier que c’est bien le code 3 (mauvaise version de P). Si ce n’est pas le cas, on relance l’exception à destination de la méthode appelante, au final la méthode de test [test4]. Si on a l’exception de code 3, alors on recommence le cycle [lecture -&gt; mise à jour -&gt; sauvegarde]. Si on n’a pas d’exception, alors la mise à jour a été faite et le travail du thread est terminé.</li>
+  <li>lignes 78-81 : la méthode privée [suivi] permet de faire des logs écran. La méthode [run] en use pour permettre le suivi du thread dans son exécution.
+  </li>
+  <li>le thread va chercher à incrémenter de 1 le nombre d’enfants de la personne P d’identifiant [id]. Cette mise à jour peut nécessiter plusieurs tentatives. Prenons deux threads [TH1] et [TH2]. [TH1] demande une copie de la personne P à la couche [dao]. Il l’obtient et constate qu’elle a la version V1. [TH1] est interrompu. [TH2] qui le suivait fait la même chose et obtient la même version V1 de la personne P. [TH2] est interrompu. [TH2] reprend la main, incrémente le nombre d’enfants de P et sauvegarde ses modifications. Nous savons qu’alors, celles-ci sont sauvegardées et que la version de P va passer à V2. [TH1] a fini son travail. [TH2] reprend la main et fait de même. Sa mise à jour de P sera refusée car il détient une copie de P de version V1 alors que l’original P a désormais la version V2. [TH2] doit alors reprendre tout le cycle [lecture -&gt; mise à jour -&gt; sauvegarde]. C’est pourquoi, nous trouvons la boucle des lignes 32-72. Dans celle-ci, le thread :
+  </li>
+  <li>demande une copie de la personne P à modifier (ligne 34)
+  </li>
+  <li>attend 10 ms (ligne 43). Ceci est artificiel et vise à interrompre le thread entre la lecture de la personne P et sa mise à jour effective dans la liste des personnes afin d’augmenter la probabilité de conflits.
+  </li>
+  <li>incrémente le nombre d’enfants de P (ligne 54) et sauvegarde P (ligne 56). Si le thread n’a pas la bonne version de P, une exception sera déclenchée par la couche [dao]. On récupère alors le code de l’exception (ligne 61) pour vérifier que c’est bien le code 3 (mauvaise version de P). Si ce n’est pas le cas, on relance l’exception à destination de la méthode appelante, au final la méthode de test [test4]. Si on a l’exception de code 3, alors on recommence le cycle [lecture -&gt; mise à jour -&gt; sauvegarde]. Si on n’a pas d’exception, alors la mise à jour a été faite et le travail du thread est terminé.
+  </li>
 </ul>
+
 <p>Que donnent les tests ?</p>
 <p>Dans la première configuration testée :</p>
 <ul>
-<li>on commente l’instruction d’attente dans la méthode [saveOne] de [DaoImpl] (ligne 83, paragraphe <a href="#dao-saveone">14.4</a>).</li>
+  <li>on commente l’instruction d’attente dans la méthode [saveOne] de [DaoImpl] (ligne 83, paragraphe <a href="#dao-saveone">14.4</a>).
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>        // on attend 10 ms
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>        //wait(10);
 </code></pre></div>
 <ul>
-<li>la méthode [test4] crée 100 threads (ligne 8, paragraphe <a href="#dao-test4">14.5</a>).</li>
+  <li>la méthode [test4] crée 100 threads (ligne 8, paragraphe <a href="#dao-test4">14.5</a>).
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>        // création de N threads de mise à jour du nombre d&#39;enfants
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>        final int N = 100;
 </code></pre></div>
@@ -2253,14 +2361,18 @@
 <p>Les cinq tests ont été réussis.</p>
 <p>Dans la seconde configuration testée :</p>
 <ul>
-<li>on décommente l’instruction d’attente dans la méthode [saveOne] de [DaoImpl] (ligne 83, paragraphe <a href="#dao-saveone">14.4</a>).</li>
+  <li>on décommente l’instruction d’attente dans la méthode [saveOne] de [DaoImpl] (ligne 83, paragraphe <a href="#dao-saveone">14.4</a>).
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>        // on attend 10 ms
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>        wait(10);
 </code></pre></div>
 <ul>
-<li>la méthode [test4] crée 2 threads (ligne 8, paragraphe <a href="#dao-test4">14.5</a>).</li>
+  <li>la méthode [test4] crée 2 threads (ligne 8, paragraphe <a href="#dao-test4">14.5</a>).
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>        // création de N threads de mise à jour du nombre d&#39;enfants
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>        final int N = 2;
 </code></pre></div>
@@ -2290,17 +2402,28 @@
 <a id="__codelineno-13-10" name="__codelineno-13-10"></a>thread n° 1 [1145536368187] : a terminé et passé le nombre d&#39;enfants à 1
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 1 : le thread n° 0 commence son travail</li>
-<li>ligne 2 : il a récupéré une copie de la personne P et trouve son nombre d’enfants à 0</li>
-<li>ligne 3 : il rencontre le [Thread.sleep(10)] de sa méthode [run] et s’arrête donc au temps [1145536368171] (ms)</li>
-<li>ligne 4 : le thread n° 1 récupère alors le processeur et commence son travail</li>
-<li>ligne 5 : il a récupéré une copie de la personne P et trouve son nombre d’enfants à 0</li>
-<li>ligne 6 : il rencontre le [Thread.sleep(10)] de sa méthode [run] et s’arrête donc</li>
-<li>ligne 7 : le thread n° 0 récupère le processeur au temps [1145536368187] (ms), c.a.d. 16 ms après l’avoir perdu.</li>
-<li>ligne 8 : idem pour le thread n° 1</li>
-<li>ligne 9 : le thread n° 0 a fait sa mise à jour et passé le nombre d’enfants à 1</li>
-<li>ligne 10 : le thread n° 1 a fait de même</li>
+  <li>ligne 1 : le thread n° 0 commence son travail
+  </li>
+  <li>ligne 2 : il a récupéré une copie de la personne P et trouve son nombre d’enfants à 0
+  </li>
+  <li>ligne 3 : il rencontre le [Thread.sleep(10)] de sa méthode [run] et s’arrête donc au temps [1145536368171] (ms)
+  </li>
+  <li>ligne 4 : le thread n° 1 récupère alors le processeur et commence son travail
+  </li>
+  <li>ligne 5 : il a récupéré une copie de la personne P et trouve son nombre d’enfants à 0
+  </li>
+  <li>ligne 6 : il rencontre le [Thread.sleep(10)] de sa méthode [run] et s’arrête donc
+  </li>
+  <li>ligne 7 : le thread n° 0 récupère le processeur au temps [1145536368187] (ms), c.a.d. 16 ms après l’avoir perdu.
+  </li>
+  <li>ligne 8 : idem pour le thread n° 1
+  </li>
+  <li>ligne 9 : le thread n° 0 a fait sa mise à jour et passé le nombre d’enfants à 1
+  </li>
+  <li>ligne 10 : le thread n° 1 a fait de même
+  </li>
 </ul>
+
 <p>La question est de savoir pourquoi le thread n° 1 a-t-il pu faire sa mise à jour alors que normalement il ne détenait plus la bonne version de la personne P qui venait d’être mise à jour par le thread n° 0.</p>
 <p>Tout d’abord, on peut remarquer une anomalie entre les lignes 7 et 8 : il semblerait que le thread n° 0 ait perdu le processeur entre ces deux lignes au profit du thread n° 1. Que faisait-il à ce moment ? Il exécutait la méthode [saveOne] de la couche [dao]. Celle-ci a le squelette suivant (cf paragraphe <a href="#dao-saveone">14.4</a>) :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
@@ -2326,11 +2449,16 @@
 <a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>le thread n° 0 a exécuté [saveOne] et est allé jusqu’à la ligne 8 où là, il a été obligé de lâcher le processeur. Entre-temps, il a lu la version de la personne P et c’était 1 parce que la personne P n’avait pas encore été mise à jour.</li>
-<li>le processeur étant devenu libre, c’est le thread n° 1 qui en a hérité. Il a, à son tour, exécuté [saveOne] et est allé jusqu’à la ligne 8 où là il a été obligé de lâcher le processeur. Entre-temps, il a lu la version de la personne P et c’était 1 parce que la personne P n’avait toujours pas été mise à jour.</li>
-<li>le processeur étant devenu libre, c’est le thread n° 0 qui en a hérité. A partir de la ligne 9, il a fait sa mise à jour et passé le nombre d’enfants à 1. Puis la méthode [run] du thread n° 0 s’est terminée et le thread a affiché le log qui disait qu’il avait passé le nombre d’enfants à 1 (ligne 9).</li>
-<li>le processeur étant devenu libre, c’est le thread n° 1 qui en a hérité. A partir de la ligne 9, il a fait sa mise à jour et passé le nombre d’enfants à 1. Pourquoi 1 ? Parce qu’il détient une copie de P avec un nombre d’enfants à 0. C’est le log (ligne 5) qui le dit. Puis la méthode [run] du thread n° 1 s’est terminée et le thread a affiché le log qui disait qu’il avait passé le nombre d’enfants à 1 (ligne 10).</li>
+  <li>le thread n° 0 a exécuté [saveOne] et est allé jusqu’à la ligne 8 où là, il a été obligé de lâcher le processeur. Entre-temps, il a lu la version de la personne P et c’était 1 parce que la personne P n’avait pas encore été mise à jour.
+  </li>
+  <li>le processeur étant devenu libre, c’est le thread n° 1 qui en a hérité. Il a, à son tour, exécuté [saveOne] et est allé jusqu’à la ligne 8 où là il a été obligé de lâcher le processeur. Entre-temps, il a lu la version de la personne P et c’était 1 parce que la personne P n’avait toujours pas été mise à jour.
+  </li>
+  <li>le processeur étant devenu libre, c’est le thread n° 0 qui en a hérité. A partir de la ligne 9, il a fait sa mise à jour et passé le nombre d’enfants à 1. Puis la méthode [run] du thread n° 0 s’est terminée et le thread a affiché le log qui disait qu’il avait passé le nombre d’enfants à 1 (ligne 9).
+  </li>
+  <li>le processeur étant devenu libre, c’est le thread n° 1 qui en a hérité. A partir de la ligne 9, il a fait sa mise à jour et passé le nombre d’enfants à 1. Pourquoi 1 ? Parce qu’il détient une copie de P avec un nombre d’enfants à 0. C’est le log (ligne 5) qui le dit. Puis la méthode [run] du thread n° 1 s’est terminée et le thread a affiché le log qui disait qu’il avait passé le nombre d’enfants à 1 (ligne 10).
+  </li>
 </ul>
+
 <p>D’où vient le problème ? Il vient du fait que le thread n° 0 n’a pas eu le temps de valider sa modification et donc de changer la version de la personne P avant que le thread n° 1 n’essaie de lire cette version pour savoir si la personne P avait changé. Ce cas de figure est peu probable mais pas impossible. Il a fallu forcer le thread n° 0 à perdre le processeur pour le faire apparaître avec simplement deux threads. Sans cet artifice, la configuration précédente n’avait pas réussi à faire apparaître ce même cas avec 100 threads. Le test [test4] avait été réussi.</p>
 <p>Quelle est la solution ? Il y en a sans doute plusieurs. L’une d’elles, simple à mettre en oeuvre, est de synchroniser la méthode [saveOne] :</p>
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-java">
@@ -2340,20 +2468,28 @@
 <p>Le mot clé [synchronized] assure qu’un seul thread à la fois peut exécuter la méthode. Ainsi le thread n° 1 ne sera-t-il autorisé à exécuter [saveOne] que lorsque le thread n° 0 en sera sorti. On est alors sûr que la version de la personne P aura été changée lorsque le thread n° 1 va entrer dans [saveOne]. Sa mise à jour sera alors refusée car il n’aura pas la bonne version de P.</p>
 <p>Ce sont les quatres méthodes de la couche [dao] qu’il faudrait synchroniser. Nous décidons cependant de garder cette couche telle qu’elle a été décrite et de reporter la synchronisation sur la couche [service]. A cela plusieurs raisons :</p>
 <ul>
-<li>nous faisons l’hypothèse que l’accès à la couche [dao] se fait toujours au travers d’une couche [service]. C’est le cas dans notre application web.</li>
-<li>il peut être nécessaire de synchroniser également l’accès aux méthodes de la couche [service] pour d’autres raisons que celles qui nous feraient synchroniser celles de la couche [dao]. Dans ce cas, il est inutile de synchroniser les méthodes de la couche [dao]. Si on est assurés que :</li>
-<li>tout accès à la couche [dao] passe par la couche [service]</li>
-<li>qu’un unique thread à la fois utilise la couche [service]</li>
+  <li>nous faisons l’hypothèse que l’accès à la couche [dao] se fait toujours au travers d’une couche [service]. C’est le cas dans notre application web.
+  </li>
+  <li>il peut être nécessaire de synchroniser également l’accès aux méthodes de la couche [service] pour d’autres raisons que celles qui nous feraient synchroniser celles de la couche [dao]. Dans ce cas, il est inutile de synchroniser les méthodes de la couche [dao]. Si on est assurés que :
+  </li>
+  <li>tout accès à la couche [dao] passe par la couche [service]
+  </li>
+  <li>qu’un unique thread à la fois utilise la couche [service]
+  </li>
 </ul>
+
 <p>alors on est assurés que les méthodes de la couche [dao] ne seront pas exécutés par deux threads en même temps.</p>
 <p>Nous découvrons maintenant la couche [service].</p>
 <h2 id="146-la-couche-service">14.6. La couche [service]</h2>
 <p>La couche [service] est constituée des classes et interfaces suivantes :</p>
 <p><img src="images/10000000000000D100000033807A7F99.png" style="width:3.87cm;height:0.94cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D100000033807A7F99.png" /></p>
 <ul>
-<li>[IService] est l’interface présentée par la couche [dao]</li>
-<li>[ServiceImpl] est une implémentation de celle-ci</li>
+  <li>[IService] est l’interface présentée par la couche [dao]
+  </li>
+  <li>[ServiceImpl] est une implémentation de celle-ci
+  </li>
 </ul>
+
 <p>L’interface [IService] est la suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
@@ -2470,13 +2606,20 @@
 <a id="__codelineno-16-40" name="__codelineno-16-40"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 10-19 : l’attribut [IDao dao] est une référence sur la couche [dao]. Il sera initialisé par Spring IoC.</li>
-<li>lignes 22-24 : implémentation de la méthode [getAll] de l’interface [IService]. La méthode se contente de déléguer la demande à la couche [dao].</li>
-<li>lignes 27-29 : implémentation de la méthode [getOne] de l’interface [IService]. La méthode se contente de déléguer la demande à la couche [dao].</li>
-<li>lignes 32-34 : implémentation de la méthode [saveOne] de l’interface [IService]. La méthode se contente de déléguer la demande à la couche [dao].</li>
-<li>lignes 37-39 : implémentation de la méthode [deleteOne] de l’interface [IService]. La méthode se contente de déléguer la demande à la couche [dao].</li>
-<li>toutes les méthodes sont synchronisées (mot clé synchronized) assurant qu’un seul thread à la fois pourra utiliser la couche [service] et donc la couche [dao].</li>
+  <li>lignes 10-19 : l’attribut [IDao dao] est une référence sur la couche [dao]. Il sera initialisé par Spring IoC.
+  </li>
+  <li>lignes 22-24 : implémentation de la méthode [getAll] de l’interface [IService]. La méthode se contente de déléguer la demande à la couche [dao].
+  </li>
+  <li>lignes 27-29 : implémentation de la méthode [getOne] de l’interface [IService]. La méthode se contente de déléguer la demande à la couche [dao].
+  </li>
+  <li>lignes 32-34 : implémentation de la méthode [saveOne] de l’interface [IService]. La méthode se contente de déléguer la demande à la couche [dao].
+  </li>
+  <li>lignes 37-39 : implémentation de la méthode [deleteOne] de l’interface [IService]. La méthode se contente de déléguer la demande à la couche [dao].
+  </li>
+  <li>toutes les méthodes sont synchronisées (mot clé synchronized) assurant qu’un seul thread à la fois pourra utiliser la couche [service] et donc la couche [dao].
+  </li>
 </ul>
+
 <h2 id="147-tests-de-la-couche-service">14.7. Tests de la couche [service]</h2>
 <p>Un test JUnit est écrit pour la couche [service] :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000DE0000005224F7D433.png" style="display:inline-block; margin:4px;width:4.11cm;height:1.52cm;" class="odt-zoomable" data-zoom-src="images/10000000000000DE0000005224F7D433.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000B0000000A1201CC621.png" style="display:inline-block; margin:4px;width:3.26cm;height:2.979cm;" class="odt-zoomable" data-zoom-src="images/10000000000000B0000000A1201CC621.png" /></td></tr></table>
@@ -2627,15 +2770,21 @@
 <a id="__codelineno-17-72" name="__codelineno-17-72"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 9 : la couche [service] testée de type [ServiceImpl].</li>
-<li>lignes 11-15 : le constructeur du test JUnit crée une instance de la couche [service] à tester (ligne 12), crée une instance de la couche [dao] (ligne 13) et indique à la couche [service] qu&#x27;elle doit utiliser cette couche [dao] (ligne 14).</li>
+  <li>lignes 9 : la couche [service] testée de type [ServiceImpl].
+  </li>
+  <li>lignes 11-15 : le constructeur du test JUnit crée une instance de la couche [service] à tester (ligne 12), crée une instance de la couche [dao] (ligne 13) et indique à la couche [service] qu&#x27;elle doit utiliser cette couche [dao] (ligne 14).
+  </li>
 </ul>
+
 <p>La méthode [test1] teste les quatre méthodes de l’interface [IService] de façon identique à la méthode de test de la couche [dao] de même nom. Simplement, on accède à la couche [service] (lignes 25, 32, 35) plutôt qu’à la couche [dao].</p>
 <p>La méthode [test4] cherche à mettre en lumière les problèmes d’accès concurrents aux méthodes de la couche [service]. Elle est, là encore, identique à la méthode de test [test4] de la couche [dao]. Il y a cependant quelques détails qui changent :</p>
 <ul>
-<li>on s’adresse à la couche [service] plutôt qu’à la couche [dao] (ligne 55)</li>
-<li>on passe aux threads une référence à la couche [service] plutôt qu’à la couche [dao] (ligne 61)</li>
+  <li>on s’adresse à la couche [service] plutôt qu’à la couche [dao] (ligne 55)
+  </li>
+  <li>on passe aux threads une référence à la couche [service] plutôt qu’à la couche [dao] (ligne 61)
+  </li>
 </ul>
+
 <p>Le type [ThreadServiceMajEnfants] est lui aussi quasi identique au type [ThreadDaoMajEnfants] au détail près qu’il travaille avec la couche [service] et non la couche [dao] :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
@@ -2700,18 +2849,24 @@
 <a id="__codelineno-18-31" name="__codelineno-18-31"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 12 : le thread travaille avec la couche [service]</li>
+  <li>ligne 12 : le thread travaille avec la couche [service]
+  </li>
 </ul>
+
 <p>Nous faisons les tests avec la configuration qui a posé problème à la couche [dao] :</p>
 <ul>
-<li>on décommente l’instruction d’attente dans la méthode [saveOne] de [DaoImpl] (ligne 83, paragraphe <a href="#dao-saveone">14.4</a>).</li>
+  <li>on décommente l’instruction d’attente dans la méthode [saveOne] de [DaoImpl] (ligne 83, paragraphe <a href="#dao-saveone">14.4</a>).
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>        // on attend 10 ms
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>        wait(10);
 </code></pre></div>
 <ul>
-<li>la méthode [test4] crée 100 threads (ligne 65, paragraphe <a href="#service-test4">14.7</a>).</li>
+  <li>la méthode [test4] crée 100 threads (ligne 65, paragraphe <a href="#service-test4">14.7</a>).
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>        // création de N threads de mise à jour du nombre d&#39;enfants
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>        final int N = 100;
 </code></pre></div>
@@ -2725,26 +2880,40 @@
 
 <p>La couche [web] va offrir des écrans à l’utilisateur pour lui permettre de gérer le groupe de personnes :</p>
 <ul>
-<li>liste des personnes du groupe</li>
-<li>ajout d’une personne au groupe</li>
-<li>modification d’une personne du groupe</li>
-<li>suppression d’une personne du groupe</li>
+  <li>liste des personnes du groupe
+  </li>
+  <li>ajout d’une personne au groupe
+  </li>
+  <li>modification d’une personne du groupe
+  </li>
+  <li>suppression d’une personne du groupe
+  </li>
 </ul>
+
 <p>Pour cela, elle va s’appuyer sur la couche [service] qui elle même fera appel à la couche [dao]. Nous avons déjà présenté les écrans gérés par la couche [web] (paragraphe <a href="#spring-mvc-37-ecrans">14.1</a>). Pour décrire la couche web, nous allons présenter successivement :</p>
 <ul>
-<li>sa configuration</li>
-<li>ses vues</li>
-<li>son contrôleur</li>
-<li>quelques tests</li>
+  <li>sa configuration
+  </li>
+  <li>ses vues
+  </li>
+  <li>son contrôleur
+  </li>
+  <li>quelques tests
+  </li>
 </ul>
+
 <h3 id="1481-configuration-de-lapplication-web">14.8.1. Configuration de l’application web</h3>
 <p>Le projet Eclipse de l’application est le suivant :</p>
 <p><img src="images/10000000000000ED0000026877094DC7.png" style="width:4.39cm;height:11.411cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000ED0000026877094DC7.png" /></p>
 <ul>
-<li>dans le paquetage [istia.st.mvc.personnes.web], on trouve le contrôleur [Application].</li>
-<li>les pages JSP / JSTL sont dans [WEB-INF/vues].</li>
-<li>le dossier [lib] contient les archives tierces nécessaires à l’application. Elles sont visibles dans le dossier [Web App Libraries].</li>
+  <li>dans le paquetage [istia.st.mvc.personnes.web], on trouve le contrôleur [Application].
+  </li>
+  <li>les pages JSP / JSTL sont dans [WEB-INF/vues].
+  </li>
+  <li>le dossier [lib] contient les archives tierces nécessaires à l’application. Elles sont visibles dans le dossier [Web App Libraries].
+  </li>
 </ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>[web.xml]</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -2793,27 +2962,37 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 27-30 : les url [/do/*] seront traitées par la servlet [personnes]</li>
-<li>lignes 9-12 : la servlet [personnes] est une instance de la classe [Application<span style="color: #000000">], une classe que nous allons construire.</span></li>
-<li><span style="color: #000000">lignes 13-24 : définissent trois paramètres [urlList, urlEdit, urlErreurs] identifiant les Url des pages JSP des vues [list, edit, erreurs].</span></li>
-<li><span style="color: #000000">lignes 32-34 : l’application a une page d’entrée par défaut [index.jsp] qui se trouve à la racine du dossier de l’application web.</span></li>
-<li>
-<p><span style="color: #000000">lignes 36-39 :  l’application a une page d’erreurs par défaut qui est affichée lorsque le serveur web récupère une exception non gérée par l&#x27;application.</span></p>
+  <li>lignes 27-30 : les url [/do/*] seront traitées par la servlet [personnes]
+  </li>
+  <li>lignes 9-12 : la servlet [personnes] est une instance de la classe [Application<span style="color: #000000">], une classe que nous allons construire.</span>
+  </li>
+  <li><span style="color: #000000">lignes 13-24 : définissent trois paramètres [urlList, urlEdit, urlErreurs] identifiant les Url des pages JSP des vues [list, edit, erreurs].</span>
+  </li>
+  <li><span style="color: #000000">lignes 32-34 : l’application a une page d’entrée par défaut [index.jsp] qui se trouve à la racine du dossier de l’application web.</span>
+  </li>
+  <li><span style="color: #000000">lignes 36-39 :  l’application a une page d’erreurs par défaut qui est affichée lorsque le serveur web récupère une exception non gérée par l&#x27;application.</span>
+    <ul>
+      <li><span style="color: #000000">ligne 37 : la balise &lt;exception-type&gt; indique le type d&#x27;exception gérée par la directive &lt;error-page&gt;, ici le type [java.lang.Exception] et dérivé, donc toutes les exceptions.</span>
+      </li>
+      <li><span style="color: #000000">ligne 38 : la balise &lt;location&gt; indique la page JSP à afficher lorsqu&#x27;une exception du type défini par &lt;exception-type&gt; se produit. L&#x27;exception <b>e</b> survenue est disponible à cette page dans un objet nommé exception si la page a la directive :</span>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code>&lt;div class=&quot;odt-code-rich&quot; data-linenums=&quot;false&quot; style=&quot;counter-reset: odtline 0;&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;
+&lt;span class=&quot;odt-code-line&quot;&gt;&lt;span style=&quot;color:#bf5f3f&quot;&gt;&amp;lt;%@ &lt;/span&gt;&lt;span style=&quot;color:#3f7f7f&quot;&gt;page &lt;/span&gt;&lt;span style=&quot;color:#7f007f&quot;&gt;isErrorPage&lt;/span&gt;=&lt;span style=&quot;color:#2a00ff&quot;&gt;&amp;quot;true&amp;quot; &lt;/span&gt;&lt;span style=&quot;color:#bf5f3f&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</code></pre></div>
 <ul>
-<li><span style="color: #000000">ligne 37 : la balise &lt;exception-type&gt; indique le type d&#x27;exception gérée par la directive &lt;error-page&gt;, ici le type [java.lang.Exception] et dérivé, donc toutes les exceptions.</span></li>
-<li><span style="color: #000000">ligne 38 : la balise &lt;location&gt; indique la page JSP à afficher lorsqu&#x27;une exception du type défini par &lt;exception-type&gt; se produit. L&#x27;exception <strong>e</strong> survenue est disponible à cette page dans un objet nommé exception si la page a la directive :</span></li>
+  <li><span style="color: #000000">(suite)</span>
+    <ul>
+      <li><span style="color: #000000">si &lt;exception-type&gt; précise un type T1 et qu&#x27;une exception de type T2 non dérivé de T1 remonte jusqu&#x27;au serveur web, celui-ci envoie au client une page d&#x27;exception propriétaire généralement peu conviviale. D&#x27;où l&#x27;intérêt de la balise &lt;error-page&gt; dans le fichier [web.xml].</span>
+      </li>
+    </ul>
+  </li>
 </ul>
-<p><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">page </span><span style="color:#7f007f">isErrorPage</span>=<span style="color:#2a00ff">&quot;true&quot; </span><span style="color:#bf5f3f">%&gt;</span></span>
-</code></pre></div></p>
-</li>
-<li>
-<p><span style="color: #000000">(suite)</span></p>
-<ul>
-<li><span style="color: #000000">si &lt;exception-type&gt; précise un type T1 et qu&#x27;une exception de type T2 non dérivé de T1 remonte jusqu&#x27;au serveur web, celui-ci envoie au client une page d&#x27;exception propriétaire généralement peu conviviale. D&#x27;où l&#x27;intérêt de la balise &lt;error-page&gt; dans le fichier [web.xml].</span></li>
-</ul>
-</li>
-</ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>[index.jsp]</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -2877,22 +3056,30 @@
 </code></pre></div>
 
 <ul>
-<li>cette vue reçoit un élément dans son modèle :</li>
-<li>
-<p>l&#x27;élément [<strong>personnes]</strong> associé à un objet de type [ArrayList] d’objets de type [Personne]</p>
-</li>
-<li>
-<p>lignes 22-34 : on parcourt la liste ${personnes} pour afficher un tableau HTML contenant les personnes du groupe.</p>
-</li>
-<li>ligne 31 : l’url pointée par le lien [Modifier] est paramétrée par le champ [id] de la personne courante afin que le contrôleur associé à l’url [/do/edit] sache quelle est la personne à modifier.</li>
-<li>ligne 32 : il est fait de même pour le lien [Supprimer].</li>
-<li>ligne 28 : pour afficher la date de naissance de la personne sous la forme JJ/MM/AAAA, on utilise la balise &lt;dt&gt; de la bibliothèque de balise [DateTime] du projet Apache [Jakarta Taglibs] :</li>
+  <li>cette vue reçoit un élément dans son modèle :
+  </li>
+  <li>l&#x27;élément [<b>personnes]</b> associé à un objet de type [ArrayList] d’objets de type [Personne]
+  </li>
 </ul>
+
+<ul>
+  <li>lignes 22-34 : on parcourt la liste ${personnes} pour afficher un tableau HTML contenant les personnes du groupe.
+  </li>
+  <li>ligne 31 : l’url pointée par le lien [Modifier] est paramétrée par le champ [id] de la personne courante afin que le contrôleur associé à l’url [/do/edit] sache quelle est la personne à modifier.
+  </li>
+  <li>ligne 32 : il est fait de même pour le lien [Supprimer].
+  </li>
+  <li>ligne 28 : pour afficher la date de naissance de la personne sous la forme JJ/MM/AAAA, on utilise la balise &lt;dt&gt; de la bibliothèque de balise [DateTime] du projet Apache [Jakarta Taglibs] :
+  </li>
+</ul>
+
 <p><img src="images/10000000000002610000018F782D6BE3.png" style="width:9.67cm;height:6.331cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002610000018F782D6BE3.png" /></p>
 <p>Le fichier de description de cette bibliothèque de balises est défini ligne 3.</p>
 <ul>
-<li>ligne 37 : le lien [Ajout] d&#x27;ajout d&#x27;une nouvelle personne a pour cible l&#x27;url [/do/edit] comme le lien [Modifier] de la ligne 31. C&#x27;est la valeur -1 du paramètre [id] qui indique qu&#x27;on a affaire à un ajout plutôt qu&#x27;une modification.</li>
+  <li>ligne 37 : le lien [Ajout] d&#x27;ajout d&#x27;une nouvelle personne a pour cible l&#x27;url [/do/edit] comme le lien [Modifier] de la ligne 31. C&#x27;est la valeur -1 du paramètre [id] qui indique qu&#x27;on a affaire à un ajout plutôt qu&#x27;une modification.
+  </li>
 </ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>La vue [<a id="spring-mvc-37-edit-jsp"></a><a id="personnes-01-edit-jsp"></a>edit.jsp]</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -2982,65 +3169,83 @@
 
 <p>Cette vue présente un formulaire d&#x27;ajout d&#x27;une nouvelle personne ou de mise à jour d&#x27;une personne existante. Par la suite et pour simplifier l&#x27;écriture, nous utiliserons l&#x27;unique terme de [mise à jour]. Le bouton [Valider] (ligne 73) provoque le POST du formulaire à l&#x27;url [/do/validate] (ligne 16). Si le POST échoue, la vue [edit.jsp] est réaffichée avec la ou les erreurs qui se sont produites, sinon la vue [list.jsp] est affichée.</p>
 <ul>
-<li>la vue [edit.jsp] affichée aussi bien sur un GET que sur un POST qui échoue, reçoit les éléments suivants dans son modèle :</li>
+  <li>la vue [edit.jsp] affichée aussi bien sur un GET que sur un POST qui échoue, reçoit les éléments suivants dans son modèle :
+  </li>
 </ul>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>attribut</b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>GET</b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>POST</b></p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>attribut</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>GET</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>POST</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>id
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">identifiant de la personne mise à jour</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">idem</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">identifiant de la personne mise à jour</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">idem</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>version
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">sa version</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">idem</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">sa version</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">idem</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>prenom
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">son prénom</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">prénom saisi</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">son prénom</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">prénom saisi</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>nom
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">son nom</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">nom saisi</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">son nom</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">nom saisi</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>dateNaissance
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">sa date de naissance</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">date de naissance saisie</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">sa date de naissance</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">date de naissance saisie</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>marie
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">son état marital</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">état marital saisi</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">son état marital</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">état marital saisi</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>nbEnfants
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">son nombre d&#x27;enfants</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">nombre d&#x27;enfants saisi</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">son nombre d&#x27;enfants</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">nombre d&#x27;enfants saisi</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>erreurEdit
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">vide</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">un message d&#x27;erreur signalant un échec de l&#x27;ajout ou de la modification au moment du POST provoqué par le bouton [Envoyer]. Vide si pas d&#x27;erreur.</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">vide</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">un message d&#x27;erreur signalant un échec de l&#x27;ajout ou de la modification au moment du POST provoqué par le bouton [Envoyer]. Vide si pas d&#x27;erreur.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>erreurPrenom
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">vide</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">signale un prénom erroné – vide sinon</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">vide</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">signale un prénom erroné – vide sinon</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>erreurNom
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">vide</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">signale un nom erroné – vide sinon</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">vide</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">signale un nom erroné – vide sinon</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>erreurDateNaissance
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">vide</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">signale une date de naissance erronée – vide sinon</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">vide</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">signale une date de naissance erronée – vide sinon</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>erreurNbEnfants
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">vide</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">signale un nombre d&#x27;enfants erroné – vide sinon</p></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">vide</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">signale un nombre d&#x27;enfants erroné – vide sinon</div></td></tr></table>
 
 <ul>
-<li>lignes 11-15 : si le POST du formulaire se passe mal, on aura [erreurEdit!=&#x27;&#x27;] et un message d&#x27;erreur sera affiché.</li>
-<li>ligne 16 : le formulaire sera posté à l’url [/do/validate]</li>
-<li>ligne 20 : l&#x27;élément [id] du modèle est affiché</li>
-<li>ligne 24 : l&#x27;élément [version] du modèle est affiché</li>
-<li>lignes 26-32 : saisie du prénom de la personne :<ul>
-<li>lors de l’affichage initial du formulaire (GET), ${prenom} affiche la valeur actuelle du champ [prenom] de l’objet [Personne] mis à jour et ${erreurPrenom} est vide.</li>
-<li>en cas d’erreur après le POST, on réaffiche la valeur saisie ${prenom} ainsi que le message d’erreur éventuel ${erreurPrenom}</li>
+  <li>lignes 11-15 : si le POST du formulaire se passe mal, on aura [erreurEdit!=&#x27;&#x27;] et un message d&#x27;erreur sera affiché.
+  </li>
+  <li>ligne 16 : le formulaire sera posté à l’url [/do/validate]
+  </li>
+  <li>ligne 20 : l&#x27;élément [id] du modèle est affiché
+  </li>
+  <li>ligne 24 : l&#x27;élément [version] du modèle est affiché
+  </li>
+  <li>lignes 26-32 : saisie du prénom de la personne :
+    <ul>
+      <li>lors de l’affichage initial du formulaire (GET), ${prenom} affiche la valeur actuelle du champ [prenom] de l’objet [Personne] mis à jour et ${erreurPrenom} est vide.
+      </li>
+      <li>en cas d’erreur après le POST, on réaffiche la valeur saisie ${prenom} ainsi que le message d’erreur éventuel ${erreurPrenom}
+      </li>
+    </ul>
+  </li>
+  <li>lignes 33-39 : saisie du nom de la personne
+  </li>
+  <li>lignes 40-46 : saisie de la date de naissance de la personne
+  </li>
+  <li>lignes 47-61 : saisie de l’état marié ou non de la personne avec un bouton radio. On utilise la valeur du champ [marie] de l’objet [Personne] pour savoir lequel des deux boutons radio doit être coché.
+  </li>
+  <li>lignes 62-68 : saisie du nombre d’enfants de la personne
+  </li>
+  <li>ligne 71 : un champ HTML caché nommé [id] et ayant pour valeur le champ [id] de la personne en cours de mise à jour, -1 pour un ajout, autre chose pour une modification.
+  </li>
+  <li>ligne 72 :  un champ HTML caché nommé [version] et ayant pour valeur le champ [id] de la personne en cours de mise à jour.
+  </li>
+  <li>ligne 73 : le bouton [Valider] de type [Submit] du formulaire
+  </li>
+  <li>ligne 74 : un lien permettant de revenir à la liste des personnes. Il a été libellé [Annuler] parce qu’il permet de quitter le formulaire sans le valider.
+  </li>
 </ul>
-</li>
-<li>lignes 33-39 : saisie du nom de la personne</li>
-<li>lignes 40-46 : saisie de la date de naissance de la personne</li>
-<li>lignes 47-61 : saisie de l’état marié ou non de la personne avec un bouton radio. On utilise la valeur du champ [marie] de l’objet [Personne] pour savoir lequel des deux boutons radio doit être coché.</li>
-<li>lignes 62-68 : saisie du nombre d’enfants de la personne</li>
-<li>ligne 71 : un champ HTML caché nommé [id] et ayant pour valeur le champ [id] de la personne en cours de mise à jour, -1 pour un ajout, autre chose pour une modification.</li>
-<li>ligne 72 :  un champ HTML caché nommé [version] et ayant pour valeur le champ [id] de la personne en cours de mise à jour.</li>
-<li>ligne 73 : le bouton [Valider] de type [Submit] du formulaire</li>
-<li>ligne 74 : un lien permettant de revenir à la liste des personnes. Il a été libellé [Annuler] parce qu’il permet de quitter le formulaire sans le valider.</li>
-</ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>La vue [<a id="spring-mvc-37-exception-jsp"></a>exception.jsp]</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -3074,15 +3279,19 @@
 </code></pre></div>
 
 <ul>
-<li>
-<p>cette vue reçoit une clé dans son modèle l&#x27;élément [<strong>exception]</strong> qui est l’exception qui a été interceptée par le serveur web. Pour que cet élément soit inclus dans le modèle de la page JSP par le serveur web, il faut que la page ait défini la balise de la ligne 3.</p>
-</li>
-<li>
-<p>ligne 6 : on fixe à 200 le code d&#x27;état HTTP de la réponse. C&#x27;est le premier entête HTTP de la réponse. Le code 200 signifie au client que sa demande a été honorée. Généralement un document HTML a été intégré dans la réponse du serveur. C&#x27;est le cas ici. Si on ne fixe pas à 200  le code d&#x27;état HTTP de la réponse, il aura ici la valeur 500 qui signifie qu&#x27;il s&#x27;est produit une erreur. En effet, le serveur web ayant intercepté une exception non gérée trouve cette situation anormale et le signale par le code 500. La réaction au code HTTP 500 diffère selon les navigateurs : Firefox affiche le document HTML qui peut accompagner cette réponse alors qu&#x27;IE ignore ce document et affiche sa propre page. C&#x27;est pour cette raison que nous avons remplacé le code 500 par le code 200.</p>
-</li>
-<li>ligne 16 : le texte de l’exception est affiché</li>
-<li>ligne 18 : on propose à l’utilisateur un lien pour revenir à la liste des personnes</li>
+  <li>cette vue reçoit une clé dans son modèle l&#x27;élément [<b>exception]</b> qui est l’exception qui a été interceptée par le serveur web. Pour que cet élément soit inclus dans le modèle de la page JSP par le serveur web, il faut que la page ait défini la balise de la ligne 3.
+  </li>
 </ul>
+
+<ul>
+  <li>ligne 6 : on fixe à 200 le code d&#x27;état HTTP de la réponse. C&#x27;est le premier entête HTTP de la réponse. Le code 200 signifie au client que sa demande a été honorée. Généralement un document HTML a été intégré dans la réponse du serveur. C&#x27;est le cas ici. Si on ne fixe pas à 200  le code d&#x27;état HTTP de la réponse, il aura ici la valeur 500 qui signifie qu&#x27;il s&#x27;est produit une erreur. En effet, le serveur web ayant intercepté une exception non gérée trouve cette situation anormale et le signale par le code 500. La réaction au code HTTP 500 diffère selon les navigateurs : Firefox affiche le document HTML qui peut accompagner cette réponse alors qu&#x27;IE ignore ce document et affiche sa propre page. C&#x27;est pour cette raison que nous avons remplacé le code 500 par le code 200.
+  </li>
+  <li>ligne 16 : le texte de l’exception est affiché
+  </li>
+  <li>ligne 18 : on propose à l’utilisateur un lien pour revenir à la liste des personnes
+  </li>
+</ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>La vue [<a id="personnes-01-erreurs-jsp"></a>erreurs<a id="spring-mvc-37-exception-jsp1"></a>.jsp]</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -3303,31 +3512,39 @@
 <a id="__codelineno-33-92" name="__codelineno-33-92"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 20-36 : on récupère les paramètres attendus dans le fichier [web.xml].</li>
-<li>lignes 39-41 :  le paramètre [urlErreurs] doit être obligatoirement présent car il désigne l&#x27;url de la vue [erreurs] capable d&#x27;afficher les éventuelles erreurs d&#x27;initialisation. S&#x27;il n&#x27;existe pas, on interrompt l&#x27;application en lançant une [ServletException] (ligne 40). Cette exception va remonter au serveur web et être gérée par la balise &lt;error-page&gt; du fichier [web.xml]. La vue [exception.jsp] est donc affichée :</li>
+  <li>lignes 20-36 : on récupère les paramètres attendus dans le fichier [web.xml].
+  </li>
+  <li>lignes 39-41 :  le paramètre [urlErreurs] doit être obligatoirement présent car il désigne l&#x27;url de la vue [erreurs] capable d&#x27;afficher les éventuelles erreurs d&#x27;initialisation. S&#x27;il n&#x27;existe pas, on interrompt l&#x27;application en lançant une [ServletException] (ligne 40). Cette exception va remonter au serveur web et être gérée par la balise &lt;error-page&gt; du fichier [web.xml]. La vue [exception.jsp] est donc affichée :
+  </li>
 </ul>
+
 <p><img src="images/1000000000000201000000BECBB96664.png" style="width:9.5cm;height:3.521cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000201000000BECBB96664.png" /></p>
 <p>Le lien [Retour à la liste] ci-dessus est inopérant. L&#x27;utiliser redonne la même réponse tant que l&#x27;application n&#x27;a pas été modifiée et rechargée. Il est utile pour d&#x27;autres types d&#x27;exceptions comme nous l&#x27;avons déjà vu.</p>
 <ul>
-<li>ligne 43 : crée une instance [DaoImpl] implémentant la couche [dao]</li>
-<li>ligne 44 : initialise cette instance (création d&#x27;une liste initiale de trois personnes)</li>
-<li>ligne 46 : crée une instance [ServiceImpl] implémentant la couche [service]</li>
-<li>ligne 47 : initialise la couche [service] en lui donnant une référence sur la couche [dao]</li>
+  <li>ligne 43 : crée une instance [DaoImpl] implémentant la couche [dao]
+  </li>
+  <li>ligne 44 : initialise cette instance (création d&#x27;une liste initiale de trois personnes)
+  </li>
+  <li>ligne 46 : crée une instance [ServiceImpl] implémentant la couche [service]
+  </li>
+  <li>ligne 47 : initialise la couche [service] en lui donnant une référence sur la couche [dao]
+  </li>
 </ul>
+
 <p>Après l&#x27;initialisation du contrôleur, les méthodes de celui-ci disposent d&#x27;une référence [service] sur la couche [service] (ligne 15) qu&#x27;elles vont utiliser pour exécuter les actions demandées par l&#x27;utilisateur. Celles-ci vont être interceptées par la méthode [doGet] qui va les faire traiter par une méthode particulière du contrôleur :</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>Url</b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>Méthode HTTP</b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>méthode contrôleur</b></p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Url</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Méthode HTTP</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>méthode contrôleur</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>/do/list
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">GET</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">doListPersonnes</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">GET</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">doListPersonnes</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>/do/edit
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">GET</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">doEditPersonne</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">GET</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">doEditPersonne</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>/do/validate
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">POST</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">doValidatePersonne</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">POST</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">doValidatePersonne</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="err">/do/delete</span>
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">GET</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">doDeletePersonne</p></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">GET</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">doDeletePersonne</div></td></tr></table>
 
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>La méthode [doGet<span style="color: #000000">]</span></p>
@@ -3424,15 +3641,24 @@
 <a id="__codelineno-38-45" name="__codelineno-38-45"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 7-13 : on vérifie que la liste des erreurs d&#x27;initialisation est vide. Si ce n&#x27;est pas le cas, on fait afficher la vue [erreurs(erreurs)] qui va signaler la ou les erreurs.</li>
-<li>ligne 15 : on récupère la méthode [get] ou [post] que le client a utilisée pour faire sa requête.</li>
-<li>ligne 17 : on récupère la valeur du paramètre [action] de la requête.</li>
-<li>lignes 23-27 : traitement de la requête [GET /do/list] qui demande la liste des personnes.</li>
-<li>lignes 28-32 : traitement de la requête [GET /do/delete] qui demande la suppression d&#x27;une personne.</li>
-<li>lignes 33-37 : traitement de la requête [GET /do/edit] qui demande le formulaire de mise à jour d&#x27;une personne.</li>
-<li>lignes 38-42 : traitement de la requête [POST /do/validate] qui demande la validation de la personne mise à jour.</li>
-<li>ligne 44 : si l&#x27;action demandée n&#x27;est pas l&#x27;une des cinq précédentes, alors on fait comme si c&#x27;était [GET /do/list].</li>
+  <li>lignes 7-13 : on vérifie que la liste des erreurs d&#x27;initialisation est vide. Si ce n&#x27;est pas le cas, on fait afficher la vue [erreurs(erreurs)] qui va signaler la ou les erreurs.
+  </li>
+  <li>ligne 15 : on récupère la méthode [get] ou [post] que le client a utilisée pour faire sa requête.
+  </li>
+  <li>ligne 17 : on récupère la valeur du paramètre [action] de la requête.
+  </li>
+  <li>lignes 23-27 : traitement de la requête [GET /do/list] qui demande la liste des personnes.
+  </li>
+  <li>lignes 28-32 : traitement de la requête [GET /do/delete] qui demande la suppression d&#x27;une personne.
+  </li>
+  <li>lignes 33-37 : traitement de la requête [GET /do/edit] qui demande le formulaire de mise à jour d&#x27;une personne.
+  </li>
+  <li>lignes 38-42 : traitement de la requête [POST /do/validate] qui demande la validation de la personne mise à jour.
+  </li>
+  <li>ligne 44 : si l&#x27;action demandée n&#x27;est pas l&#x27;une des cinq précédentes, alors on fait comme si c&#x27;était [GET /do/list].
+  </li>
 </ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>La méthode [doListPersonnes<span style="color: #000000">]</span></p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -3458,9 +3684,12 @@
 <a id="__codelineno-39-9" name="__codelineno-39-9"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li><span style="color: #000000">ligne 5 : on demande à la couche [service] la liste des personnes du groupe et on met celle-ci dans le modèle sous la clé &quot; personnes &quot;.</span></li>
-<li><span style="color: #000000">ligne 7 : on fait afficher la vue [list.jsp] décrite paragraphe <a href="#spring-mvc-37-list-jsp">14.8.2</a>.</span></li>
+  <li><span style="color: #000000">ligne 5 : on demande à la couche [service] la liste des personnes du groupe et on met celle-ci dans le modèle sous la clé &quot; personnes &quot;.</span>
+  </li>
+  <li><span style="color: #000000">ligne 7 : on fait afficher la vue [list.jsp] décrite paragraphe <a href="#spring-mvc-37-list-jsp">14.8.2</a>.</span>
+  </li>
 </ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>La méthode [doDeletePersonne<span style="color: #000000">]</span></p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -3527,13 +3756,18 @@
 <a id="__codelineno-41-10" name="__codelineno-41-10"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li><span style="color: #000000">ligne 5 : l’url traitée est de la forme [/do/delete?id=XX]. On récupère la valeur [XX] du paramètre [id].</span></li>
-<li><span style="color: #000000">ligne 7 : on demande à la couche [service] la suppression de la personne ayant l’id obtenu. Nous ne faisons aucune vérification. Si la personne qu’on cherche à supprimer n’existe pas, la couche [dao] lance une exception que laisse remonter la couche [service]. Nous ne la gérons pas non plus ici, dans le contrôleur. Elle remontera donc jusqu’au serveur web qui par configuration fera afficher la page [exception.jsp], décrite paragraphe <a href="#spring-mvc-37-exception-jsp">14.8.2</a> :</span></li>
+  <li><span style="color: #000000">ligne 5 : l’url traitée est de la forme [/do/delete?id=XX]. On récupère la valeur [XX] du paramètre [id].</span>
+  </li>
+  <li><span style="color: #000000">ligne 7 : on demande à la couche [service] la suppression de la personne ayant l’id obtenu. Nous ne faisons aucune vérification. Si la personne qu’on cherche à supprimer n’existe pas, la couche [dao] lance une exception que laisse remonter la couche [service]. Nous ne la gérons pas non plus ici, dans le contrôleur. Elle remontera donc jusqu’au serveur web qui par configuration fera afficher la page [exception.jsp], décrite paragraphe <a href="#spring-mvc-37-exception-jsp">14.8.2</a> :</span>
+  </li>
 </ul>
+
 <p><img src="images/1000000000000187000000B940128F24.png" style="width:7.241cm;height:3.431cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000187000000B940128F24.png" /></p>
 <ul>
-<li><span style="color: #000000">ligne 9 : si la suppression a eu lieu (pas d’exception), on demande au client de se rediriger vers l&#x27;Url relative [list]. Comme celle qui vient d&#x27;être traitée est [/do/delete], l&#x27;Url de redirection sera [/do/list]. Le navigateur sera donc amené à faire un [GET /do/list] qui provoquera l&#x27;affichage de la liste des personnes.</span></li>
+  <li><span style="color: #000000">ligne 9 : si la suppression a eu lieu (pas d’exception), on demande au client de se rediriger vers l&#x27;Url relative [list]. Comme celle qui vient d&#x27;être traitée est [/do/delete], l&#x27;Url de redirection sera [/do/list]. Le navigateur sera donc amené à faire un [GET /do/list] qui provoquera l&#x27;affichage de la liste des personnes.</span>
+  </li>
 </ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>La méthode [doEditPersonne<span style="color: #000000">]</span></p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -3651,18 +3885,26 @@
 <a id="__codelineno-43-34" name="__codelineno-43-34"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li><span style="color: #000000">le GET a pour cible une url du type [/do/edit?id=XX]. Ligne 5, nous récupérons la valeur de [id]. Ensuite il y a deux cas :</span></li>
-<li><span style="color: #000000">id est différent de -1. Alors il s’agit d’une modification et il faut afficher un formulaire pré-rempli avec les informations de la personne à modifier. Ligne 10, cette personne est demandée à la couche [service].</span></li>
-<li>
-<p><span style="color: #000000">id est égal à -1. Alors il s’agit d’un ajout et il faut afficher un formulaire vide. Pour cela, une personne vide est créée lignes 13-14.</span></p>
-</li>
-<li>
-<p><span style="color: #000000">l&#x27;objet [Personne] obtenu est placé dans le modèle de la page [edit.jsp] décrite paragraphe <a href="#personnes-01-edit-jsp">14.8.2</a>. Ce modèle comprend les éléments suivants [erreurEdit, id, version, prenom, erreurPrenom, nom, erreurNom, dateNaissance, erreurDateNaissance, marie, nbEnfants, erreurNbEnfants]. Ces éléments sont initialisés lignes 17-30 à l&#x27;exception de ceux dont la valeur est la chaîne vide [erreurPrenom, erreurNom, erreurDateNaissance,  erreurNbEnfants]. On sait qu&#x27;en leur absence dans le modèle, la bibliothèque JSTL affichera une chaîne vide pour leur valeur. Bien que l&#x27;élément [erreurEdit] ait également pour valeur une chaîne vide, il est néanmoins initialisé car un test est fait sur sa valeur dans la page [edit.jsp].</span></p>
-</li>
-<li>
-<p><span style="color: #000000">une fois le modèle prêt, le contrôle est passé la page [edit.jsp], lignes 32-33, qui va générer la vue [edit].</span></p>
-</li>
+  <li><span style="color: #000000">le GET a pour cible une url du type [/do/edit?id=XX]. Ligne 5, nous récupérons la valeur de [id]. Ensuite il y a deux cas :</span>
+  </li>
 </ul>
+<ol>
+  <li><span style="color: #000000">id est différent de -1. Alors il s’agit d’une modification et il faut afficher un formulaire pré-rempli avec les informations de la personne à modifier. Ligne 10, cette personne est demandée à la couche [service].</span>
+  </li>
+  <li><span style="color: #000000">id est égal à -1. Alors il s’agit d’un ajout et il faut afficher un formulaire vide. Pour cela, une personne vide est créée lignes 13-14.</span>
+  </li>
+</ol>
+
+<ul>
+  <li><span style="color: #000000">l&#x27;objet [Personne] obtenu est placé dans le modèle de la page [edit.jsp] décrite paragraphe <a href="#personnes-01-edit-jsp">14.8.2</a>. Ce modèle comprend les éléments suivants [erreurEdit, id, version, prenom, erreurPrenom, nom, erreurNom, dateNaissance, erreurDateNaissance, marie, nbEnfants, erreurNbEnfants]. Ces éléments sont initialisés lignes 17-30 à l&#x27;exception de ceux dont la valeur est la chaîne vide [erreurPrenom, erreurNom, erreurDateNaissance,  erreurNbEnfants]. On sait qu&#x27;en leur absence dans le modèle, la bibliothèque JSTL affichera une chaîne vide pour leur valeur. Bien que l&#x27;élément [erreurEdit] ait également pour valeur une chaîne vide, il est néanmoins initialisé car un test est fait sur sa valeur dans la page [edit.jsp].</span>
+  </li>
+</ul>
+
+<ul>
+  <li><span style="color: #000000">une fois le modèle prêt, le contrôle est passé la page [edit.jsp], lignes 32-33, qui va générer la vue [edit].</span>
+  </li>
+</ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>La méthode [doValidatePersonne<span style="color: #000000">]</span></p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -3905,19 +4147,32 @@
 <a id="__codelineno-45-101" name="__codelineno-45-101"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li><span style="color: #000000">lignes 8-14 : le paramètre [prenom] de la requête POST est récupéré et sa validité vérifiée. S&#x27;il s&#x27;avère incorrect, l&#x27;élément [erreurPrenom] est initialisé avec un message d&#x27;erreur et placé dans les attributs de la requête.</span></li>
-<li><span style="color: #000000">lignes 16-22 : on opère de façon similaire pour le paramètre [nom]</span></li>
-<li><span style="color: #000000">lignes 24-32 : on opère de façon similaire pour le paramètre [dateNaissance]</span></li>
-<li><span style="color: #000000">ligne 34 : on récupère le paramètre [marie]. On ne fait pas de vérification sur sa validité parce qu&#x27;à priori il provient de la valeur d&#x27;un bouton radio. Ceci dit, rien n&#x27;empêche un programme de faire un [POST /personnes-01/do/validate] accompagné d&#x27;un paramètre [marie] fantaisiste. Nous devrions donc tester la validité de ce paramètre. Ici, on se repose sur notre gestion des exceptions qui provoquent l&#x27;affichage de la page [exception.jsp] si le contrôleur ne les gère pas lui-même. Si donc, la conversion du paramètre [marie] en booléen échoue ligne 34, une exception en sortira qui aboutira à l&#x27;envoi de la page [exception.jsp] au client. Ce fonctionnement nous convient.</span></li>
-<li><span style="color: #000000">lignes 34-54 : on récupère le paramètre [nbEnfants] et on vérifie sa valeur.</span></li>
-<li><span style="color: #000000">ligne 56 : on récupère le paramètre [id] sans vérifier sa valeur</span></li>
-<li><span style="color: #000000">ligne 58 : on fait de même pour le paramètre [version]</span></li>
-<li><span style="color: #000000">lignes 60-65 : si le formulaire est erroné, il est réaffiché avec les messages d&#x27;erreurs construits précédemment</span></li>
-<li><span style="color: #000000">lignes 67-69 : s&#x27;il est valide, on construit un nouvel objet [Personne] avec les éléments du formulaire</span></li>
-<li><span style="color: #000000">lignes 70-78 : la personne est sauvegardée. La sauvegarde peut échouer. Dans un cadre multi-utilisateurs, la personne à modifier a pu être supprimée ou bien déjà modifiée par quelqu’un d’autre. Dans ce cas, la couche [dao] va lancer une exception qu’on gère ici.</span></li>
-<li><span style="color: #000000">ligne 80 : s’il n’y a pas eu d’exception, on redirige le client vers l’url [/do/list] pour lui présenter le nouvel état du groupe.</span></li>
-<li><span style="color: #000000">ligne 75 : s’il y a eu exception lors de la sauvegarde, on redemande le réaffichage du formulaire initial en lui passant le message d&#x27;erreur de l&#x27;exception (3ième paramètre).</span></li>
+  <li><span style="color: #000000">lignes 8-14 : le paramètre [prenom] de la requête POST est récupéré et sa validité vérifiée. S&#x27;il s&#x27;avère incorrect, l&#x27;élément [erreurPrenom] est initialisé avec un message d&#x27;erreur et placé dans les attributs de la requête.</span>
+  </li>
+  <li><span style="color: #000000">lignes 16-22 : on opère de façon similaire pour le paramètre [nom]</span>
+  </li>
+  <li><span style="color: #000000">lignes 24-32 : on opère de façon similaire pour le paramètre [dateNaissance]</span>
+  </li>
+  <li><span style="color: #000000">ligne 34 : on récupère le paramètre [marie]. On ne fait pas de vérification sur sa validité parce qu&#x27;à priori il provient de la valeur d&#x27;un bouton radio. Ceci dit, rien n&#x27;empêche un programme de faire un [POST /personnes-01/do/validate] accompagné d&#x27;un paramètre [marie] fantaisiste. Nous devrions donc tester la validité de ce paramètre. Ici, on se repose sur notre gestion des exceptions qui provoquent l&#x27;affichage de la page [exception.jsp] si le contrôleur ne les gère pas lui-même. Si donc, la conversion du paramètre [marie] en booléen échoue ligne 34, une exception en sortira qui aboutira à l&#x27;envoi de la page [exception.jsp] au client. Ce fonctionnement nous convient.</span>
+  </li>
+  <li><span style="color: #000000">lignes 34-54 : on récupère le paramètre [nbEnfants] et on vérifie sa valeur.</span>
+  </li>
+  <li><span style="color: #000000">ligne 56 : on récupère le paramètre [id] sans vérifier sa valeur</span>
+  </li>
+  <li><span style="color: #000000">ligne 58 : on fait de même pour le paramètre [version]</span>
+  </li>
+  <li><span style="color: #000000">lignes 60-65 : si le formulaire est erroné, il est réaffiché avec les messages d&#x27;erreurs construits précédemment</span>
+  </li>
+  <li><span style="color: #000000">lignes 67-69 : s&#x27;il est valide, on construit un nouvel objet [Personne] avec les éléments du formulaire</span>
+  </li>
+  <li><span style="color: #000000">lignes 70-78 : la personne est sauvegardée. La sauvegarde peut échouer. Dans un cadre multi-utilisateurs, la personne à modifier a pu être supprimée ou bien déjà modifiée par quelqu’un d’autre. Dans ce cas, la couche [dao] va lancer une exception qu’on gère ici.</span>
+  </li>
+  <li><span style="color: #000000">ligne 80 : s’il n’y a pas eu d’exception, on redirige le client vers l’url [/do/list] pour lui présenter le nouvel état du groupe.</span>
+  </li>
+  <li><span style="color: #000000">ligne 75 : s’il y a eu exception lors de la sauvegarde, on redemande le réaffichage du formulaire initial en lui passant le message d&#x27;erreur de l&#x27;exception (3ième paramètre).</span>
+  </li>
 </ul>
+
 <p>La méthode [showFormulaire] (lignes 84-101) construit le modèle nécessaire à la page [edit.jsp] avec les valeurs saisies (<em>request.getParameter(&quot; ... &quot;))</em>. On se rappelle que les messages d&#x27;erreurs ont déjà été placés dans le modèle par la méthode [doValidatePersonne]. La page [edit.jsp] est affichée lignes 99-100.</p>
 <h2 id="149-les-tests-de-lapplication-web">14.9. Les tests de l’application web</h2>
 <p>Un certain nombre de tests ont été présentés au paragraphe <a href="#spring-mvc-37-ecrans">14.1</a>. Nous invitons le lecteur à les rejouer. Nous montrons ici d’autres copies d’écran qui illustrent les cas de conflits d’accès aux données dans un cadre multi-utilisateurs :</p>

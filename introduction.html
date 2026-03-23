@@ -927,24 +927,38 @@
 <p>Ce document peut être exploité de diverses manières :</p>
 <ol>
 <li>on installe les outils, on télécharge les codes sur le site de ce document et on fait les tests proposés. Un débutant ne retirera rien d&#x27;une telle méthode. Un développeur expérimenté, lui, peut le faire, s&#x27;il est seulement intéressé par tester l&#x27;environnement de développement Eclipse / WTP.</li>
-<li>on installe les outils, on suit le document et on fait les tests proposés en faisant du copier / coller à partir de ce document. On ne lit pas le document [<a href="https://stahe.github.io/servlets-java-juin-2002/">ref1</a>]. En procédant de cette façon, on va commencer à acquérir les bases du développement web mais certains points vont rester obscurs ou magiques. C&#x27;est une méthode possible si on veut aller vite avec l&#x27;intention d&#x27;approfondir seulement plus tard, lors de l&#x27;écriture d&#x27;une application personnelle et peut-être avec un autre document de référence que [ref1].</li>
-<li>on fait la même chose qu&#x27;en 2, mais on lit [<a href="https://stahe.github.io/servlets-java-juin-2002/">ref1</a>] quand c&#x27;est conseillé. Cette méthode plus lente va éliminer certains des points obscurs et magiques de la méthode 2 mais ne prépare pas bien à un envol personnel parce que les codes obtenus par copier / coller ne seront pas forcément bien compris.</li>
-<li>on fait la même chose qu&#x27;en 3, mais on tape soi-même tous les codes. C&#x27;est évidemment plus long et plus fastidieux mais très efficace. Pour taper les codes, il faut les lire ce qui induit une attention au code et par-là même un début de compréhension. Cette recopie manuelle se fera rarement sans erreurs de recopie. Ces erreurs, qui seront signalées par les différents outils d&#x27;Eclipse, vont amener le lecteur à s&#x27;interroger sur le code qu&#x27;il a écrit et ainsi à mieux le comprendre.</li>
 </ol>
+<ol start="2">
+  <li>on installe les outils, on suit le document et on fait les tests proposés en faisant du copier / coller à partir de ce document. On ne lit pas le document [<a href="https://stahe.github.io/servlets-java-juin-2002/">ref1</a>]. En procédant de cette façon, on va commencer à acquérir les bases du développement web mais certains points vont rester obscurs ou magiques. C&#x27;est une méthode possible si on veut aller vite avec l&#x27;intention d&#x27;approfondir seulement plus tard, lors de l&#x27;écriture d&#x27;une application personnelle et peut-être avec un autre document de référence que [ref1].
+  </li>
+  <li>on fait la même chose qu&#x27;en 2, mais on lit [<a href="https://stahe.github.io/servlets-java-juin-2002/">ref1</a>] quand c&#x27;est conseillé. Cette méthode plus lente va éliminer certains des points obscurs et magiques de la méthode 2 mais ne prépare pas bien à un envol personnel parce que les codes obtenus par copier / coller ne seront pas forcément bien compris.
+  </li>
+  <li>on fait la même chose qu&#x27;en 3, mais on tape soi-même tous les codes. C&#x27;est évidemment plus long et plus fastidieux mais très efficace. Pour taper les codes, il faut les lire ce qui induit une attention au code et par-là même un début de compréhension. Cette recopie manuelle se fera rarement sans erreurs de recopie. Ces erreurs, qui seront signalées par les différents outils d&#x27;Eclipse, vont amener le lecteur à s&#x27;interroger sur le code qu&#x27;il a écrit et ainsi à mieux le comprendre.
+  </li>
+</ol>
+
 <p>Ce document reprend une bonne partie d&#x27;un article paru en janvier 2005 intitulé &quot; Développement web en Java avec Eclipse et Tomcat &quot; et disponible à l&#x27;url [<a href="http://tahe.developpez.com/java/eclipse/">http://tahe.developpez.com/java/eclipse/</a>]. Les apports vis à vis de ce document sont les suivants :</p>
 <ul>
-<li>l&#x27;utilisation du plugin WTP d&#x27;Eclipse pour le développement d&#x27;applications web,</li>
-<li>une réorganisation du document pour mettre l&#x27;accent sur l&#x27;architecture MVC 3tier qui était à peine abordée dans le document initial,</li>
-<li>un exemple d&#x27;application web MVC 3-tier utilisant les données d&#x27;un SGBD.</li>
+  <li>l&#x27;utilisation du plugin WTP d&#x27;Eclipse pour le développement d&#x27;applications web,
+  </li>
+  <li>une réorganisation du document pour mettre l&#x27;accent sur l&#x27;architecture MVC 3tier qui était à peine abordée dans le document initial,
+  </li>
+  <li>un exemple d&#x27;application web MVC 3-tier utilisant les données d&#x27;un SGBD.
+  </li>
 </ul>
+
 <p>Une application web 3tier a la structure suivante :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000007870000015A6AA8AA07.png" style="display:inline-block; margin:4px;width:17.997cm;height:3.23cm;" class="odt-zoomable" data-zoom-src="images/10000000000007870000015A6AA8AA07.png" /></td></tr></table>
 
 <ul>
-<li>la couche [<strong>dao</strong>] s&#x27;occupe de l&#x27;accès aux données, le plus souvent des données persistantes au sein d&#x27;un SGBD. Mais cela peut être aussi des données qui proviennent de capteurs, du réseau, ...</li>
-<li>la couche [<strong>metier</strong>] implémente les algorithmes &quot; métier &quot; de l&#x27;application. Cette couche est indépendante de toute forme d&#x27;interface avec l&#x27;utilisateur. Ainsi elle doit être utilisable aussi bien avec une interface console, une interface web, une interface de client riche. Elle doit ainsi pouvoir être testée en-dehors de l&#x27;interface web et notamment avec une interface console. C&#x27;est généralement la couche la plus stable de l&#x27;architecture. Elle ne change pas si on change l&#x27;interface utilisateur ou la façon d&#x27;accéder aux données nécessaires au fonctionnement de l&#x27;application. </li>
-<li>la couche [<strong>web</strong>] qui est l&#x27;interface web qui permet à l&#x27;utilisateur de piloter l&#x27;application et d&#x27;en recevoir des informations.</li>
+  <li>la couche [<b>dao</b>] s&#x27;occupe de l&#x27;accès aux données, le plus souvent des données persistantes au sein d&#x27;un SGBD. Mais cela peut être aussi des données qui proviennent de capteurs, du réseau, ...
+  </li>
+  <li>la couche [<b>metier</b>] implémente les algorithmes &quot; métier &quot; de l&#x27;application. Cette couche est indépendante de toute forme d&#x27;interface avec l&#x27;utilisateur. Ainsi elle doit être utilisable aussi bien avec une interface console, une interface web, une interface de client riche. Elle doit ainsi pouvoir être testée en-dehors de l&#x27;interface web et notamment avec une interface console. C&#x27;est généralement la couche la plus stable de l&#x27;architecture. Elle ne change pas si on change l&#x27;interface utilisateur ou la façon d&#x27;accéder aux données nécessaires au fonctionnement de l&#x27;application. 
+  </li>
+  <li>la couche [<b>web</b>] qui est l&#x27;interface web qui permet à l&#x27;utilisateur de piloter l&#x27;application et d&#x27;en recevoir des informations.
+  </li>
 </ul>
+
 <p>L&#x27;article [http://tahe.developpez.com/java/eclipse/] ne donne que des exemples d&#x27;applications web se limitant à la seule couche [web]. Ici on donne un exemple utilisant les trois couches.</p>
 
 

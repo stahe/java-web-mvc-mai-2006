@@ -1046,8 +1046,10 @@
 <a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="k">GO</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 2 : la clé primaire [ID] est de type entier. L&#x27;attribut  <strong>IDENTITY</strong> indique que si on insère une ligne sans valeur pour la colonne ID de la table, SQL Express générera lui-même un nombre entier pour cette colonne. Dans IDENTITY(1, 1), le premier paramètre est la première valeur possible pour la clé primaire, le second, l&#x27;incrément utilisé dans la génération des nombres.</li>
+  <li>ligne 2 : la clé primaire [ID] est de type entier. L&#x27;attribut  <b>IDENTITY</b> indique que si on insère une ligne sans valeur pour la colonne ID de la table, SQL Express générera lui-même un nombre entier pour cette colonne. Dans IDENTITY(1, 1), le premier paramètre est la première valeur possible pour la clé primaire, le second, l&#x27;incrément utilisé dans la génération des nombres.
+  </li>
 </ul>
+
 <p>La table [PERSONNES] pourrait avoir le contenu suivant :</p>
 <p><img src="images/10000000000002A9000000B717D4F81D.png" style="width:12.61cm;height:3.371cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002A9000000B717D4F81D.png" /></p>
 <p>Nous savons que lors de l&#x27;insertion d&#x27;un objet [Personne] par notre couche [dao], le champ [id] de cet objet est égal à -1 avant l&#x27;insertion et a une valeur différente de -1 ensuite, cette valeur étant la clé primaire affectée à la nouvelle ligne insérée dans la table [PERSONNES]. Voyons sur un exemple comment nous allons pouvoir connaître cette valeur.</p>
@@ -1270,10 +1272,14 @@
 
 <p>C’est le même contenu que [personnes-firebird.xml] aux détails près suivants :</p>
 <ul>
-<li><span style="color: #000000">l’ordre SQL &quot; Personne.insertOne &quot; a changé lignes 29-37 :</span></li>
-<li><span style="color: #000000">l&#x27;ordre SQL d&#x27;insertion est exécuté avant l&#x27;ordre SELECT qui va permettre de récupérer la valeur de la clé primaire de la ligne insérée</span></li>
-<li><span style="color: #000000">l&#x27;ordre SQL d&#x27;insertion n&#x27;a pas de valeur pour la colonne ID de la table [PERSONNES]</span></li>
+  <li><span style="color: #000000">l’ordre SQL &quot; Personne.insertOne &quot; a changé lignes 29-37 :</span>
+  </li>
+  <li><span style="color: #000000">l&#x27;ordre SQL d&#x27;insertion est exécuté avant l&#x27;ordre SELECT qui va permettre de récupérer la valeur de la clé primaire de la ligne insérée</span>
+  </li>
+  <li><span style="color: #000000">l&#x27;ordre SQL d&#x27;insertion n&#x27;a pas de valeur pour la colonne ID de la table [PERSONNES]</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000">Cela reflète l&#x27;exemple d&#x27;insertion que nous avons commenté paragraphe <a href="#dao-sqlexpress-exemple-insertion">20.1</a>. A noter, qu&#x27;on retrouve ici le problème d&#x27;insertions simultanées par des threads différents décrit pour MySQL au paragraphe <a href="application-web-mvc-dans-une-architecture-3tier---exemple-5-mysql.html#pb-select-after-insert-mysql">19.3</a>.</span></p>
 <p><span style="color: #000000">La classe d’implémentation [DaoImplCommon] de la couche [dao] est celle des trois versions précédentes.</span></p>
 <p><span style="color: #000000">La configuration de la couche [dao] a été adaptée au SGBD [SQL Express]. Ainsi, le fichier de configuration [spring-config-test-dao-sqlexpress.xml] est-il le suivant :</span></p>
@@ -1317,28 +1323,38 @@
 </code></pre></div>
 
 <ul>
-<li><span style="color: #000000">lignes 5-19 : le bean [dataSource] désigne maintenant la base [SQL Express] [dbpersonnes] dont l’administrateur est [sa] avec le mot de passe [msde]. Le lecteur modifiera cette configuration selon son propre environnement.</span></li>
-<li><span style="color: #000000">ligne 31 : la classe [DaoImplCommon] est la classe d&#x27;implémentation de la couche [dao]</span></li>
+  <li><span style="color: #000000">lignes 5-19 : le bean [dataSource] désigne maintenant la base [SQL Express] [dbpersonnes] dont l’administrateur est [sa] avec le mot de passe [msde]. Le lecteur modifiera cette configuration selon son propre environnement.</span>
+  </li>
+  <li><span style="color: #000000">ligne 31 : la classe [DaoImplCommon] est la classe d&#x27;implémentation de la couche [dao]</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000">La ligne 11 mérite des explications :</span></p>
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span style="color:#000000">            </span><span style="color:#0000e1">&lt;value&gt;</span><span style="color:#000000">jdbc:sqlserver://localhost\\SQLEXPRESS:4000;databaseName=dbpersonnes</span><span style="color:#0000e1">&lt;/value&gt;</span></span>
 </code></pre></div>
 
 <ul>
-<li><span style="color: #000000"><strong>//localhost</strong> : indique que le serveur SQL Express est sur la même machine que notre application Java</span></li>
-<li><span style="color: #000000"><strong>\\SQLEXPRESS</strong> : est le nom d&#x27;une instance de SQL Server. Il semble que plusieurs instances peuvent s&#x27;exécuter en même temps. Il semble donc logique de nommer l&#x27;instance à laquelle on s&#x27;adresse. Ce nom peut être obtenu grâce [SQL Server Configuration Manager] installé normalement en même temps que SQL Express :</span></li>
+  <li><span style="color: #000000"><b>//localhost</b> : indique que le serveur SQL Express est sur la même machine que notre application Java</span>
+  </li>
+  <li><span style="color: #000000"><b>\\SQLEXPRESS</b> : est le nom d&#x27;une instance de SQL Server. Il semble que plusieurs instances peuvent s&#x27;exécuter en même temps. Il semble donc logique de nommer l&#x27;instance à laquelle on s&#x27;adresse. Ce nom peut être obtenu grâce [SQL Server Configuration Manager] installé normalement en même temps que SQL Express :</span>
+  </li>
 </ul>
+
 <p><img src="images/10000000000003580000006E74843248.png" style="width:15.85cm;height:2.041cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003580000006E74843248.png" /></p>
 <p><img src="images/10000000000001CB000000964D7A8B81.png" style="width:8.5cm;height:2.78cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CB000000964D7A8B81.png" /></p>
 <ul>
-<li><span style="color: #000000"><strong>4000</strong> : port d&#x27;écoute de SQL Express. Cela est dépendant de la configuration du serveur. Par défaut, il travaille avec des ports dynamiques, donc pas connus à l&#x27;avance. On ne précise alors pas de port dans l&#x27;url JDBC. Ici, nous avons travaillé avec un port fixe, le port 4000. Cela s&#x27;obtient par configuration :</span></li>
+  <li><span style="color: #000000"><b>4000</b> : port d&#x27;écoute de SQL Express. Cela est dépendant de la configuration du serveur. Par défaut, il travaille avec des ports dynamiques, donc pas connus à l&#x27;avance. On ne précise alors pas de port dans l&#x27;url JDBC. Ici, nous avons travaillé avec un port fixe, le port 4000. Cela s&#x27;obtient par configuration :</span>
+  </li>
 </ul>
+
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000554000002DD4D208404.png" style="display:inline-block; margin:4px;width:17.997cm;height:9.671cm;" class="odt-zoomable" data-zoom-src="images/1000000000000554000002DD4D208404.png" /></td></tr></table>
 
 <ul>
-<li><span style="color: #000000">l&#x27;attribut <strong>dataBaseName</strong> fixe la base de données avec laquelle on veut travailler. C&#x27;est celle qui a été créée avec le client EMS :</span></li>
+  <li><span style="color: #000000">l&#x27;attribut <b>dataBaseName</b> fixe la base de données avec laquelle on veut travailler. C&#x27;est celle qui a été créée avec le client EMS :</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000"> </span></p>
 <p><img src="images/10000000000001160000007A38BBB3A2.png" style="width:5.129cm;height:2.26cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001160000007A38BBB3A2.png" /></p>
 <p><span style="color: #000000">Ces modifications faites, on peut passer aux tests.</span></p>

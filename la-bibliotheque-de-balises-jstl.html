@@ -1063,9 +1063,12 @@
 </code></pre></div>
 <p>signale l&#x27;utilisation d&#x27;une bibliothèque de balises dont la définition se trouve dans le fichier [/WEB-INF/c.tld]. Ces balises seront utilisées dans le code de la page, préfixées du mot <strong>c</strong> (prefix=&quot;c&quot;). On peut utiliser tout préfixe de son choix. Ici <strong>c</strong> signifie [core]. Les préfixes permettent d&#x27;utiliser des bibliothèques de balises qui pourraient avoir les mêmes noms pour certaines balises. L&#x27;utilisation du préfixe lève l&#x27;ambiguïté. La nouvelle page <strong>n&#x27;a plus de code Java</strong> aux deux endroits où elle en avait précédemment :</p>
 <ul>
-<li>la récupération du modèle de la page [erreurs, lienRetourFormulaire] (partie disparue)</li>
-<li>l&#x27;affichage de la liste des erreurs (lignes 13-15)</li>
+  <li>la récupération du modèle de la page [erreurs, lienRetourFormulaire] (partie disparue)
+  </li>
+  <li>l&#x27;affichage de la liste des erreurs (lignes 13-15)
+  </li>
 </ul>
+
 <p>La boucle d&#x27;affichage des erreurs a été remplacée par code suivant :</p>
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">c:forEach </span><span style="color:#7f007f">var</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;erreur&quot; </span><span style="color:#7f007f">items</span><span style="color:#000000">=</span>&quot;<span style="color:#000000">${erreurs}</span>&quot;<span style="color:#008080">&gt;</span></span>
@@ -1074,29 +1077,43 @@
 </code></pre></div>
 
 <ul>
-<li>la balise <strong>&lt;forEach&gt;</strong> sert à délimiter une boucle</li>
-<li>la notation <strong>${variable}</strong> sert à écrire la valeur d&#x27;une variable</li>
+  <li>la balise <b>&lt;forEach&gt;</b> sert à délimiter une boucle
+  </li>
+  <li>la notation <b>${variable}</b> sert à écrire la valeur d&#x27;une variable
+  </li>
 </ul>
+
 <p>La balise <strong>&lt;forEach&gt;</strong> a ici deux attributs :</p>
 <ul>
-<li><strong>items=&quot;${erreurs}&quot;</strong> indique la collection d&#x27;objets sur laquelle il faut itérer. Ici, la collection est l&#x27;objet <strong>erreurs</strong>. Où celui-ci est-il trouvé ? La page JSP va chercher un attribut s&#x27;appelant &quot;erreurs&quot; successivement et dans l&#x27;ordre dans  :<ul>
-<li>l&#x27;objet [request] qui représente la requête transmise par le contrôleur : <strong>request.getAttribute(&quot;erreurs&quot;)</strong></li>
-<li>l&#x27;objet [session] qui représente la session du client : <strong>session.getAttribute(&quot;erreurs&quot;)</strong></li>
-<li>l&#x27;objet [application] qui représente le contexte de l&#x27;application web : <strong>application.getAttribute(&quot;erreurs&quot;)</strong></li>
+  <li><b>items=&quot;${erreurs}&quot;</b> indique la collection d&#x27;objets sur laquelle il faut itérer. Ici, la collection est l&#x27;objet <b>erreurs</b>. Où celui-ci est-il trouvé ? La page JSP va chercher un attribut s&#x27;appelant &quot;erreurs&quot; successivement et dans l&#x27;ordre dans  :
+    <ul>
+      <li>l&#x27;objet [request] qui représente la requête transmise par le contrôleur : <b>request.getAttribute(&quot;erreurs&quot;)</b>
+      </li>
+      <li>l&#x27;objet [session] qui représente la session du client : <b>session.getAttribute(&quot;erreurs&quot;)</b>
+      </li>
+      <li>l&#x27;objet [application] qui représente le contexte de l&#x27;application web : <b>application.getAttribute(&quot;erreurs&quot;)</b>
+      </li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
+
 <p>La collection désignée par l&#x27;attribut <strong>items</strong> peut avoir diverses formes : <em>tableau</em>, <em>ArrayList</em>, objet implémentant l&#x27;interface <em>List</em>, ...</p>
 <ul>
-<li><strong>var=&quot;erreur&quot;</strong> sert à donner un nom à l&#x27;élément courant de la collection en cours de traitement. La boucle &lt;forEach&gt; va être exécutée successivement pour chaque élément de la collection <strong>items</strong>. A l&#x27;intérieur de la boucle, l&#x27;élément de la collection en cours de traitement sera donc désigné ici par <strong>erreur</strong>.</li>
+  <li><b>var=&quot;erreur&quot;</b> sert à donner un nom à l&#x27;élément courant de la collection en cours de traitement. La boucle &lt;forEach&gt; va être exécutée successivement pour chaque élément de la collection <b>items</b>. A l&#x27;intérieur de la boucle, l&#x27;élément de la collection en cours de traitement sera donc désigné ici par <b>erreur</b>.
+  </li>
 </ul>
+
 <p>La notation <strong>${erreur}</strong> insère la valeur de la variable <strong>erreur</strong> dans le texte. Cette variable n&#x27;est pas nécessairement une chaîne de caractères. JSTL utilise la méthode <strong>erreur.toString()</strong> pour insérer la valeur de la variable <strong>erreur</strong>. A la place de la notation <strong>${erreur}</strong>, on peut également utiliser la balise <strong>&lt;c:out value=&quot;${erreur}&quot;/&gt;</strong>.</p>
 <p>Pour en revenir à notre exemple d&#x27;affichage des erreurs :</p>
 <ul>
-<li>le contrôleur mettra dans la requête transmise à la page JSP un <em>ArrayList</em> de messages d&#x27;erreurs, donc un <em>ArrayList</em> d&#x27;objets <em>String</em> : <strong>request.setAttribute(&quot;erreurs&quot;,erreurs)</strong> où <strong>erreurs</strong> est le <em>ArrayList</em> ;</li>
-<li>à cause de l&#x27;attribut <strong>items=&quot;${erreurs}&quot;</strong>, la page JSP va chercher un attribut appelé <strong>erreurs</strong>, successivement dans la <strong>requête</strong>, la <strong>session</strong>, l<strong>&#x27;application</strong>. Elle va le trouver dans la requête : <strong>request.getAttribute(&quot;erreurs&quot;)</strong> va rendre le <em>ArrayList</em> placé dans la requête par le contrôleur ;</li>
-<li>la variable <em>erreur</em> de l&#x27;attribut <strong>var=&quot;erreur&quot;</strong> va donc désigner l&#x27;élément courant du <em>ArrayList</em>, donc un objet <em>String</em>. La méthode <strong>erreur.toString()</strong> va insérer la valeur de ce <em>String</em>, ici un message d&#x27;erreur, dans le flux HTML de la page.</li>
+  <li>le contrôleur mettra dans la requête transmise à la page JSP un <i>ArrayList</i> de messages d&#x27;erreurs, donc un <i>ArrayList</i> d&#x27;objets <i>String</i> : <b>request.setAttribute(&quot;erreurs&quot;,erreurs)</b> où <b>erreurs</b> est le <i>ArrayList</i> ;
+  </li>
+  <li>à cause de l&#x27;attribut <b>items=&quot;${erreurs}&quot;</b>, la page JSP va chercher un attribut appelé <b>erreurs</b>, successivement dans la <b>requête</b>, la <b>session</b>, l<b>&#x27;application</b>. Elle va le trouver dans la requête : <b>request.getAttribute(&quot;erreurs&quot;)</b> va rendre le <i>ArrayList</i> placé dans la requête par le contrôleur ;
+  </li>
+  <li>la variable <i>erreur</i> de l&#x27;attribut <b>var=&quot;erreur&quot;</b> va donc désigner l&#x27;élément courant du <i>ArrayList</i>, donc un objet <i>String</i>. La méthode <b>erreur.toString()</b> va insérer la valeur de ce <i>String</i>, ici un message d&#x27;erreur, dans le flux HTML de la page.
+  </li>
 </ul>
+
 <p>Les objets de la collection traitée par la balise &lt;forEach&gt; peuvent être plus complexes que de simples chaînes de caractères. Prenons l&#x27;exemple d&#x27;une page JSP qui affiche une liste d&#x27;articles :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
 <span class="normal"><a href="#__codelineno-1-2">2</a></span>
@@ -1117,9 +1134,12 @@
 </code></pre></div>
 <p>Que signifie <em>${article.nom}</em> ? En fait diverses choses selon la nature de l&#x27;objet <strong>article</strong>. Pour obtenir la valeur de <strong>article.nom</strong>, la page JSP va essayer deux choses :</p>
 <ol>
-<li><strong>article.getNom()</strong> - on notera l&#x27;orthographe <strong>getNom</strong> pour récupérer le champ <strong>nom</strong> (norme Javabean)</li>
-<li><strong>article.get(&quot;nom&quot;)</strong></li>
+  <li><b>article.getNom()</b> - on notera l&#x27;orthographe <b>getNom</b> pour récupérer le champ <b>nom</b> (norme Javabean)
+  </li>
+  <li>article.get(&quot;nom&quot;)
+  </li>
 </ol>
+
 <p>L&#x27;objet [article] peut donc être un bean avec un <strong>champ nom</strong>, ou un dictionnaire avec une <strong>clé nom</strong>.</p>
 <p>Il n&#x27;y a pas de limites à la hiérarchie de l&#x27;objet traité. Ainsi la balise </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&lt;c:out value=&quot;${individu.enfants[1].nom}&quot;/&gt;
@@ -1150,12 +1170,15 @@
 <p><img src="images/10000000000000C0000000CC673C6073.png" style="width:3.56cm;height:3.78cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C0000000CC673C6073.png" /></p>
 <p>Les deux fichiers de suffixe .war sont des archives d&#x27;applications web :</p>
 <ul>
-<li>standard-doc : documentation sur les balises JSTL</li>
-<li>standard-examples : exemples d&#x27;utilisation des balises</li>
+  <li>standard-doc : documentation sur les balises JSTL
+  </li>
+  <li>standard-examples : exemples d&#x27;utilisation des balises
+  </li>
 </ul>
+
 <p><a id="jstl-deploiement-doc"></a>Nous allons déployer cette dernière application au sein de Tomcat. Nous lançons ce dernier via l&#x27;option adéquate du menu [Démarrer] puis nous demandons l&#x27;Url [http://localhost:8080] et suivons le lien [Tomcat Manager] :</p>
 <p><img src="images/10000000000001530000012EC9798919.png" style="width:6.279cm;height:5.59cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001530000012EC9798919.png" /></p>
-<p>Nous obtenons alors une page d&#x27;authentification. Nous nous identifions comme <em>manager / manager</em><strong><em> ou </em></strong><em>admin / admin</em>, comme il a été montré au paragraphe <a href="les-outils-utilises-dans-le-document.html#tomcat-manager">2.3.3</a>.</p>
+<p>Nous obtenons alors une page d&#x27;authentification. Nous nous identifions comme <em>manager / manager</em> <strong><em>ou</em></strong> <em>admin / admin</em>, comme il a été montré au paragraphe <a href="les-outils-utilises-dans-le-document.html#tomcat-manager">2.3.3</a>.</p>
 <p><img src="images/10000000000001F8000000D67A462871.png" style="width:9.329cm;height:3.96cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F8000000D67A462871.png" /></p>
 <p>Nous obtenons une page listant les applications actuellement déployées dans Tomcat :</p>
 <p><img src="images/100000000000039F0000016C59E0553F.png" style="width:17.17cm;height:6.74cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000039F0000016C59E0553F.png" /></p>
@@ -1175,9 +1198,12 @@
 </code></pre></div>
 <p>Nous avons déjà rencontré cette balise au paragraphe <a href="#balise-taglib">8.1.1</a>, et nous en avons donné une courte explication :</p>
 <ul>
-<li>[uri] : URI (Uniform Resource Identifier) où l&#x27;on trouve la définition des balises utilisées dans la page. Cette URI va être utilisée par le serveur web lorsque la page JSP va être traduite en code Java pour devenir une servlet. Elle est également utilisée par les outils de développement de pages web pour vérifier la bonne syntaxe des balises utilisées dans la page ou pour proposer une aide à la frappe. Lorsqu&#x27;on commence l&#x27;écriture d&#x27;une balise, un outil connaissant la bibliothèque peut alors proposer à l&#x27;utilisateur les attributs possibles pour cette balise.</li>
-<li>[prefix] : préfixe qui identifie ces balises dans la page</li>
+  <li>[uri] : URI (Uniform Resource Identifier) où l&#x27;on trouve la définition des balises utilisées dans la page. Cette URI va être utilisée par le serveur web lorsque la page JSP va être traduite en code Java pour devenir une servlet. Elle est également utilisée par les outils de développement de pages web pour vérifier la bonne syntaxe des balises utilisées dans la page ou pour proposer une aide à la frappe. Lorsqu&#x27;on commence l&#x27;écriture d&#x27;une balise, un outil connaissant la bibliothèque peut alors proposer à l&#x27;utilisateur les attributs possibles pour cette balise.
+  </li>
+  <li>[prefix] : préfixe qui identifie ces balises dans la page
+  </li>
 </ul>
+
 <p>L&#x27;uri [http://java.sun.com/jsp/jstl/core] n&#x27;est pas utilisable si on n&#x27;est pas raccordé à l&#x27;internet public. Dans ce cas, on peut placer localement, le fichier de définition des balises. Plusieurs tels fichiers sont fournis avec la distribution JSTL 1.2 dans le dossier [tld] (Tag Language Definition) :</p>
 <p><img src="images/10000000000000C90000012E11247D3A.png" style="width:3.72cm;height:5.59cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C90000012E11247D3A.png" /></p>
 <p>JSTL est en fait un ensemble de bibliothèque de balises. Nous n&#x27;utiliserons que la bibliothèque [c.tld] dite bibliothèque &quot; core &quot;. Nous placerons le fichier [c.tld] ci-dessus dans le dossier [WEB-INF] de nos applications :</p>

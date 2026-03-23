@@ -1183,9 +1183,12 @@
 </code></pre></div>
 <p>On peut utiliser cette url pour préciser l&#x27;action à faire. On peut utiliser diverses méthodes :</p>
 <ol>
-<li>un paramètre de l&#x27;url précise l&#x27;action, par exemple [/appli?action=ajouter&amp;id=4]. Ici le paramètre [action] indique au contrôleur l&#x27;action qui lui est demandée.</li>
-<li>le dernier élément de l&#x27;url précise l&#x27;action, par exemple [/appli/ajouter?id=4]. Ici, le dernier élément de l&#x27;url [/ajouter] est utilisé par le contrôleur pour déterminer l&#x27;action qu&#x27;il doit faire.</li>
+  <li>un paramètre de l&#x27;url précise l&#x27;action, par exemple [/appli?action=ajouter&amp;id=4]. Ici le paramètre [action] indique au contrôleur l&#x27;action qui lui est demandée.
+  </li>
+  <li>le dernier élément de l&#x27;url précise l&#x27;action, par exemple [/appli/ajouter?id=4]. Ici, le dernier élément de l&#x27;url [/ajouter] est utilisé par le contrôleur pour déterminer l&#x27;action qu&#x27;il doit faire.
+  </li>
 </ol>
+
 <p>D&#x27;autres solutions sont possibles. Les deux précédentes sont courantes.</p>
 <p><strong>Requête POST</strong></p>
 <p>Dans ce cas, le flux HTTP ressemble à ce qui suit :</p>
@@ -1233,21 +1236,27 @@
 </code></pre></div>
 <p>Dans ce qui suit, nous utiliserons ces différentes techniques pour indiquer au contrôleur ce qu&#x27;il doit faire :</p>
 <ul>
-<li>intégrer le paramètre <em>action</em> dans l&#x27;url demandée :</li>
+  <li>intégrer le paramètre <i>action</i> dans l&#x27;url demandée :
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>POST /appli?action=ajouter&amp;id=4 HTTP/1.1
 </code></pre></div>
 <ul>
-<li>poster le paramètre <em>action</em> :</li>
+  <li>poster le paramètre <i>action</i> :
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>POST /appli HTTP/1.1
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>...
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>[ligne vide]
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>action=ajouter&amp;id=4
 </code></pre></div>
 <ul>
-<li>utiliser le dernier élément de l&#x27;url comme nom de l&#x27;action :</li>
+  <li>utiliser le dernier élément de l&#x27;url comme nom de l&#x27;action :
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>POST /appli/ajouter?id=4 HTTP/1.1
 </code></pre></div>
 <h2 id="53-le-projet-eclipse">5.3. Le projet Eclipse</h2>
@@ -1268,9 +1277,12 @@
 <p>Une fois complété, le projet sera le suivant :</p>
 <p><img src="images/10000000000000E30000017F6F0446E5.png" style="width:4.2cm;height:7.091cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E30000017F6F0446E5.png" /></p>
 <ul>
-<li>le contrôleur [ServletPersonne] est dans le dossier [src]</li>
-<li>les pages JSP des vues [formulaire, réponse, erreurs] sont dans le dossier [WEB-INF/vues], ce qui empêche l&#x27;utilisateur de les demander directement comme le montre l&#x27;exemple ci-dessous :</li>
+  <li>le contrôleur [ServletPersonne] est dans le dossier [src]
+  </li>
+  <li>les pages JSP des vues [formulaire, réponse, erreurs] sont dans le dossier [WEB-INF/vues], ce qui empêche l&#x27;utilisateur de les demander directement comme le montre l&#x27;exemple ci-dessous :
+  </li>
 </ul>
+
 <p><img src="images/100000000000029F000000EF08A5DE13.png" style="width:12.43cm;height:4.431cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029F000000EF08A5DE13.png" /></p>
 <p>Nous décrivons maintenant les différents composants de l&#x27;application web [/personne1]. Le lecteur est invité à les créer au fil de sa lecture.</p>
 <p><a id="personne1-web-xml"></a></p>
@@ -1324,13 +1336,20 @@
 
 <p>Que dit ce fichier de configuration ?</p>
 <ul>
-<li>lignes 34-37 : l&#x27;URL /<strong>main</strong> est traitée par la servlet nommée <strong>personne</strong></li>
-<li>lignes 10-13 : la servlet nommée <strong>personne</strong> est une instance de la classe [ServletPersonne]</li>
-<li>lignes 14-19 : définissent un paramètre de configuration nommé [urlReponse]. C&#x27;est l&#x27;url de la vue [réponse].</li>
-<li>lignes 20-25 : définissent un paramètre de configuration nommé [urlErreurs]. C&#x27;est l&#x27;url de la vue [erreurs].</li>
-<li>lignes 26-31 : définissent un paramètre de configuration nommé [urlFormulaire]. C&#x27;est l&#x27;url de la vue [formulaire].</li>
-<li>ligne 40 : [index.jsp] sera la page d&#x27;accueil de l&#x27;application.</li>
+  <li>lignes 34-37 : l&#x27;URL /<b>main</b> est traitée par la servlet nommée <b>personne</b>
+  </li>
+  <li>lignes 10-13 : la servlet nommée <b>personne</b> est une instance de la classe [ServletPersonne]
+  </li>
+  <li>lignes 14-19 : définissent un paramètre de configuration nommé [urlReponse]. C&#x27;est l&#x27;url de la vue [réponse].
+  </li>
+  <li>lignes 20-25 : définissent un paramètre de configuration nommé [urlErreurs]. C&#x27;est l&#x27;url de la vue [erreurs].
+  </li>
+  <li>lignes 26-31 : définissent un paramètre de configuration nommé [urlFormulaire]. C&#x27;est l&#x27;url de la vue [formulaire].
+  </li>
+  <li>ligne 40 : [index.jsp] sera la page d&#x27;accueil de l&#x27;application.
+  </li>
 </ul>
+
 <p>Les url des pages JSP des vues [formulaire, réponse, erreurs] font l&#x27;objet chacune d&#x27;un paramètre de configuration. Cela permet de les déplacer sans avoir à recompiler l&#x27;application.</p>
 <p>Lorsque l&#x27;utilisateur va demander l&#x27;url [/personne1], c&#x27;est le fichier [index.jsp] qui va envoyer la réponse (fichier d&#x27;accueil, ligne 40). Ce fichier est à la racine du dossier [WebContent] :</p>
 <p><img src="images/100000000000007800000050DE6B2C52.png" style="width:2.221cm;height:1.48cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007800000050DE6B2C52.png" /></p>
@@ -1360,9 +1379,12 @@
 <a id="__codelineno-9-7" name="__codelineno-9-7"></a>Date: Thu, 18 May 2006 15:45:23 GMT
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 1 : réponse HTTP/1.1 pour indiquer au serveur de se rediriger vers une autre URL</li>
-<li>ligne 4 : l&#x27;URL vers laquelle doit se rediriger le navigateur</li>
+  <li>ligne 1 : réponse HTTP/1.1 pour indiquer au serveur de se rediriger vers une autre URL
+  </li>
+  <li>ligne 4 : l&#x27;URL vers laquelle doit se rediriger le navigateur
+  </li>
 </ul>
+
 <p>Après cette réponse, le navigateur va donc demander l&#x27;url [/personne1/main] comme on le lui demande (ligne 4). Le fichier [web.xml] de l&#x27;application [/personne1] indique que cette demande va être traitée par le contrôleur [ServletPersonne] (lignes 35-36).</p>
 <h2 id="55-le-code-des-vues">5.5. Le code des vues</h2>
 <p>Nous commençons notre écriture de l&#x27;application web par celle de ses vues. Celles-ci permettent de cerner les besoins de l&#x27;utilisateur en termes d&#x27;interface graphique et peuvent être testées sans la présence du contrôleur.</p>
@@ -1372,28 +1394,31 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>n°
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>type HTML</b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>nom</b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>rôle</b></p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>type HTML</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>nom</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>rôle</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>1
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">&lt;input type= &quot;text &quot;&gt;</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">txtNom</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">saisie du nom</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">&lt;input type= &quot;text &quot;&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">txtNom</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">saisie du nom</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">&lt;input type= &quot;text &quot;&gt;</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">txtAge</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">saisie de l&#x27;âge</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">&lt;input type= &quot;text &quot;&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">txtAge</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">saisie de l&#x27;âge</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>3
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">&lt;input type= &quot;submit &quot;&gt;</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">envoi des valeurs saisies au serveur à l&#x27;url /personne1/main</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">&lt;input type= &quot;submit &quot;&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">envoi des valeurs saisies au serveur à l&#x27;url /personne1/main</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>4
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">&lt;input type= &quot;reset &quot;&gt;</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">pour remettre la page dans l&#x27;état où elle a été reçue initialement par le navigateur</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">&lt;input type= &quot;reset &quot;&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">pour remettre la page dans l&#x27;état où elle a été reçue initialement par le navigateur</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>5
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">&lt;input type= &quot;button &quot;&gt;</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">pour effacer les contenu des champs de saisie [1] et [2]</p></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">&lt;input type= &quot;button &quot;&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">pour effacer les contenu des champs de saisie [1] et [2]</div></td></tr></table>
 
 <p>Elle est générée par la page JSP [formulaire.jsp]. Son modèle est constitué des éléments suivants :</p>
 <ul>
-<li>[nom] : un nom (String) trouvé dans les attributs de session associé à la clé &quot;nom&quot;</li>
-<li>[age] : un âge (String) trouvé dans les attributs de session associé à la clé &quot;age&quot;</li>
+  <li>[nom] : un nom (String) trouvé dans les attributs de session associé à la clé &quot;nom&quot;
+  </li>
+  <li>[age] : un âge (String) trouvé dans les attributs de session associé à la clé &quot;age&quot;
+  </li>
 </ul>
+
 <p>La vue [formulaire] est obtenue lorsque l&#x27;utilisateur demande l&#x27;url [/personne1/main], c.a.d. l&#x27;url du contrôleur [ServletPersonne]. Le code de la page JSP [formulaire.jsp] qui génère la vue [formulaire] est le suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">page </span><span style="color:#7f007f">language</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;java&quot; </span><span style="color:#7f007f">contentType</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;text/html; charset=ISO-8859-1&quot;</span></span>
@@ -1441,23 +1466,34 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 6-7 : la page JSP commence par récupérer dans la requête [request] les éléments [nom, age] de son modèle. Dans le fonctionnement normal de l&#x27;application, ce sera le contrôleur [ServletPersonne] qui construira ce modèle.</li>
-<li>lignes 18-38 : la page JSP va générer un formulaire HTML (balise &lt;form&gt;)</li>
-<li>ligne 18 : la balise &lt;form&gt; n&#x27;a pas d&#x27;attribut <em>action</em> pour désigner l&#x27;url qui devra traiter les valeurs postées par le bouton [Envoyer] de type <em>submit</em> (ligne 32). Les valeurs du formulaire seront alors postées à l&#x27;url à partir de laquelle a été obtenue le formulaire, c&#x27;est à dire l&#x27;url du contrôleur [ServletPersonne]. Ainsi celui-ci est-il utilisé à la fois pour générer le formulaire vide demandé initialement par un GET et traiter les données saisies qui lui seront postées avec le bouton [Envoyer].</li>
-<li>les valeurs postées sont celles des champs HTML [txtNom] (ligne 22) et [txtAge] (ligne 26) et [action] (ligne 37). Ce dernier paramètre va permettre au contrôleur de savoir ce qu&#x27;il doit faire.</li>
-<li>à l&#x27;affichage initial du formulaire, les champs de saisie [txtNom, txtAge] sont initialisés respectivement avec les variables [nom] (ligne 22) et [age] (ligne 26). Ces variables obtiennent leurs valeurs d&#x27;attributs de la requête (lignes 6-7), attributs qu&#x27;on sait initialisés par la servlet. C&#x27;est donc cette dernière qui fixe le contenu initial des champs de saisie du formulaire.</li>
-<li>ligne 33 : le bouton [Rétablir] de type [reset] permet de remettre le formulaire dans l&#x27;état où il était lorsque le navigateur l&#x27;a reçu.</li>
-<li>ligne 34 : le bouton [Effacer] de type [reset] n&#x27;a pour l&#x27;instant aucune fonction.</li>
+  <li>lignes 6-7 : la page JSP commence par récupérer dans la requête [request] les éléments [nom, age] de son modèle. Dans le fonctionnement normal de l&#x27;application, ce sera le contrôleur [ServletPersonne] qui construira ce modèle.
+  </li>
+  <li>lignes 18-38 : la page JSP va générer un formulaire HTML (balise &lt;form&gt;)
+  </li>
+  <li>ligne 18 : la balise &lt;form&gt; n&#x27;a pas d&#x27;attribut <i>action</i> pour désigner l&#x27;url qui devra traiter les valeurs postées par le bouton [Envoyer] de type <i>submit</i> (ligne 32). Les valeurs du formulaire seront alors postées à l&#x27;url à partir de laquelle a été obtenue le formulaire, c&#x27;est à dire l&#x27;url du contrôleur [ServletPersonne]. Ainsi celui-ci est-il utilisé à la fois pour générer le formulaire vide demandé initialement par un GET et traiter les données saisies qui lui seront postées avec le bouton [Envoyer].
+  </li>
+  <li>les valeurs postées sont celles des champs HTML [txtNom] (ligne 22) et [txtAge] (ligne 26) et [action] (ligne 37). Ce dernier paramètre va permettre au contrôleur de savoir ce qu&#x27;il doit faire.
+  </li>
+  <li>à l&#x27;affichage initial du formulaire, les champs de saisie [txtNom, txtAge] sont initialisés respectivement avec les variables [nom] (ligne 22) et [age] (ligne 26). Ces variables obtiennent leurs valeurs d&#x27;attributs de la requête (lignes 6-7), attributs qu&#x27;on sait initialisés par la servlet. C&#x27;est donc cette dernière qui fixe le contenu initial des champs de saisie du formulaire.
+  </li>
+  <li>ligne 33 : le bouton [Rétablir] de type [reset] permet de remettre le formulaire dans l&#x27;état où il était lorsque le navigateur l&#x27;a reçu.
+  </li>
+  <li>ligne 34 : le bouton [Effacer] de type [reset] n&#x27;a pour l&#x27;instant aucune fonction.
+  </li>
 </ul>
+
 <p>Par la suite, nous appellerons cette vue, la vue [formulaire(nom, age)] lorsque nous voudrons préciser à la fois le nom de la vue et son modèle. Par ailleurs, on se rappellera que lorsque l&#x27;utilisateur clique sur le bouton [Envoyer], les paramètres [txtNom, txtAge] sont postés à l&#x27;url [/personne1/main].</p>
 <h3 id="552-la-vue-reponse">5.5.2. La vue [reponse]</h3>
 <p>Cette vue affiche les valeurs saisies dans le formulaire lorsque celles-ci sont valides :</p>
 <p><img src="images/1000000000000559000001C5EA2FEDAD.png" style="width:17.997cm;height:5.955cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000559000001C5EA2FEDAD.png" /></p>
 <p>Elle est générée par la page JSP [reponse.jsp]. Son modèle est constitué des éléments suivants :</p>
 <ul>
-<li>[nom] : un nom (String) qui sera trouvé dans les attributs de session, associé à la clé &quot;nom&quot;</li>
-<li>[age] : un âge (String) qui sera trouvé dans les attributs de session, associé à la clé &quot;age&quot;</li>
+  <li>[nom] : un nom (String) qui sera trouvé dans les attributs de session, associé à la clé &quot;nom&quot;
+  </li>
+  <li>[age] : un âge (String) qui sera trouvé dans les attributs de session, associé à la clé &quot;age&quot;
+  </li>
 </ul>
+
 <p>Le code de la page JSP [reponse.jsp] est le suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">page </span><span style="color:#7f007f">language</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;java&quot; </span><span style="color:#7f007f">contentType</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;text/html; charset=ISO-8859-1&quot;</span></span>
@@ -1492,17 +1528,22 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 6-7 : la page JSP commence par récupérer dans la requête [request] les éléments [nom, age] de son modèle. Dans le fonctionnement normal de l&#x27;application, ce sera le contrôleur [ServletPersonne] qui construira ce modèle.</li>
-<li>les éléments [nom, age] du modèle sont ensuite affichés lignes 20 et 24</li>
+  <li>lignes 6-7 : la page JSP commence par récupérer dans la requête [request] les éléments [nom, age] de son modèle. Dans le fonctionnement normal de l&#x27;application, ce sera le contrôleur [ServletPersonne] qui construira ce modèle.
+  </li>
+  <li>les éléments [nom, age] du modèle sont ensuite affichés lignes 20 et 24
+  </li>
 </ul>
+
 <p>Par la suite, nous appelons cette vue, la vue [réponse(nom, age)].</p>
 <h3 id="553-la-vue-erreurs">5.5.3. La vue [erreurs]</h3>
 <p>Cette vue signale les erreurs de saisie dans le formulaire :</p>
 <p><img src="images/1000000000000562000001CC8B8EA19E.png" style="width:17.997cm;height:6.006cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000562000001CC8B8EA19E.png" /></p>
 <p>Elle est générée par la page JSP [erreurs.jsp]. Son modèle est constitué des éléments suivants :</p>
 <ul>
-<li>[erreurs] : une liste (ArrayList) de messages d&#x27;erreur qui sera trouvée dans les attributs de requête, associée à la clé &quot;erreurs&quot;</li>
+  <li>[erreurs] : une liste (ArrayList) de messages d&#x27;erreur qui sera trouvée dans les attributs de requête, associée à la clé &quot;erreurs&quot;
+  </li>
 </ul>
+
 <p>Le code de la page JSP [erreurs.jsp] est le suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">page </span><span style="color:#7f007f">language</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;java&quot; </span><span style="color:#7f007f">contentType</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;text/html; charset=ISO-8859-1&quot;</span></span>
@@ -1534,17 +1575,24 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 8 : la page JSP commence par récupérer dans la requête [request] l&#x27;élément [erreurs] de son modèle. Cet élément représente un objet de type <em>ArrayList</em> d&#x27;éléments de type <em>String</em>. Ces éléments sont des messages d&#x27;erreurs. Dans le fonctionnement normal de l&#x27;application, ce sera le contrôleur [ServletPersonne] qui construira ce modèle.</li>
-<li>lignes 18-22 : affichent la liste des messages d&#x27;erreur. Pour cela, on est amené à écrire du code Java dans le corps HTML de la page. On doit toujours viser à réduire celui-ci au minimum pour ne pas polluer le code HTML. Nous verrons ultérieurement qu&#x27;il existe des solution permettant de réduire la quantité de code Java dans les pages JSP.</li>
-<li>ligne 4 : à noter la balise d&#x27;importation des paquetages nécessaires à la page JSP</li>
+  <li>ligne 8 : la page JSP commence par récupérer dans la requête [request] l&#x27;élément [erreurs] de son modèle. Cet élément représente un objet de type <i>ArrayList</i> d&#x27;éléments de type <i>String</i>. Ces éléments sont des messages d&#x27;erreurs. Dans le fonctionnement normal de l&#x27;application, ce sera le contrôleur [ServletPersonne] qui construira ce modèle.
+  </li>
+  <li>lignes 18-22 : affichent la liste des messages d&#x27;erreur. Pour cela, on est amené à écrire du code Java dans le corps HTML de la page. On doit toujours viser à réduire celui-ci au minimum pour ne pas polluer le code HTML. Nous verrons ultérieurement qu&#x27;il existe des solution permettant de réduire la quantité de code Java dans les pages JSP.
+  </li>
+  <li>ligne 4 : à noter la balise d&#x27;importation des paquetages nécessaires à la page JSP
+  </li>
 </ul>
+
 <p>Par la suite, nous appelons cette vue, la vue [erreurs(erreurs)].</p>
 <h2 id="56-tests-des-vues">5.6. Tests des vues</h2>
 <p>Il est possible de tester la validité des pages JSP sans avoir écrit le contrôleur. Pour cela deux conditions :</p>
 <ul>
-<li>il faut pouvoir les demander directement à l&#x27;application sans passer par le contrôleur</li>
-<li>il faut que la page JSP initialise elle-même le modèle qui normalement sera construit par le contrôleur</li>
+  <li>il faut pouvoir les demander directement à l&#x27;application sans passer par le contrôleur
+  </li>
+  <li>il faut que la page JSP initialise elle-même le modèle qui normalement sera construit par le contrôleur
+  </li>
 </ul>
+
 <p>Pour réaliser ces tests, nous dupliquons les pages JSP des vues dans le dossier [/WebContent/JSP] du projet Eclipse :</p>
 <p><img src="images/100000000000016B0000015376221697.png" style="width:4.8cm;height:4.491cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016B0000015376221697.png" /></p>
 <p>Puis dans le dossier JSP, les pages sont modifiées de la façon suivante :</p>
@@ -1626,12 +1674,16 @@
 <h2 id="57-le-controleur-servletpersonne">5.7. Le contrôleur [ServletPersonne]</h2>
 <p>Il reste à écrire le coeur de notre application web, le contrôleur. Son rôle consiste à :</p>
 <ul>
-<li>récupérer la requête du client,</li>
-<li>traiter l&#x27;action demandée par celui-ci,</li>
-<li>envoyer en réponse la vue appropriée.</li>
+  <li>récupérer la requête du client,
+  </li>
+  <li>traiter l&#x27;action demandée par celui-ci,
+  </li>
+  <li>envoyer en réponse la vue appropriée.
+  </li>
 </ul>
+
 <p>Le contrôleur [ServletPersonne] va traiter les actions suivantes :</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">n°</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">demande</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">origine</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">traitement</mark></b></p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">1</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[GET /personne1/main]</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">url tapée par l&#x27;utilisateur</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- envoyer la vue [formulaire] vide</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">2</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[POST /personne1/main]</p><p style="margin:0;">avec paramètres [txtNom,</p><p style="margin:0;">txtAge, action] postés</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">clic sur le bouton</p><p style="margin:0;">[Envoyer] de la vue</p><p style="margin:0;">[formulaire]</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- vérifier les valeurs des paramètres [txtNom, txtAge]</p><p style="margin:0;">- si elles sont incorrectes, envoyer la vue [erreurs(erreurs)]</p><p style="margin:0;">- si elles sont correctes, envoyer la vue [reponse(nom,age)]</p></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">n°</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">demande</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">origine</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">traitement</mark></b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[GET /personne1/main]</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">url tapée par l&#x27;utilisateur</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- envoyer la vue [formulaire] vide</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[POST /personne1/main]</div><div style="margin:0 0 0.5em 0">avec paramètres [txtNom,</div><div style="margin:0 0 0.5em 0">txtAge, action] postés</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">clic sur le bouton</div><div style="margin:0 0 0.5em 0">[Envoyer] de la vue</div><div style="margin:0 0 0.5em 0">[formulaire]</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- vérifier les valeurs des paramètres [txtNom, txtAge]</div><div style="margin:0 0 0.5em 0">- si elles sont incorrectes, envoyer la vue [erreurs(erreurs)]</div><div style="margin:0 0 0.5em 0">- si elles sont correctes, envoyer la vue [reponse(nom,age)]</div></td></tr></table>
 
 <p>L&#x27;application démarre lorsque l&#x27;utilisateur demande l&#x27;url [/personne1/main]. D&#x27;après le fichier [web.xml] de l&#x27;application (cf paragraphe <a href="#personne1-web-xml">5.4</a>), cette demande est traitée par une instance de type <strong>ServletPersonne</strong> que nous décrivons maintenant.</p>
 <h3 id="571-squelette-du-controleur">5.7.1. Squelette du contrôleur</h3>
@@ -1731,19 +1783,28 @@
 <a id="__codelineno-16-47" name="__codelineno-16-47"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 20-22 : la méthode [init] exécutée au chargement initial de la servlet</li>
-<li>lignes 25-28 : la méthode [doGet] appelée par le serveur web lorsqu&#x27;une requête de type GET a été faite à l&#x27;application</li>
-<li>lignes 42-46 : la méthode [doPost] appelée par le serveur web lorsqu&#x27;une requête de type POST a été faite à l&#x27;application. Comme il est montré, celle-ci sera traitée par la méthode [doGet] également (ligne 45).</li>
-<li>lignes 31-33 : la méthode [doInit] traite l&#x27;action n° 1 [GET /personne1/main]</li>
-<li>lignes 36-39 : la méthode [doValidationFormulaire] traite l&#x27;action n° 2 [POST /personne1/main] avec les paramètres postés [txtNom, txtAge, action].</li>
+  <li>lignes 20-22 : la méthode [init] exécutée au chargement initial de la servlet
+  </li>
+  <li>lignes 25-28 : la méthode [doGet] appelée par le serveur web lorsqu&#x27;une requête de type GET a été faite à l&#x27;application
+  </li>
+  <li>lignes 42-46 : la méthode [doPost] appelée par le serveur web lorsqu&#x27;une requête de type POST a été faite à l&#x27;application. Comme il est montré, celle-ci sera traitée par la méthode [doGet] également (ligne 45).
+  </li>
+  <li>lignes 31-33 : la méthode [doInit] traite l&#x27;action n° 1 [GET /personne1/main]
+  </li>
+  <li>lignes 36-39 : la méthode [doValidationFormulaire] traite l&#x27;action n° 2 [POST /personne1/main] avec les paramètres postés [txtNom, txtAge, action].
+  </li>
 </ul>
+
 <p>Nous décrivons maintenant les différentes méthodes du contrôleur</p>
 <h3 id="572-initialisation-du-controleur">5.7.2. Initialisation du contrôleur</h3>
 <p>Lorsque la classe du contrôleur est chargée par le conteneur de servlets, sa méthode [init] est exécutée. Ce sera la seule fois. Une fois chargée en mémoire, le contrôleur y restera et traitera les requêtes des différents clients. Chaque client fait l&#x27;objet d&#x27;un thread d&#x27;exécution et les méthodes du contrôleur sont ainsi exécutées simultanément par différents threads. On rappelle que, pour cette raison, le contrôleur ne doit pas avoir de champs que ses méthodes pourraient modifier. Ses champs doivent être en lecture seule. Ils sont initialisés par la méthode [init] dont c&#x27;est le rôle principal. Cette méthode a en effet la particularité d&#x27;être exécutée une unique fois par un seul thread. Il n&#x27;y a donc pas de problèmes d&#x27;accès concurrents aux champs du contrôleur dans cette méthode. La méthode [init] a pour but d&#x27;initialiser les objets nécessaires à l&#x27;application web et qui seront partagés en lecture seule par tous les threads clients. Ces objets partagés peuvent être placés en deux endroits :</p>
 <ul>
-<li>les champs privés du contrôleur</li>
-<li>le contexte d&#x27;exécution de l&#x27;application (ServletContext)</li>
+  <li>les champs privés du contrôleur
+  </li>
+  <li>le contexte d&#x27;exécution de l&#x27;application (ServletContext)
+  </li>
 </ul>
+
 <p>Le code de la méthode [init] du contrôleur [ServletPersonne] est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
@@ -1822,13 +1883,20 @@
 <a id="__codelineno-17-38" name="__codelineno-17-38"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 16 : on récupère la configuration de l&#x27;application web, c.a.d. le contenu du fichier [web.xml]</li>
-<li>lignes 19-29 on récupère les paramètres d&#x27;initialisation de la servlet dont les noms sont définis dans le tableau [paramètres] de la ligne 9</li>
-<li>ligne 21 : la valeur du paramètre est récupérée</li>
-<li>ligne 25 : si le paramètre est absent, l&#x27;erreur est ajoutée à la liste des erreurs [erreursInitialisation] initialement vide (ligne 8).</li>
-<li>ligne 28 : si le paramètre est présent, il est mémorisé avec sa valeur dans le dictionnaire [params] initialement vide (ligne 10).</li>
-<li>lignes 31-35 : le paramètre [urlErreurs] doit être obligatoirement présent car il désigne l&#x27;url de la vue [erreurs] capable d&#x27;afficher les éventuelles erreurs d&#x27;initialisation. S&#x27;il n&#x27;existe pas, on interrompt l&#x27;application en lançant une [ServletException] (ligne 33).</li>
+  <li>ligne 16 : on récupère la configuration de l&#x27;application web, c.a.d. le contenu du fichier [web.xml]
+  </li>
+  <li>lignes 19-29 on récupère les paramètres d&#x27;initialisation de la servlet dont les noms sont définis dans le tableau [paramètres] de la ligne 9
+  </li>
+  <li>ligne 21 : la valeur du paramètre est récupérée
+  </li>
+  <li>ligne 25 : si le paramètre est absent, l&#x27;erreur est ajoutée à la liste des erreurs [erreursInitialisation] initialement vide (ligne 8).
+  </li>
+  <li>ligne 28 : si le paramètre est présent, il est mémorisé avec sa valeur dans le dictionnaire [params] initialement vide (ligne 10).
+  </li>
+  <li>lignes 31-35 : le paramètre [urlErreurs] doit être obligatoirement présent car il désigne l&#x27;url de la vue [erreurs] capable d&#x27;afficher les éventuelles erreurs d&#x27;initialisation. S&#x27;il n&#x27;existe pas, on interrompt l&#x27;application en lançant une [ServletException] (ligne 33).
+  </li>
 </ul>
+
 <h3 id="573-la-methode-doget">5.7.3. La méthode [doGet]</h3>
 <p>La méthode [doGet] traite aussi bien les demandes GET que POST à la servlet, du fait que la méthode [doPost] renvoie sur la méthode [doGet]. Son code est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
@@ -1944,8 +2012,10 @@
 <a id="__codelineno-18-56" name="__codelineno-18-56"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 18-25 : on vérifie que la liste des erreurs d&#x27;initialisation est vide. Si ce n&#x27;est pas le cas, on fait afficher la vue [erreurs(erreursInitialisation)] qui va signaler la ou les erreurs.</li>
+  <li>lignes 18-25 : on vérifie que la liste des erreurs d&#x27;initialisation est vide. Si ce n&#x27;est pas le cas, on fait afficher la vue [erreurs(erreursInitialisation)] qui va signaler la ou les erreurs.
+  </li>
 </ul>
+
 <p>Pour comprendre ce code, il faut se rappeler le modèle de la vue [erreurs] :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>&lt;%
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>// on récupère les données du modèle
@@ -1954,13 +2024,20 @@
 </code></pre></div>
 <p>La vue [erreurs] attend un élément de clé &quot; erreurs &quot; dans la requête. Le contrôleur crée cet élément ligne 20.</p>
 <ul>
-<li>ligne 28 : on récupère la méthode [get] ou [post] que le client a utilisée pour faire sa requête</li>
-<li>ligne 30 : on récupère la valeur du paramètre [action] de la requête. Rappelons que dans notre application seule la requête n° 2 [POST /personne1/main] a le paramètre [action]. Dans cette requête, il a la valeur [validationFormulaire].</li>
-<li>lignes 31-34 : si le paramètre [action] n&#x27;est pas présent, on lui affecte la valeur &quot; init &quot;. Ce sera le cas lors de la requête initiale n° 1 [GET /personne1/main].</li>
-<li>lignes 36-40 : traitement de la requête n° 1 [GET /personne1/main].</li>
-<li>lignes 41-45 : traitement de la requête n° 2 [POST /personne1/main].</li>
-<li>ligne 47 : si on n&#x27;est pas dans l&#x27;un des deux cas précédents, on fait comme si on était dans le cas n° 1</li>
+  <li>ligne 28 : on récupère la méthode [get] ou [post] que le client a utilisée pour faire sa requête
+  </li>
+  <li>ligne 30 : on récupère la valeur du paramètre [action] de la requête. Rappelons que dans notre application seule la requête n° 2 [POST /personne1/main] a le paramètre [action]. Dans cette requête, il a la valeur [validationFormulaire].
+  </li>
+  <li>lignes 31-34 : si le paramètre [action] n&#x27;est pas présent, on lui affecte la valeur &quot; init &quot;. Ce sera le cas lors de la requête initiale n° 1 [GET /personne1/main].
+  </li>
+  <li>lignes 36-40 : traitement de la requête n° 1 [GET /personne1/main].
+  </li>
+  <li>lignes 41-45 : traitement de la requête n° 2 [POST /personne1/main].
+  </li>
+  <li>ligne 47 : si on n&#x27;est pas dans l&#x27;un des deux cas précédents, on fait comme si on était dans le cas n° 1
+  </li>
 </ul>
+
 <h3 id="574-la-methode-doinit">5.7.4. La méthode [doInit]</h3>
 <p>Cette méthode traite la requête n° 1 [GET /personne1/main]. Sur cette requête, elle doit envoyer la vue [formulaire(nom,age)] vide. Son code est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
@@ -2010,8 +2087,10 @@
 <a id="__codelineno-20-23" name="__codelineno-20-23"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 18-19 : la vue [formulaire] est affichée. Rappelons le modèle attendu par cette vue :</li>
+  <li>lignes 18-19 : la vue [formulaire] est affichée. Rappelons le modèle attendu par cette vue :
+  </li>
 </ul>
+
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line">&lt;%</span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#3f7f5f">// on récupère les données du modèle</span></span>
@@ -2021,8 +2100,10 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 16-17 : le modèle [nom,age] de la vue [formulaire] est initialisé avec des chaînes vides.</li>
+  <li>lignes 16-17 : le modèle [nom,age] de la vue [formulaire] est initialisé avec des chaînes vides.
+  </li>
 </ul>
+
 <h3 id="575-la-methode-dovalidationformulaire">5.7.5. La méthode [doValidationFormulaire]</h3>
 <p>Cette méthode traite la requête n° 2 [POST /personne1/main] dans laquelle les paramètres postés sont [action, txtNom, txtAge]. Son code est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
@@ -2110,10 +2191,14 @@
 <a id="__codelineno-21-42" name="__codelineno-21-42"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 16-17 : on récupère dans la requête du client les valeurs des paramètres &quot;txtNom&quot; et &quot;txtAge&quot;.</li>
-<li>lignes 19-26 : la validité de ces deux paramètres est vérifiée</li>
-<li>lignes 28-33 : si l&#x27;un des paramètres est erroné, on fait afficher la vue [erreurs(erreursAppel)]. Rappelons le modèle de cette vue :</li>
+  <li>lignes 16-17 : on récupère dans la requête du client les valeurs des paramètres &quot;txtNom&quot; et &quot;txtAge&quot;.
+  </li>
+  <li>lignes 19-26 : la validité de ces deux paramètres est vérifiée
+  </li>
+  <li>lignes 28-33 : si l&#x27;un des paramètres est erroné, on fait afficher la vue [erreurs(erreursAppel)]. Rappelons le modèle de cette vue :
+  </li>
 </ul>
+
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line">&lt;%</span>
 <span class="odt-code-line">// on récupère les données du modèle</span>
@@ -2122,8 +2207,10 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 35-38 : si les deux paramètres &quot; txtNom &quot; et &quot; txtAge &quot; récupérés ont des valeurs valides, on fait afficher la vue [reponse(nom,age)]. Il faut se rappeler le modèle de la vue [reponse] :</li>
+  <li>lignes 35-38 : si les deux paramètres &quot; txtNom &quot; et &quot; txtAge &quot; récupérés ont des valeurs valides, on fait afficher la vue [reponse(nom,age)]. Il faut se rappeler le modèle de la vue [reponse] :
+  </li>
 </ul>
+
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line">&lt;%</span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#3f7f5f">// on récupère les données du modèle</span></span>

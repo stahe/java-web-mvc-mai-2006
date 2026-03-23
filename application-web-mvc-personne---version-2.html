@@ -1150,9 +1150,12 @@
 <h2 id="61-introduction">6.1. Introduction</h2>
 <p>Nous nous proposons maintenant d&#x27;ajouter à notre application une gestion de session. Rappelons les points suivants :</p>
 <ul>
-<li>le dialogue HTTP client-serveur est une suite de séquences demande-réponse déconnectées entre elles</li>
-<li>la session sert de mémoire entre différentes séquences demande-réponse d&#x27;un même utilisateur. S&#x27;il y a N utilisateurs, il y a N sessions.</li>
+  <li>le dialogue HTTP client-serveur est une suite de séquences demande-réponse déconnectées entre elles
+  </li>
+  <li>la session sert de mémoire entre différentes séquences demande-réponse d&#x27;un même utilisateur. S&#x27;il y a N utilisateurs, il y a N sessions.
+  </li>
 </ul>
+
 <p>La séquence d&#x27;écran suivante montre ce qui est maintenant désiré dans le fonctionnement de l&#x27;application :</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p><strong>Echange n° 1</strong></p>
@@ -1209,7 +1212,7 @@
 <p>[clic droit sur projet mvc-personne-01 -&gt; Copy] :</p>
 <p><img src="images/10000000000000E9000000AE14A9F998.png" style="width:4.309cm;height:3.221cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E9000000AE14A9F998.png" /></p>
 <p>puis [clic droit dans Package Explorer -&gt; Paste] :</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000A0000000ADB25BBDB0.png" style="display:inline-block; margin:4px;width:2.96cm;height:3.2cm;" class="odt-zoomable" data-zoom-src="images/10000000000000A0000000ADB25BBDB0.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000002A50000010B64F80D02.png" style="display:inline-block; margin:4px;width:9.239cm;height:3.679cm;" class="odt-zoomable" data-zoom-src="images/10000000000002A50000010B64F80D02.png" /><p style="margin:0;">- indiquons en [1] le nom du nouveau projet et en [2] le nom d&#x27;un dossier existant mais vide</p></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000A0000000ADB25BBDB0.png" style="display:inline-block; margin:4px;width:2.96cm;height:3.2cm;" class="odt-zoomable" data-zoom-src="images/10000000000000A0000000ADB25BBDB0.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000002A50000010B64F80D02.png" style="display:inline-block; margin:4px;width:9.239cm;height:3.679cm;" class="odt-zoomable" data-zoom-src="images/10000000000002A50000010B64F80D02.png" /><div style="margin:0 0 0.5em 0">- indiquons en [1] le nom du nouveau projet et en [2] le nom d&#x27;un dossier existant mais vide</div></td></tr></table>
 
 <p>Le projet [mvc-personne-02] est alors créé :</p>
 <p><img src="images/10000000000000E70000018D86CE10C7.png" style="width:4.279cm;height:7.35cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E70000018D86CE10C7.png" /></p>
@@ -1308,10 +1311,14 @@
 
 <p>Ce fichier est identique à celui de la version précédente, si ce n&#x27;est qu&#x27;il déclare deux nouveaux paramètres d&#x27;initialisation :</p>
 <ul>
-<li>ligne 6 : le nom d&#x27;affichage de l&#x27;application web a changé en [mvc-personne-02]</li>
-<li>lignes 31-36 : définissent le paramètre de configuration nommé [urlControleur] qui est l&#x27;url [main] qui mène à la servlet [ServletPersonne]</li>
-<li>lignes 37-42 : définissent un paramètre de configuration nommé [lienRetourFormulaire] qui est le texte du lien de retour vers le formulaire, des pages JSP [erreurs.jsp] et [reponse.jsp].</li>
+  <li>ligne 6 : le nom d&#x27;affichage de l&#x27;application web a changé en [mvc-personne-02]
+  </li>
+  <li>lignes 31-36 : définissent le paramètre de configuration nommé [urlControleur] qui est l&#x27;url [main] qui mène à la servlet [ServletPersonne]
+  </li>
+  <li>lignes 37-42 : définissent un paramètre de configuration nommé [lienRetourFormulaire] qui est le texte du lien de retour vers le formulaire, des pages JSP [erreurs.jsp] et [reponse.jsp].
+  </li>
 </ul>
+
 <p>La page d&#x27;accueil [index.jsp] change :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">page </span><span style="color:#7f007f">language</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;java&quot; </span><span style="color:#7f007f">contentType</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;text/html; charset=ISO-8859-1&quot;</span></span>
@@ -1323,8 +1330,10 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 5 : la page [index.jsp] redirige le client vers l&#x27;url du contrôleur [ServletPersonne] de l&#x27;application [/personne2].</li>
+  <li>ligne 5 : la page [index.jsp] redirige le client vers l&#x27;url du contrôleur [ServletPersonne] de l&#x27;application [/personne2].
+  </li>
 </ul>
+
 <h2 id="64-le-code-des-vues">6.4. Le code des vues</h2>
 <h3 id="641-la-vue-formulaire">6.4.1. La vue [formulaire]</h3>
 <p>Cette vue est identique à celle de la version précédente :</p>
@@ -1377,15 +1386,22 @@
 
 <p>Les nouveautés :</p>
 <ul>
-<li>ligne 19, le formulaire a désormais un attribut [action] dont la valeur est l&#x27;Url à laquelle le navigateur devra poster les valeurs du formulaire lorsque l&#x27;utilisateur va cliquer sur le bouton [Envoyer] de type <em>submit</em>. La variable [urlAction] aura la valeur <em>action=&quot;main&quot;</em>. La vue [formulaire] est affichée après les actions suivantes de l&#x27;utilisateur :</li>
-<li>demande initiale : GET /personne2/main</li>
-<li>clic sur le lien [Retour au formulaire] : GET /personne2/main?action=retourFormulaire</li>
+  <li>ligne 19, le formulaire a désormais un attribut [action] dont la valeur est l&#x27;Url à laquelle le navigateur devra poster les valeurs du formulaire lorsque l&#x27;utilisateur va cliquer sur le bouton [Envoyer] de type <i>submit</i>. La variable [urlAction] aura la valeur <i>action=&quot;main&quot;</i>. La vue [formulaire] est affichée après les actions suivantes de l&#x27;utilisateur :
+  </li>
+  <li>demande initiale : GET /personne2/main
+  </li>
+  <li>clic sur le lien [Retour au formulaire] : GET /personne2/main?action=retourFormulaire
+  </li>
 </ul>
+
 <p>Comme l&#x27;attribut [action] ne précise pas d&#x27;Url absolue (commençant par /) mais une Url relative (ne commençant pas par /), la navigateur va utiliser la première partie de l&#x27;Url de la page actuellement affichée [/personne2] et y ajouter l&#x27;Url relative. L&#x27;Url du POST sera donc [/personne2/main], celle du contrôleur. Cette requête POST sera accompagnée des paramètres [txtNom, txtAge, action] des lignes 23, 27 et 38.</p>
 <ul>
-<li>ligne 8 : on récupère la valeur de l&#x27;élément [urlAction] du modèle. Elle est cherchée dans les attributs de la requête courante. Elle sera utilisée ligne 19.</li>
-<li>lignes 6-7 : on récupère les valeurs des éléments [nom, age] du modèle. Ils sont cherchés dans les attributs de la session et non plus dans ceux de la requête comme dans la version précédente. Cela pour répondre aux besoins de la requête [GET /personne2/main?action=retourFormulaire] du lien des vues [réponse] et [erreurs]. Avant d&#x27;afficher ces deux vues, le contrôleur place dans la session les données saisies dans le formulaire, ce qui lui permet de les retrouver lorsque l&#x27;utilisateur utilise le lien [Retour au formulaire] des vues [réponse] et [erreurs].</li>
+  <li>ligne 8 : on récupère la valeur de l&#x27;élément [urlAction] du modèle. Elle est cherchée dans les attributs de la requête courante. Elle sera utilisée ligne 19.
+  </li>
+  <li>lignes 6-7 : on récupère les valeurs des éléments [nom, age] du modèle. Ils sont cherchés dans les attributs de la session et non plus dans ceux de la requête comme dans la version précédente. Cela pour répondre aux besoins de la requête [GET /personne2/main?action=retourFormulaire] du lien des vues [réponse] et [erreurs]. Avant d&#x27;afficher ces deux vues, le contrôleur place dans la session les données saisies dans le formulaire, ce qui lui permet de les retrouver lorsque l&#x27;utilisateur utilise le lien [Retour au formulaire] des vues [réponse] et [erreurs].
+  </li>
 </ul>
+
 <h3 id="642-la-vue-reponse">6.4.2. La vue [reponse]</h3>
 <p>Cette vue affiche les valeurs saisies dans le formulaire lorsque celles-ci sont valides :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000002050000010AF83053A8.png" style="display:inline-block; margin:4px;width:9.571cm;height:4.93cm;" class="odt-zoomable" data-zoom-src="images/10000000000002050000010AF83053A8.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000123000000EA529C15AC.png" style="display:inline-block; margin:4px;width:5.39cm;height:4.33cm;" class="odt-zoomable" data-zoom-src="images/1000000000000123000000EA529C15AC.png" /></td></tr></table>
@@ -1428,14 +1444,19 @@
 </code></pre></div>
 
 <ul>
-<li>
-<p>ligne 31 : le lien de retour au formulaire. Ce lien a deux composantes :</p>
-<ul>
-<li>la cible [href=&quot;?action=retourFormulaire&quot;]. La vue [réponse] est affichée après le POST du formulaire [formulaire.jsp] à l&#x27;url [/personne2/main]. C&#x27;est donc cette dernière Url qui est affichée dans le navigateur lorsque la vue [réponse] est affichée. Un clic sur le lien [Retour au formulaire] va alors provoquer un Get du navigateur vers l&#x27;Url précisée par l&#x27;attribut [href] du lien, ici &quot;?action=retourFormulaire&quot;. En l&#x27;absence d&#x27;Url dans [href], le navigateur va utiliser celle de la vue actuellement affichée, c.a.d. [/personne2/main]. Au final, le clic sur le lien [Retour au formulaire] va provoquer un Get du navigateur vers l&#x27;url [/personne2/main?action=retourFormulaire], c.a.d l&#x27;url du contrôleur de l&#x27;application accompagnée du paramètre [action] pour lui indiquer ce qu&#x27;il doit faire.</li>
-<li>le texte du lien. Celui-ci fera partie du modèle transmis à la page par le contrôleur et récupéré ligne 10.</li>
+  <li>ligne 31 : le lien de retour au formulaire. Ce lien a deux composantes :
+  </li>
 </ul>
-</li>
-</ul>
+
+<ol>
+    <ul>
+      <li>la cible [href=&quot;?action=retourFormulaire&quot;]. La vue [réponse] est affichée après le POST du formulaire [formulaire.jsp] à l&#x27;url [/personne2/main]. C&#x27;est donc cette dernière Url qui est affichée dans le navigateur lorsque la vue [réponse] est affichée. Un clic sur le lien [Retour au formulaire] va alors provoquer un Get du navigateur vers l&#x27;Url précisée par l&#x27;attribut [href] du lien, ici &quot;?action=retourFormulaire&quot;. En l&#x27;absence d&#x27;Url dans [href], le navigateur va utiliser celle de la vue actuellement affichée, c.a.d. [/personne2/main]. Au final, le clic sur le lien [Retour au formulaire] va provoquer un Get du navigateur vers l&#x27;url [/personne2/main?action=retourFormulaire], c.a.d l&#x27;url du contrôleur de l&#x27;application accompagnée du paramètre [action] pour lui indiquer ce qu&#x27;il doit faire.
+      </li>
+      <li>le texte du lien. Celui-ci fera partie du modèle transmis à la page par le contrôleur et récupéré ligne 10.
+      </li>
+    </ul>
+</ol>
+
 <h3 id="643-la-vue-erreurs">6.4.3. La vue [erreurs]</h3>
 <p>Cette vue signale les erreurs de saisie dans le formulaire :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001E900000104C748B2A1.png" style="display:inline-block; margin:4px;width:9.059cm;height:4.821cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E900000104C748B2A1.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000019C000000D1B2564C9D.png" style="display:inline-block; margin:4px;width:7.59cm;height:3.87cm;" class="odt-zoomable" data-zoom-src="images/100000000000019C000000D1B2564C9D.png" /></td></tr></table>
@@ -1474,8 +1495,10 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 26 : le lien de retour au formulaire. Ce lien est identique à celui de la vue [réponse]. Le lecteur est invité à relire éventuellement les explications données pour cette vue.</li>
+  <li>ligne 26 : le lien de retour au formulaire. Ce lien est identique à celui de la vue [réponse]. Le lecteur est invité à relire éventuellement les explications données pour cette vue.
+  </li>
 </ul>
+
 <h2 id="65-tests-des-vues">6.5. Tests des vues</h2>
 <p>Pour réaliser les tests des vues précédentes, nous dupliquons leurs pages JSP dans le dossier /WebContent/JSP du projet Eclipse :</p>
 <p><img src="images/100000000000013C0000014DC04D571A.png" style="width:4.18cm;height:4.41cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013C0000014DC04D571A.png" /></p>
@@ -1551,7 +1574,7 @@
 <p>Nous obtenons bien les vues attendues. </p>
 <h2 id="66-le-controleur-servletpersonne">6.6. Le contrôleur [ServletPersonne]</h2>
 <p>Le contrôleur [ServletPersonne] de l&#x27;application web [/personne2] va traiter les actions suivantes :</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">n°</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">demande</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">origine</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">traitement</mark></b></p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">1</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[GET /personne2/main]</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">url tapée par l&#x27;utilisateur</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- envoyer la vue [formulaire] vide</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">2</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[POST /personne2/main]</p><p style="margin:0;">avec paramètres [txtNom,</p><p style="margin:0;">txtAge, action] postés</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">clic sur le bouton</p><p style="margin:0;">[Envoyer] de la vue</p><p style="margin:0;">[formulaire]</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- vérifier les valeurs des paramètres [txtNom, txtAge]</p><p style="margin:0;">- si elles sont incorrectes, envoyer la vue [erreurs(erreurs)]</p><p style="margin:0;">- si elles sont correctes, envoyer la vue [reponse(nom,age)]</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">3</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[GET /personne2/main?</p><p style="margin:0;">action=retourFormulaire]</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">clic sur le lien [Retour au</p><p style="margin:0;">formulaire] des vues</p><p style="margin:0;">réponse] et [erreurs].</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- envoyer la vue [formulaire] pré-remplie avec les dernières valeurs saisies</p></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">n°</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">demande</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">origine</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">traitement</mark></b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[GET /personne2/main]</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">url tapée par l&#x27;utilisateur</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- envoyer la vue [formulaire] vide</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[POST /personne2/main]</div><div style="margin:0 0 0.5em 0">avec paramètres [txtNom,</div><div style="margin:0 0 0.5em 0">txtAge, action] postés</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">clic sur le bouton</div><div style="margin:0 0 0.5em 0">[Envoyer] de la vue</div><div style="margin:0 0 0.5em 0">[formulaire]</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- vérifier les valeurs des paramètres [txtNom, txtAge]</div><div style="margin:0 0 0.5em 0">- si elles sont incorrectes, envoyer la vue [erreurs(erreurs)]</div><div style="margin:0 0 0.5em 0">- si elles sont correctes, envoyer la vue [reponse(nom,age)]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">3</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[GET /personne2/main?</div><div style="margin:0 0 0.5em 0">action=retourFormulaire]</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">clic sur le lien [Retour au</div><div style="margin:0 0 0.5em 0">formulaire] des vues</div><div style="margin:0 0 0.5em 0">réponse] et [erreurs].</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- envoyer la vue [formulaire] pré-remplie avec les dernières valeurs saisies</div></td></tr></table>
 
 <p>Nous avons donc une nouvelle action à traiter : [GET /personne2/main?action=retourFormulaire].</p>
 <h3 id="661-squelette-du-controleur">6.6.1. Squelette du contrôleur</h3>
@@ -1640,9 +1663,12 @@
 </code></pre></div></td></tr></table></div>
 <p>Les nouveautés :</p>
 <ul>
-<li>ligne 4 : l&#x27;usage d&#x27;une session impose d&#x27;importer le paquetage [HttpSession]</li>
-<li>lignes 28-30 : la nouvelle méthode [doRetourFormulaire] traite la nouvelle action  : [GET /personne2/main?action=retourFormulaire].</li>
+  <li>ligne 4 : l&#x27;usage d&#x27;une session impose d&#x27;importer le paquetage [HttpSession]
+  </li>
+  <li>lignes 28-30 : la nouvelle méthode [doRetourFormulaire] traite la nouvelle action  : [GET /personne2/main?action=retourFormulaire].
+  </li>
 </ul>
+
 <h3 id="662-initialisation-du-controleur-init">6.6.2. Initialisation du contrôleur [init]</h3>
 <p>La méthode [init] est identique à celle de la version précédente. Elle vérifie la présence dans le fichier [web.xml] des éléments déclarés dans le tableau [paramètres] :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
@@ -1658,8 +1684,10 @@
 <a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Map</span><span class="w"> </span><span class="n">params</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 5 : les paramètres [urlControleur] (Url du contrôleur) et [lienRetourFormulaire] (Texte du lien des vues [réponse] et [erreurs] ont été rajoutés.</li>
+  <li>ligne 5 : les paramètres [urlControleur] (Url du contrôleur) et [lienRetourFormulaire] (Texte du lien des vues [réponse] et [erreurs] ont été rajoutés.
+  </li>
 </ul>
+
 <h3 id="663-la-methode-doget">6.6.3. La méthode [doGet]</h3>
 <p>La méthode [doGet] doit traiter l&#x27;action [GET /personne2/main?action=retourFormulaire] qui n&#x27;existait pas auparavant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
@@ -1745,8 +1773,10 @@
 <a id="__codelineno-10-41" name="__codelineno-10-41"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 6-14 : on vérifie que la liste des erreurs d&#x27;initialisation est vide. Si ce n&#x27;est pas le cas, on fait afficher la vue [erreurs(erreursInitialisation)] qui va signaler la ou les erreurs.</li>
+  <li>lignes 6-14 : on vérifie que la liste des erreurs d&#x27;initialisation est vide. Si ce n&#x27;est pas le cas, on fait afficher la vue [erreurs(erreursInitialisation)] qui va signaler la ou les erreurs.
+  </li>
 </ul>
+
 <p>Pour comprendre ce code, il faut se rappeler le modèle de la vue [erreurs] :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line">&lt;%</span>
@@ -1758,8 +1788,10 @@
 
 <p>La vue [erreurs] attend un élément de clé &quot; erreurs &quot; dans la requête. Le contrôleur crée cet élément ligne 8. Elle attend également un élément de clé &quot;lienRetourFormulaire&quot;. Le  contrôleur crée cet élément ligne 9. Ici le texte du lien sera vide. Il n&#x27;y aura donc pas de lien dans la vue [erreurs] envoyée. En effet, s&#x27;il y a eu erreurs d&#x27;initialisation de l&#x27;application, elle doit être reconfigurée. Il n&#x27;y a pas lieu de proposer à l&#x27;utilisateur de continuer l&#x27;application via un lien.</p>
 <ul>
-<li>lignes 34-37 : traitement de la nouvelle action [GET /personne2/main?action=retourFormulaire] </li>
+  <li>lignes 34-37 : traitement de la nouvelle action [GET /personne2/main?action=retourFormulaire] 
+  </li>
 </ul>
+
 <h3 id="664-la-methode-doinit">6.6.4. La méthode [doInit]</h3>
 <p>Cette méthode traite la requête n° 1 [GET /personne2/main]. Sur cette requête, elle doit envoyer la vue [formulaire(nom,age)] vide. Son code est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
@@ -1787,9 +1819,12 @@
 <a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 4 : la session courante est récupérée si elle existe, créée sinon (paramètre <em>true</em> de <em>getSession</em>).</li>
-<li>lignes 9-10 : la vue [formulaire] est affichée. Rappelons le modèle attendu par cette vue :</li>
+  <li>ligne 4 : la session courante est récupérée si elle existe, créée sinon (paramètre <i>true</i> de <i>getSession</i>).
+  </li>
+  <li>lignes 9-10 : la vue [formulaire] est affichée. Rappelons le modèle attendu par cette vue :
+  </li>
 </ul>
+
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line">&lt;%</span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#3f7f5f">// on récupère les données du modèle</span></span>
@@ -1800,9 +1835,12 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 6-7 : les éléments [nom,age] du modèle de la vue [formulaire] sont initialisés avec des chaînes vides et placés dans la session car c&#x27;est là que les attend la vue.</li>
-<li>ligne 8 : l&#x27;élément [urlAction] du modèle est initialisé avec la valeur du paramètre [urlControleur] du fichier [web.xml] et placé dans la requête.</li>
+  <li>lignes 6-7 : les éléments [nom,age] du modèle de la vue [formulaire] sont initialisés avec des chaînes vides et placés dans la session car c&#x27;est là que les attend la vue.
+  </li>
+  <li>ligne 8 : l&#x27;élément [urlAction] du modèle est initialisé avec la valeur du paramètre [urlControleur] du fichier [web.xml] et placé dans la requête.
+  </li>
 </ul>
+
 <h3 id="665-la-methode-dovalidationformulaire">6.6.5. La méthode [doValidationFormulaire]</h3>
 <p>Cette méthode traite la requête n° 2 [POST /personne2/main] dans laquelle les paramètres postés sont [action, txtNom, txtAge]. Son code est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
@@ -1878,11 +1916,16 @@
 <a id="__codelineno-12-36" name="__codelineno-12-36"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 5-6 : on récupère dans la requête du client les valeurs des paramètres &quot;txtNom&quot; et &quot;txtAge&quot;.</li>
-<li>lignes 8-10 : on mémorise ces valeurs dans la session pour pouvoir les retrouver lorsque l&#x27;utilisateur va cliquer sur le lien [Retour au formulaire] des vues [réponse] et [erreurs].</li>
-<li>lignes 12-19 : la validité des valeurs des deux paramètres est vérifiée</li>
-<li>lignes 21-28 : si l&#x27;un des paramètres est erroné, on fait afficher la vue [erreurs(erreurs,lienRetourFormulaire)]. Rappelons le modèle de cette vue :</li>
+  <li>lignes 5-6 : on récupère dans la requête du client les valeurs des paramètres &quot;txtNom&quot; et &quot;txtAge&quot;.
+  </li>
+  <li>lignes 8-10 : on mémorise ces valeurs dans la session pour pouvoir les retrouver lorsque l&#x27;utilisateur va cliquer sur le lien [Retour au formulaire] des vues [réponse] et [erreurs].
+  </li>
+  <li>lignes 12-19 : la validité des valeurs des deux paramètres est vérifiée
+  </li>
+  <li>lignes 21-28 : si l&#x27;un des paramètres est erroné, on fait afficher la vue [erreurs(erreurs,lienRetourFormulaire)]. Rappelons le modèle de cette vue :
+  </li>
 </ul>
+
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line">&lt;%</span>
 <span class="odt-code-line">// on récupère les données du modèle</span>
@@ -1892,8 +1935,10 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 30-34 : si les deux paramètres &quot; txtNom &quot; et &quot; txtAge &quot; récupérés ont des valeurs valides, on fait afficher la vue [reponse(nom,age,lienRetourFormulaire)]. Il faut se rappeler le modèle de la vue [reponse] :</li>
+  <li>lignes 30-34 : si les deux paramètres &quot; txtNom &quot; et &quot; txtAge &quot; récupérés ont des valeurs valides, on fait afficher la vue [reponse(nom,age,lienRetourFormulaire)]. Il faut se rappeler le modèle de la vue [reponse] :
+  </li>
 </ul>
+
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line">&lt;%</span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#3f7f5f">// on récupère les données du modèle</span></span>
@@ -1957,13 +2002,20 @@
 
 <p>La méthode [doRetourFormulaire] doit donc construire le modèle précédent.</p>
 <ul>
-<li>ligne 4 : on récupère la session dans laquelle le contrôleur a mémorisé les valeurs (nom, age) saisies.</li>
-<li>ligne 7 : on récupère le nom dans la session</li>
-<li>lignes 8-9: s&#x27;il n&#x27;y est pas, on l&#x27;y met avec une valeur vide. Ce cas ne devrait pas se produire dans le fonctionnement normal de l&#x27;application, l&#x27;action [retourFormulaire] ayant toujours lieu après l&#x27;action [validationFormulaire] dont après la mise en session des données saisies. Mais une session peut expirer car elle a une durée de vie limitée, souvent quelques dizaines de minutes. Dans ce cas, la ligne 4 a recréé une nouvelle session dans laquelle on ne trouvera pas le nom. On met alors un nom vide dans la nouvelle session.</li>
-<li>lignes 11-13 : on fait de même pour l&#x27;âge</li>
-<li>si on ignore le problème de la session expirée, alors les lignes 3-13 sont inutiles. Les éléments [nom,age] du modèle sont déjà dans la session. Il n&#x27;y a donc pas à les y remettre.</li>
-<li>ligne 15 : on fixe la valeur de l&#x27;élément [urlAction] du modèle</li>
+  <li>ligne 4 : on récupère la session dans laquelle le contrôleur a mémorisé les valeurs (nom, age) saisies.
+  </li>
+  <li>ligne 7 : on récupère le nom dans la session
+  </li>
+  <li>lignes 8-9: s&#x27;il n&#x27;y est pas, on l&#x27;y met avec une valeur vide. Ce cas ne devrait pas se produire dans le fonctionnement normal de l&#x27;application, l&#x27;action [retourFormulaire] ayant toujours lieu après l&#x27;action [validationFormulaire] dont après la mise en session des données saisies. Mais une session peut expirer car elle a une durée de vie limitée, souvent quelques dizaines de minutes. Dans ce cas, la ligne 4 a recréé une nouvelle session dans laquelle on ne trouvera pas le nom. On met alors un nom vide dans la nouvelle session.
+  </li>
+  <li>lignes 11-13 : on fait de même pour l&#x27;âge
+  </li>
+  <li>si on ignore le problème de la session expirée, alors les lignes 3-13 sont inutiles. Les éléments [nom,age] du modèle sont déjà dans la session. Il n&#x27;y a donc pas à les y remettre.
+  </li>
+  <li>ligne 15 : on fixe la valeur de l&#x27;élément [urlAction] du modèle
+  </li>
 </ul>
+
 <h2 id="67-tests">6.7. Tests</h2>
 <p>Lancer ou relancer Tomcat. Demander l&#x27;url [http://localhost:8080/personne2] puis reprendre les tests montrés en exemple au paragraphe <a href="#personne2-introduction">6.1</a>.</p>
 

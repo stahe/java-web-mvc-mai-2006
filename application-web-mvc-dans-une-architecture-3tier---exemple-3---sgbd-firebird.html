@@ -1191,10 +1191,14 @@
 <a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">PERSONNES</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">PK_PERSONNES</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 2-10 : la structure de la table [PERSONNES], destinée à sauvegarder des objets de type [Personne], reflète la structure de cet objet. Le type booléen n’existant pas dans Firebird, le champ [MARIE] (ligne 8) a été déclaré de type [SMALLINT], un entier. Sa valeur sera 0 (pas marié) ou 1 (marié).</li>
-<li>lignes 13-16 : des contraintes d’intégrité qui reflètent celles du validateur de données [ValidatePersonne].</li>
-<li>ligne 19 : le champ ID est clé primaire de la table [PERSONNES]</li>
+  <li>lignes 2-10 : la structure de la table [PERSONNES], destinée à sauvegarder des objets de type [Personne], reflète la structure de cet objet. Le type booléen n’existant pas dans Firebird, le champ [MARIE] (ligne 8) a été déclaré de type [SMALLINT], un entier. Sa valeur sera 0 (pas marié) ou 1 (marié).
+  </li>
+  <li>lignes 13-16 : des contraintes d’intégrité qui reflètent celles du validateur de données [ValidatePersonne].
+  </li>
+  <li>ligne 19 : le champ ID est clé primaire de la table [PERSONNES]
+  </li>
 </ul>
+
 <p>La table [PERSONNES] pourrait avoir le contenu suivant :</p>
 <p><img src="images/10000000000001FE0000009D89680F34.png" style="width:9.449cm;height:2.91cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001FE0000009D89680F34.png" /></p>
 <p>La base [dbpersonnes.gdb] a, outre la table [PERSONNES], un objet appelé générateur et nommé [GEN_PERSONNES_ID]. Ce générateur délivre des nombres entiers successifs que nous utiliserons pour donner sa valeur, à la clé primaire [ID] de la classe [PERSONNES]. Prenons un exemple pour illustrer son fonctionnement :</p>
@@ -1220,11 +1224,16 @@
 <p><img src="images/100000000000010C00000178BCAA9E6B.png" style="width:4.96cm;height:6.96cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010C00000178BCAA9E6B.png" /></p>
 <p>On y trouve différents paquetages :</p>
 <ul>
-<li>[istia.st.mvc.personnes.dao] : contient la couche [dao]</li>
-<li>[istia.st.mvc.personnes.entites] : contient la classe [Personne]</li>
-<li>[istia.st.mvc.personnes.service] : contient la classe [service]</li>
-<li>[istia.st.mvc.personnes.tests] : contient les tests JUnit des couches [dao] et [service]</li>
+  <li>[istia.st.mvc.personnes.dao] : contient la couche [dao]
+  </li>
+  <li>[istia.st.mvc.personnes.entites] : contient la classe [Personne]
+  </li>
+  <li>[istia.st.mvc.personnes.service] : contient la classe [service]
+  </li>
+  <li>[istia.st.mvc.personnes.tests] : contient les tests JUnit des couches [dao] et [service]
+  </li>
 </ul>
+
 <p>ainsi que des fichiers de configuration qui doivent être dans le <em>ClassPath</em> de l’application.</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>Dossier [database]</p>
@@ -1232,9 +1241,12 @@
 <p>Ce dossier contient la base de données Firebird des personnes :</p>
 <p><img src="images/10000000000000AE000000339715B0E6.png" style="width:3.221cm;height:0.94cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000AE000000339715B0E6.png" /></p>
 <ul>
-<li>[dbpersonnes.gdb] est la base de données.</li>
-<li>[dbpersonnes.sql] est le script SQL de génération de la base :</li>
+  <li>[dbpersonnes.gdb] est la base de données.
+  </li>
+  <li>[dbpersonnes.sql] est le script SQL de génération de la base :
+  </li>
 </ul>
+
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
@@ -1370,19 +1382,27 @@
 <p>Ce dossier contiendra les archives issues de la compilation des classes de l’application :</p>
 <p><img src="images/10000000000000AC00000031B670528E.png" style="width:3.191cm;height:0.91cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000AC00000031B670528E.png" /></p>
 <ul>
-<li>[personnes-dao.jar] : archive de la couche [dao]</li>
-<li>[personnes-service.jar] : archive de la couche [service]</li>
+  <li>[personnes-dao.jar] : archive de la couche [dao]
+  </li>
+  <li>[personnes-service.jar] : archive de la couche [service]
+  </li>
 </ul>
+
 <h2 id="173-la-couche-dao">17.3. La couche [dao]</h2>
 <h3 id="1731-les-composantes-de-la-couche-dao">17.3.1. Les composantes de la couche [dao]</h3>
 <p>La couche [dao] est constituée des classes et interfaces suivantes :</p>
 <p><img src="images/10000000000000CA00000061B4166F40.png" style="width:3.739cm;height:1.799cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000CA00000061B4166F40.png" /></p>
 <ul>
-<li>[IDao] est l’interface présentée par la couche [dao]</li>
-<li>[DaoImplCommon] est une implémentation de celle-ci où le groupe de personnes se trouve dans une table de base de données. [DaoImplCommon] regroupe des fonctionnalités indépendantes du SGBD.</li>
-<li>[DaoImplFirebird] est une classe dérivée de [DaoImplCommon] pour gérer spécifiquement une base Firebird.</li>
-<li>[DaoException] est le type des exceptions non contrôlées, lancées par la couche [dao]. Cette classe est celle de la version 1.</li>
+  <li>[IDao] est l’interface présentée par la couche [dao]
+  </li>
+  <li>[DaoImplCommon] est une implémentation de celle-ci où le groupe de personnes se trouve dans une table de base de données. [DaoImplCommon] regroupe des fonctionnalités indépendantes du SGBD.
+  </li>
+  <li>[DaoImplFirebird] est une classe dérivée de [DaoImplCommon] pour gérer spécifiquement une base Firebird.
+  </li>
+  <li>[DaoException] est le type des exceptions non contrôlées, lancées par la couche [dao]. Cette classe est celle de la version 1.
+  </li>
 </ul>
+
 <p>L’interface [IDao] est la suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
@@ -1417,8 +1437,10 @@
 <a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>l’interface a les mêmes quatre méthodes que dans la version précédente.</li>
+  <li>l’interface a les mêmes quatre méthodes que dans la version précédente.
+  </li>
 </ul>
+
 <p>La classe [DaoImplCommon] implémentant cette interface sera la suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
@@ -1531,11 +1553,16 @@
 <a id="__codelineno-4-55" name="__codelineno-4-55"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 8-9 : la classe [DaoImpl] implémente l’interface [IDao] et donc les quatre méthodes [getAll, getOne, saveOne, deleteOne].</li>
-<li>lignes 27-37 : la méthode [saveOne] utilise deux méthodes internes [insertPersonne] et [updatePersonne] selon qu&#x27;on doit faire un ajout ou une modification de personne.</li>
-<li>ligne 50 : la méthode privée [check] est celle de la version précédente. Nous ne reviendrons pas dessus.</li>
-<li>ligne 8 : pour implémenter l’interface [IDao], la classe [DaoImpl] dérive de la classe Spring [<strong>SqlMapClientDaoSupport</strong>].</li>
+  <li>lignes 8-9 : la classe [DaoImpl] implémente l’interface [IDao] et donc les quatre méthodes [getAll, getOne, saveOne, deleteOne].
+  </li>
+  <li>lignes 27-37 : la méthode [saveOne] utilise deux méthodes internes [insertPersonne] et [updatePersonne] selon qu&#x27;on doit faire un ajout ou une modification de personne.
+  </li>
+  <li>ligne 50 : la méthode privée [check] est celle de la version précédente. Nous ne reviendrons pas dessus.
+  </li>
+  <li>ligne 8 : pour implémenter l’interface [IDao], la classe [DaoImpl] dérive de la classe Spring [<b>SqlMapClientDaoSupport</b>].
+  </li>
 </ul>
+
 <h3 id="1732-la-couche-dacces-aux-donnees-ibatis">17.3.2. La couche d’accès aux données [iBATIS]</h3>
 <p>La classe Spring [SqlMapClientDaoSupport] utilise un framework tierce [Ibatis SqlMap] disponible à l’url [http://ibatis.apache.org/] :</p>
 <p><img src="images/100000000000025F000001B0FE9E0255.png" style="width:11.24cm;height:7.999cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000025F000001B0FE9E0255.png" /></p>
@@ -1559,18 +1586,27 @@
 
 <p>Une séquence typique d’actions avec cet objet est la suivante :</p>
 <ol>
-<li>demander une connexion à un pool de connexions</li>
-<li>ouvrir une transaction</li>
-<li>exécuter une série d’ordres SQL mémorisée dans un fichier de configuration</li>
-<li>fermer la transaction</li>
-<li>rendre la connexion au pool</li>
+  <li>demander une connexion à un pool de connexions
+  </li>
+  <li>ouvrir une transaction
+  </li>
+  <li>exécuter une série d’ordres SQL mémorisée dans un fichier de configuration
+  </li>
+  <li>fermer la transaction
+  </li>
+  <li>rendre la connexion au pool
+  </li>
 </ol>
+
 <p>Si notre implémentation [DaoImplCommon] travaillait directement avec [iBATIS], elle devrait faire cette séquence de façon répétée. Seule l’opération 3 est spécifique à une couche [dao], les autres opérations étant génériques. La classe Spring [SqlMapClientDaoSupport] assurera elle-même les opérations 1, 2, 4 et 5, déléguant l’opération 3 à sa classe dérivée, ici la classe [DaoImplCommon].</p>
 <p>Pour pouvoir fonctionner, la classe [SqlMapClientDaoSupport] a besoin d’une référence sur l’objet iBATIS [SqlMapClient sqlMapClient] qui va assurer le dialogue avec la base de données. Cet objet a besoin de deux choses pour fonctionner :</p>
 <ul>
-<li>un objet [DataSource] connecté à la base de données auprès duquel il va demander des connexions</li>
-<li>un (ou des) fichier de configuration où sont externalisés les ordres SQL à exécuter. En effet, ceux-ci ne sont pas dans le code Java. Ils sont identifiés par un code dans un fichier de configuration et l’objet [SqlMapClient sqlMapClient] utilise ce code pour faire exécuter un ordre SQL particulier.</li>
+  <li>un objet [DataSource] connecté à la base de données auprès duquel il va demander des connexions
+  </li>
+  <li>un (ou des) fichier de configuration où sont externalisés les ordres SQL à exécuter. En effet, ceux-ci ne sont pas dans le code Java. Ils sont identifiés par un code dans un fichier de configuration et l’objet [SqlMapClient sqlMapClient] utilise ce code pour faire exécuter un ordre SQL particulier.
+  </li>
 </ul>
+
 <p>Un embryon de configuration de notre couche [dao] qui refléterait l&#x27;architecture ci-dessus serait le suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#228820">&lt;!--</span><span style="color:#000000"> </span><span style="color:#228820">la</span><span style="color:#000000"> </span><span style="color:#228820">classes</span><span style="color:#000000"> </span><span style="color:#228820">d&#x27;accè</span><span style="color:#000000"> </span><span style="color:#228820">à</span><span style="color:#000000"> </span><span style="color:#228820">la</span><span style="color:#000000"> </span><span style="color:#228820">couche</span><span style="color:#000000"> </span><span style="color:#228820">[dao]</span><span style="color:#000000"> </span><span style="color:#228820">--&gt;</span></span>
@@ -1590,14 +1626,20 @@
 <p><img src="images/100000000000028900000030655FBB67.png" style="width:12.019cm;height:0.891cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000028900000030655FBB67.png" /></p>
 <p>Lorsqu’on demande à Spring une instance d’un objet implémentant l’interface [FactoryBean], il :</p>
 <ul>
-<li>crée une instance [I] de la classe - ici il crée une instance de type [SqlMapClientFactoryBean].</li>
-<li>rend à la méthode appelante, le résultat de la méthode [I].getObject() - la méthode [SqlMapClientFactoryBean].getObject() va rendre ici un objet implémentant l’interface [SqlMapClient].</li>
+  <li>crée une instance [I] de la classe - ici il crée une instance de type [SqlMapClientFactoryBean].
+  </li>
+  <li>rend à la méthode appelante, le résultat de la méthode [I].getObject() - la méthode [SqlMapClientFactoryBean].getObject() va rendre ici un objet implémentant l’interface [SqlMapClient].
+  </li>
 </ul>
+
 <p>Pour pouvoir rendre un objet implémentant l’interface [SqlMapClient], la classe [SqlMapClientFactoryBean] a besoin de deux informations nécessaires à cet objet :</p>
 <ul>
-<li>un objet [DataSource] connecté à la base de données auprès duquel il va demander des connexions</li>
-<li>un (ou des) fichier de configuration où sont externalisés les ordres SQL à exécuter</li>
+  <li>un objet [DataSource] connecté à la base de données auprès duquel il va demander des connexions
+  </li>
+  <li>un (ou des) fichier de configuration où sont externalisés les ordres SQL à exécuter
+  </li>
 </ul>
+
 <p>La classe [SqlMapClientFactoryBean] possède les méthodes <strong>set</strong> pour initialiser ces deux propriétés :</p>
 <p><img src="images/10000000000001C10000005FAF3350CF.png" style="width:8.31cm;height:1.76cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C10000005FAF3350CF.png" /></p>
 <p>Nous progressons... Notre fichier de configuration se précise et devient :</p>
@@ -1621,25 +1663,38 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 2-3 : le bean &quot; sqlMapClient &quot; est de type [SqlMapClientFactoryBean]. De ce qui vient d’être expliqué, nous savons que lorsque nous demandons à Spring une instance de ce bean, nous obtenons un objet implémentant l’interface iBATIS [SqlMapClient]. C’est ce dernier objet qui sera donc obtenu en ligne 14.</li>
-<li>lignes 7-9 : nous indiquons que le fichier de configuration nécessaire à l’objet iBATIS [SqlMapClient] s’appelle &quot; sql-map-config-firebird.xml &quot; et qu’il doit être cherché dans le <em>ClassPath</em> de l’application. La méthode [SqlMapClientFactoryBean].setConfigLocation est ici utilisée.</li>
-<li>lignes 4-6 : nous initialisons la propriété [dataSource] de [SqlMapClientFactoryBean] avec sa méthode [setDataSource].</li>
+  <li>lignes 2-3 : le bean &quot; sqlMapClient &quot; est de type [SqlMapClientFactoryBean]. De ce qui vient d’être expliqué, nous savons que lorsque nous demandons à Spring une instance de ce bean, nous obtenons un objet implémentant l’interface iBATIS [SqlMapClient]. C’est ce dernier objet qui sera donc obtenu en ligne 14.
+  </li>
+  <li>lignes 7-9 : nous indiquons que le fichier de configuration nécessaire à l’objet iBATIS [SqlMapClient] s’appelle &quot; sql-map-config-firebird.xml &quot; et qu’il doit être cherché dans le <i>ClassPath</i> de l’application. La méthode [SqlMapClientFactoryBean].setConfigLocation est ici utilisée.
+  </li>
+  <li>lignes 4-6 : nous initialisons la propriété [dataSource] de [SqlMapClientFactoryBean] avec sa méthode [setDataSource].
+  </li>
 </ul>
+
 <p>Ligne 5, nous faisons référence à un bean appelé &quot; dataSource &quot; qui reste à construire. Si on regarde le paramètre attendu par la méthode [setDataSource] de [SqlMapClientFactoryBean], on voit qu’il est de type [DataSource] :</p>
 <p><img src="images/10000000000000ED00000047DDEB182C.png" style="width:4.39cm;height:1.311cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000ED00000047DDEB182C.png" /></p>
 <p>On a de nouveau affaire à une interface dont il nous faut trouver une classe d’implémentation. Le rôle d’une telle classe est de fournir à une application, de façon efficace, des connexions à une base de données particulière. Un SGBD ne peut maintenir ouvertes simultanément un grand nombre de connexions. Pour diminuer le nombre de connexions ouvertes à un moment donné, on est amenés, pour chaque échange avec la base, à :</p>
 <ul>
-<li>ouvrir une connexion</li>
-<li>commencer une transaction</li>
-<li>émettre des ordres SQL</li>
-<li>fermer la transaction</li>
-<li>fermer la connexion</li>
+  <li>ouvrir une connexion
+  </li>
+  <li>commencer une transaction
+  </li>
+  <li>émettre des ordres SQL
+  </li>
+  <li>fermer la transaction
+  </li>
+  <li>fermer la connexion
+  </li>
 </ul>
+
 <p>Ouvrir et fermer des connexions de façon répétée est coûteux en temps. Pour résoudre ces deux problèmes (limiter à la fois le nombre de connexions ouvertes à un moment donné, et limiter le coût d’ouverture / fermeture de celles-ci, les classes implémentant l’interface [DataSource] procèdent souvent de la façon suivante :</p>
 <ul>
-<li>elles ouvrent dès leur instanciation, N connexions avec la base de données visée. N a en général une valeur par défaut et peut le plus souvent être défini dans un fichier de configuration. Ces N connexions vont rester tout le temps ouvertes et forment un pool de connexions disponibles pour les threads de l’application.</li>
-<li>lorsqu’un thread de l’application demande une ouverture de connexion, l’objet [DataSource] lui donne l’une des N connexions ouvertes au démarrage, s’il en reste de disponibles. Lorsque l’application ferme la connexion, cette dernière n’est en réalité pas fermée mais simplement remise dans le pool des connexions disponibles.</li>
+  <li>elles ouvrent dès leur instanciation, N connexions avec la base de données visée. N a en général une valeur par défaut et peut le plus souvent être défini dans un fichier de configuration. Ces N connexions vont rester tout le temps ouvertes et forment un pool de connexions disponibles pour les threads de l’application.
+  </li>
+  <li>lorsqu’un thread de l’application demande une ouverture de connexion, l’objet [DataSource] lui donne l’une des N connexions ouvertes au démarrage, s’il en reste de disponibles. Lorsque l’application ferme la connexion, cette dernière n’est en réalité pas fermée mais simplement remise dans le pool des connexions disponibles.
+  </li>
 </ul>
+
 <p>Il existe diverses implémentations de l’interface [DataSource] disponibles librement. Nous allons utiliser ici l’implémentation [commons DBCP] disponible à l’url [http://jakarta.apache.org/commons/dbcp/] :</p>
 <p><img src="images/1000000000000344000000BD9E46BCC4.png" style="width:15.48cm;height:3.5cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000344000000BD9E46BCC4.png" /></p>
 <p>L’utilisation de l’outil [commons DBCP] nécessite deux archives [commons-dbcp, commons-pool] qui ont été toutes deux placées dans le dossier [lib] du projet :</p>
@@ -1649,11 +1704,16 @@
 <p><img src="images/1000000000000162000000AD44D8D451.png" style="width:6.56cm;height:3.2cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000162000000AD44D8D451.png" /></p>
 <p>Cette classe va nous fournir un pool de connexions pour accéder à la base Firebird [dbpersonnes.gdb] de notre application. Pour cela, il faut lui donner les informations dont elle a besoin pour créer les connexions du pool :</p>
 <ol>
-<li>le nom du pilote JDBC à utiliser – initialisé avec [setDriverClassName] </li>
-<li>le nom de l’url de la base de données à exploiter - initialisé avec [setUrl]</li>
-<li>l’identifiant de l’utilisateur propriétaire de la connexion – initialisé avec [setUser<strong>n</strong>ame] (et non pas setUser<strong>N</strong>ame comme on aurait pu s&#x27;y attendre)</li>
-<li>son mot de passe - initialisé avec [setPassword]</li>
+  <li>le nom du pilote JDBC à utiliser – initialisé avec [setDriverClassName] 
+  </li>
+  <li>le nom de l’url de la base de données à exploiter - initialisé avec [setUrl]
+  </li>
+  <li>l’identifiant de l’utilisateur propriétaire de la connexion – initialisé avec [setUser<b>n</b>ame] (et non pas setUser<b>N</b>ame comme on aurait pu s&#x27;y attendre)
+  </li>
+  <li>son mot de passe - initialisé avec [setPassword]
+  </li>
 </ol>
+
 <p>Le fichier de configuration de notre couche [dao] pourra être le suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
 <span class="odt-code-line"><a id="spring-config-tests-dao-firebird-xml"></a><span style="color:#0000e1">&lt;?xml</span><span style="color:#000000"> </span><span style="color:#0000e1">version=</span><span style="color:#000080">&quot;1.0&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">encoding=</span><span style="color:#000080">&quot;ISO_8859-1&quot;</span><span style="color:#0000e1">?&gt;</span></span>
@@ -1696,18 +1756,27 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 7-9 : le nom du pilote JDBC du SGBD Firebird</li>
-<li>lignes 11-13  : l’url de la base Firebird [dbpersonnes.gdb]. On fera particulièrement attention à l’écriture de celle-ci. Il ne doit y avoir aucun espace entre les balises &lt;value&gt; et l’url.</li>
-<li>lignes 14-16 : le propriétaire de la connexion – ici, [sysdba] qui est l’administrateur par défaut des distributions Firebird</li>
-<li>lignes 17-19 : son mot de passe [masterkey] – également la valeur par défaut</li>
+  <li>lignes 7-9 : le nom du pilote JDBC du SGBD Firebird
+  </li>
+  <li>lignes 11-13  : l’url de la base Firebird [dbpersonnes.gdb]. On fera particulièrement attention à l’écriture de celle-ci. Il ne doit y avoir aucun espace entre les balises &lt;value&gt; et l’url.
+  </li>
+  <li>lignes 14-16 : le propriétaire de la connexion – ici, [sysdba] qui est l’administrateur par défaut des distributions Firebird
+  </li>
+  <li>lignes 17-19 : son mot de passe [masterkey] – également la valeur par défaut
+  </li>
 </ul>
+
 <p>On a beaucoup progressé mais il reste toujours des points de configuration à élucider : la ligne 28 référence le fichier [sql-map-config-firebird.xml] qui doit configurer le client [SqlMapClient] d’iBATIS. Avant d’étudier son contenu, montrons l’emplacement de ces fichiers de configuration dans notre projet Eclipse :</p>
 <p><img src="images/100000000000010F000000A24005F566.png" style="width:5.039cm;height:3cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010F000000A24005F566.png" /></p>
 <ul>
-<li>[spring-config-test-dao-firebird.xml] est le fichier de configuration de la couche [dao] que nous venons d’étudier</li>
-<li>[sql-map-config-firebird.xml] est référencé par [spring-config-test-dao-firebird.xml]. Nous allons l’étudier.</li>
-<li>[personnes-firebird.xml] est référencé par [sql-map-config-firebird.xml]. Nous allons l’étudier.</li>
+  <li>[spring-config-test-dao-firebird.xml] est le fichier de configuration de la couche [dao] que nous venons d’étudier
+  </li>
+  <li>[sql-map-config-firebird.xml] est référencé par [spring-config-test-dao-firebird.xml]. Nous allons l’étudier.
+  </li>
+  <li>[personnes-firebird.xml] est référencé par [sql-map-config-firebird.xml]. Nous allons l’étudier.
+  </li>
 </ul>
+
 <p>Les trois fichiers précédents sont dans le dossier [src]. Sous Eclipse, cela signifie qu’à l’exécution ils seront présents dans le dossier [bin] du projet (non représenté ci-dessus). Ce dossier fait partie du <em>ClassPath</em> de l’application. Au final, les  trois fichiers précédents seront donc bien présents dans le <em>ClassPath</em> de l’application. C’est nécessaire.</p>
 <p>Le fichier [sql-map-config-firebird.xml] est le suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
@@ -1722,9 +1791,12 @@
 </code></pre></div>
 
 <ul>
-<li>ce fichier doit avoir &lt;sqlMapConfig&gt; comme balise racine (lignes 6 et 8)</li>
-<li>ligne 7 : la balise &lt;sqlMap&gt; sert à désigner les fichiers qui contiennent les ordres SQL à exécuter. Il y a souvent, mais ce n’est pas obligatoire, un fichier par table. Cela permet de rassembler les ordres SQL sur une table donnée dans un même fichier. Mais on trouve fréquemment des ordres SQL impliquant plusieurs tables. Dans ce cas, la décomposition précédente ne tient pas. Il faut simplement se rappeler que l’ensemble des fichiers désignés par les balises &lt;sqlMap&gt; seront fusionnés. Ces fichiers sont cherchés dans le <em>ClassPath</em> de l’application.</li>
+  <li>ce fichier doit avoir &lt;sqlMapConfig&gt; comme balise racine (lignes 6 et 8)
+  </li>
+  <li>ligne 7 : la balise &lt;sqlMap&gt; sert à désigner les fichiers qui contiennent les ordres SQL à exécuter. Il y a souvent, mais ce n’est pas obligatoire, un fichier par table. Cela permet de rassembler les ordres SQL sur une table donnée dans un même fichier. Mais on trouve fréquemment des ordres SQL impliquant plusieurs tables. Dans ce cas, la décomposition précédente ne tient pas. Il faut simplement se rappeler que l’ensemble des fichiers désignés par les balises &lt;sqlMap&gt; seront fusionnés. Ces fichiers sont cherchés dans le <i>ClassPath</i> de l’application.
+  </li>
 </ul>
+
 <p>Le fichier [personnes-firebird.xml] décrit les ordres SQL qui vont être émis sur la table [PERSONNES] de la base de données Firebird [dbpersonnes.gdb]. Son contenu est le suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
 <span class="odt-code-line"><span style="color:#0000e1">&lt;?xml</span><span style="color:#000000"> </span><span style="color:#0000e1">version=</span><span style="color:#000080">&quot;1.0&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">encoding=</span><span style="color:#000080">&quot;UTF-8&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">?&gt;</span></span>
@@ -1775,15 +1847,24 @@
 </code></pre></div>
 
 <ul>
-<li>le fichier doit avoir &lt;sqlMap&gt; comme balise racine (lignes 7 et 45)</li>
-<li>lignes 9-10 : pour faciliter l’écriture du fichier on donne l’alias (synonyme) [Personne.classe] à la classe [istia.st.springmvc.personnes.entites.Personne].</li>
-<li>lignes 12-21 : fixe les correspondances entre colonnes de la table [PERSONNES] et champs de l’objet [Personne].</li>
-<li>lignes 23-24 : l’ordre SQL [select] pour obtenir toutes les personnes de la table [PERSONNES]</li>
-<li>lignes 26-27 : l’ordre SQL [select] pour obtenir une personne particulière de la table [PERSONNES]</li>
-<li>lignes 29-36 : l’ordre SQL [insert] qui insère une personne dans la table [PERSONNES]</li>
-<li>lignes 38-41 : l’ordre SQL [update] qui met à jour une personne de la table [PERSONNES]</li>
-<li>lignes 42-44 : l’ordre SQL [delete] qui supprime une personne de la table [PERSONNES]</li>
+  <li>le fichier doit avoir &lt;sqlMap&gt; comme balise racine (lignes 7 et 45)
+  </li>
+  <li>lignes 9-10 : pour faciliter l’écriture du fichier on donne l’alias (synonyme) [Personne.classe] à la classe [istia.st.springmvc.personnes.entites.Personne].
+  </li>
+  <li>lignes 12-21 : fixe les correspondances entre colonnes de la table [PERSONNES] et champs de l’objet [Personne].
+  </li>
+  <li>lignes 23-24 : l’ordre SQL [select] pour obtenir toutes les personnes de la table [PERSONNES]
+  </li>
+  <li>lignes 26-27 : l’ordre SQL [select] pour obtenir une personne particulière de la table [PERSONNES]
+  </li>
+  <li>lignes 29-36 : l’ordre SQL [insert] qui insère une personne dans la table [PERSONNES]
+  </li>
+  <li>lignes 38-41 : l’ordre SQL [update] qui met à jour une personne de la table [PERSONNES]
+  </li>
+  <li>lignes 42-44 : l’ordre SQL [delete] qui supprime une personne de la table [PERSONNES]
+  </li>
 </ul>
+
 <p>Le rôle et la signification du contenu du fichier [personnes-firebird.xml] vont être expliqués via l’étude de la classe [DaoImplCommon] qui implémente la couche [dao].</p>
 <h3 id="1733-la-classe-daoimplcommon">17.3.3. La classe [DaoImplCommon]</h3>
 <p>Revenons sur l’architecture d’accès aux données :</p>
@@ -1920,9 +2001,12 @@
 <p>L’inconvénient de la classe [iBATIS] SqlMapClient est qu’elle lance des exceptions de type [SQLException], un type d&#x27;exception contrôlée, c.a.d. qui doit être gérée par un try / catch ou déclarée dans la signature des méthodes qui la lance. Or souvenons-nous que la couche [dao] implémente une interface [IDao] dont les méthodes ne comportent pas d’exceptions dans leurs signatures. Les méthodes des classes d’implémentation de l’interface [IDao] ne peuvent donc, elles non plus, avoir  d’exceptions dans leurs signatures. Il nous faut donc intercepter chaque exception [SQLException] lancée par la couche [iBATIS] et l’encapsuler dans une exception non contrôlée. Le type [DaoException] de notre projet ferait l’affaire pour cette encapsulation.</p>
 <p>Plutôt que de gérer nous-mêmes ces exceptions, nous allons les confier au type Spring [SqlMapClientTemplate] qui encapsule l’objet [SqlMapClient] de la couche [iBATIS]. En effet [SqlMapClientTemplate] a été construit pour intercepter les exceptions [SQLException] lancées par la couche [SqlMapClient] et les encapsuler dans un type [<a id="dataaccessexception"></a>DataAccessException] non contrôlé. Ce comportement nous convient. On se souviendra simplement que la couche [dao] est désormais susceptible de lancer deux types d’exceptions non contrôlées :</p>
 <ul>
-<li>notre type propriétaire [DaoException]</li>
-<li>le type Spring [DataAccessException]</li>
+  <li>notre type propriétaire [DaoException]
+  </li>
+  <li>le type Spring [DataAccessException]
+  </li>
 </ul>
+
 <p>Le type [SqlMapClientTemplate] est défini comme suit :</p>
 <p><img src="images/10000000000001E3000000C7D4BCEA42.png" style="width:8.939cm;height:3.679cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E3000000C7D4BCEA42.png" /></p>
 <p>Il implémente l’interface [SqlMapClientOperations] suivante :</p>
@@ -1932,14 +2016,20 @@
 <p><img src="images/10000000000002100000003230DD8473.png" style="width:9.781cm;height:0.93cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002100000003230DD8473.png" /></p>
 <p>Cette méthode permet d’émettre un ordre [SELECT] et d’en récupérer le résultat sous forme d’une liste d’objets :</p>
 <ul>
-<li>[statementName] : l’identifiant (id) de l’ordre [select] dans le fichier de configuration</li>
-<li>[parameterObject] : l’objet &quot; paramètre &quot; pour un [select] paramétré. L’objet &quot; paramètre &quot; peut prendre deux formes :<ul>
-<li>un objet respectant la norme <strong>Javabean</strong> : les paramètres de l’ordre [select] sont alors les noms des champs du Javabean. A l’exécution de l’ordre [select], ils sont remplacés par les valeurs de ces champs.</li>
-<li>un <strong>dictionnaire</strong> : les paramètres de l’ordre [select] sont alors les clés du dictionnaire. A l’exécution de l’ordre [select], celles-ci sont remplacées par leurs valeurs associées dans le dictionnaire.</li>
+  <li>[statementName] : l’identifiant (id) de l’ordre [select] dans le fichier de configuration
+  </li>
+  <li>[parameterObject] : l’objet &quot; paramètre &quot; pour un [select] paramétré. L’objet &quot; paramètre &quot; peut prendre deux formes :
+    <ul>
+      <li>un objet respectant la norme <b>Javabean</b> : les paramètres de l’ordre [select] sont alors les noms des champs du Javabean. A l’exécution de l’ordre [select], ils sont remplacés par les valeurs de ces champs.
+      </li>
+      <li>un <b>dictionnaire</b> : les paramètres de l’ordre [select] sont alors les clés du dictionnaire. A l’exécution de l’ordre [select], celles-ci sont remplacées par leurs valeurs associées dans le dictionnaire.
+      </li>
+    </ul>
+  </li>
+  <li>si le [SELECT] ne ramène aucune ligne, le résultat [List] est un objet vide d&#x27;éléments mais pas <i>null</i> (<b>à vérifier</b>).
+  </li>
 </ul>
-</li>
-<li>si le [SELECT] ne ramène aucune ligne, le résultat [List] est un objet vide d&#x27;éléments mais pas <em>null</em> (<strong>à vérifier</strong>).</li>
-</ul>
+
 <p>[<strong>queryForObject</strong>]</p>
 <p><img src="images/100000000000021A00000031B01C7B18.png" style="width:9.961cm;height:0.91cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021A00000031B01C7B18.png" /></p>
 <p>Cette méthode est identique dans son esprit à la précédente mais elle ne ramène qu’un unique objet. Si le [SELECT] ne ramène aucune ligne, le résultat est le pointeur <em>null</em>.</p>
@@ -1962,8 +2052,10 @@
 <a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 4 : l’ordre [select] nommé &quot; Personne.getAll &quot; est exécuté. Il n’est pas paramétré et donc l’objet &quot; paramètre &quot; est <em>null</em>.</li>
+  <li>ligne 4 : l’ordre [select] nommé &quot; Personne.getAll &quot; est exécuté. Il n’est pas paramétré et donc l’objet &quot; paramètre &quot; est <i>null</i>.
+  </li>
 </ul>
+
 <p>Dans [personnes-firebird.xml], l’ordre [select] nommé &quot; Personne.getAll &quot; est le suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
 <span class="odt-code-line"><span style="color:#0000e1">&lt;?xml</span><span style="color:#000000"> </span><span style="color:#0000e1">version=</span><span style="color:#000080">&quot;1.0&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">encoding=</span><span style="color:#000080">&quot;UTF-8&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">?&gt;</span></span>
@@ -1995,11 +2087,16 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 23 : l’ordre SQL &quot; Personne.getAll &quot; est non paramétré (absence de paramètres dans le texte de la requête).</li>
-<li>la ligne 3 de la méthode [getAll] demande l’exécution de la requête [select] appelée &quot; Personne.getAll &quot;. Celle-ci va être exécutée. [iBATIS] s’appuie sur JDBC. On sait alors que le résultat de la requête va être obtenu sous la forme d’un objet [ResultSet]. Ligne 23, l’attribut [resultMap] de la balise &lt;select&gt; indique à [iBATIS] quel &quot; resultMap &quot; il doit utiliser pour transformer chaque ligne du [ResultSet] obtenu en objet. C’est le &quot; resultMap &quot; [Personne.map] défini lignes 12-21 qui indique comment passer d’une ligne de la table [PERSONNES] à un objet de type [Personne]. [iBATIS] va utiliser ces correspondances pour fournir une liste d’objets [Personne] à partir des lignes de l’objet [ResultSet].</li>
-<li>la ligne 3 de la méthode [getAll] renvoie alors une collection d’objets [Personne]</li>
-<li>la méthode [queryForList] peut lancer une exception Spring [DataAccessException]. Nous la laissons remonter.</li>
+  <li>ligne 23 : l’ordre SQL &quot; Personne.getAll &quot; est non paramétré (absence de paramètres dans le texte de la requête).
+  </li>
+  <li>la ligne 3 de la méthode [getAll] demande l’exécution de la requête [select] appelée &quot; Personne.getAll &quot;. Celle-ci va être exécutée. [iBATIS] s’appuie sur JDBC. On sait alors que le résultat de la requête va être obtenu sous la forme d’un objet [ResultSet]. Ligne 23, l’attribut [resultMap] de la balise &lt;select&gt; indique à [iBATIS] quel &quot; resultMap &quot; il doit utiliser pour transformer chaque ligne du [ResultSet] obtenu en objet. C’est le &quot; resultMap &quot; [Personne.map] défini lignes 12-21 qui indique comment passer d’une ligne de la table [PERSONNES] à un objet de type [Personne]. [iBATIS] va utiliser ces correspondances pour fournir une liste d’objets [Personne] à partir des lignes de l’objet [ResultSet].
+  </li>
+  <li>la ligne 3 de la méthode [getAll] renvoie alors une collection d’objets [Personne]
+  </li>
+  <li>la méthode [queryForList] peut lancer une exception Spring [DataAccessException]. Nous la laissons remonter.
+  </li>
 </ul>
+
 <p>Nous expliquons les autres méthodes de la classe [AbstractDaoImpl] plus rapidement, l’essentiel sur l’utilisation d’[iBATIS] ayant été dit dans l’étude de la méthode [getAll].</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>getOne</p>
@@ -2034,8 +2131,10 @@
 <a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 4 : demande l’exécution de l’ordre [select] nommé &quot; Personne.getOne &quot;. Celui-ci est le suivant dans le fichier [personnes-firebird.xml] :</li>
+  <li>ligne 4 : demande l’exécution de l’ordre [select] nommé &quot; Personne.getOne &quot;. Celui-ci est le suivant dans le fichier [personnes-firebird.xml] :
+  </li>
 </ul>
+
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
 <span class="odt-code-line"><span style="color:#228820">&lt;!--</span><span style="color:#000000"> </span><span style="color:#228820">obtenir</span><span style="color:#000000"> </span><span style="color:#228820">une</span><span style="color:#000000"> </span><span style="color:#228820">personne</span><span style="color:#000000"> </span><span style="color:#228820">en</span><span style="color:#000000"> </span><span style="color:#228820">particulier</span><span style="color:#000000"> </span><span style="color:#228820">--&gt;</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#0000e1">&lt;select</span><span style="color:#000000"> </span><span style="color:#0000e1">id=</span><span style="color:#000080">&quot;Personne.getOne&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">resultMap=</span><span style="color:#000080">&quot;Personne.map&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">parameterClass=</span><span style="color:#000080">&quot;int&quot;</span><span style="color:#0000e1">&gt;</span></span>
@@ -2046,9 +2145,12 @@
 <p>L’ordre SQL est paramétré par le paramètre #value# (ligne 4). L’attribut #value# désigne la valeur du paramètre passé à l’ordre SQL, lorsque ce paramètre est de type simple : Integer, Double, String, ... Dans les attributs de la balise &lt;select&gt;, l’attribut [parameterClass] indique que le paramètre est de type entier (ligne 2). Ligne 5 de [getOne], on voit que ce paramètre est l’identifiant de la personne cherchée sous la forme d’un objet <em>Integer</em>. Ce changement de type est obligatoire puisque le second paramètre de [queryForList] doit être de type [Object].</p>
 <p>Le résultat de la requête [select] sera à transformer en objet via l’attribut [resultMap=&quot;Personne.map&quot;] (ligne 2). On obtiendra donc un type [Personne].</p>
 <ul>
-<li>lignes 7-11 : si la requête [select] n’a ramené aucune ligne, on récupère alors le pointeur <em>null</em> en ligne 4. Cela signifie qu’on n’a pas trouvé la personne cherchée. Dans ce cas, on lance une [DaoException] de code 2 (lignes 9-10).</li>
-<li>ligne 13 : s’il n’y a pas eu d’exception, alors on rend l’objet [Personne] demandé.</li>
+  <li>lignes 7-11 : si la requête [select] n’a ramené aucune ligne, on récupère alors le pointeur <i>null</i> en ligne 4. Cela signifie qu’on n’a pas trouvé la personne cherchée. Dans ce cas, on lance une [DaoException] de code 2 (lignes 9-10).
+  </li>
+  <li>ligne 13 : s’il n’y a pas eu d’exception, alors on rend l’objet [Personne] demandé.
+  </li>
 </ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>deleteOne</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -2074,8 +2176,10 @@
 <a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 4-5 : demande l’exécution de l’ordre [delete] nommé &quot; Personne.deleteOne &quot;. Celui-ci est le suivant dans le fichier [personnes-firebird.xml] :</li>
+  <li>lignes 4-5 : demande l’exécution de l’ordre [delete] nommé &quot; Personne.deleteOne &quot;. Celui-ci est le suivant dans le fichier [personnes-firebird.xml] :
+  </li>
 </ul>
+
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
 <span class="odt-code-line"><span style="color:#228820">&lt;!--</span><span style="color:#000000"> </span><span style="color:#228820">supprimer</span><span style="color:#000000"> </span><span style="color:#228820">une</span><span style="color:#000000"> </span><span style="color:#228820">personne</span><span style="color:#000000"> </span><span style="color:#228820">--&gt;</span></span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000e1">&lt;delete</span><span style="color:#000000"> </span><span style="color:#0000e1">id=</span><span style="color:#000080">&quot;Personne.deleteOne&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">parameterClass=</span><span style="color:#000080">&quot;int&quot;</span><span style="color:#0000e1">&gt;</span><span style="color:#000000"> delete FROM PERSONNES WHERE </span></span>
@@ -2084,9 +2188,12 @@
 
 <p>L’ordre SQL est paramétré par le paramètre #value# (ligne 3) de type [parameterClass=&quot;int&quot;] (ligne 2). Ce sera l’identifiant de la personne cherchée (ligne 5 de <em>deleteOne</em>)</p>
 <ul>
-<li>ligne 4 : le résultat de la méthode <em>[SqlMapClientTemplate].delete</em> est le nombre de lignes détruites.</li>
-<li>lignes 7-8 : si la requête [delete] n’a détruit aucune ligne, cela signifie que la personne n’existe pas. On lance une [DaoException] de code 2 (ligne 8).</li>
+  <li>ligne 4 : le résultat de la méthode <i>[SqlMapClientTemplate].delete</i> est le nombre de lignes détruites.
+  </li>
+  <li>lignes 7-8 : si la requête [delete] n’a détruit aucune ligne, cela signifie que la personne n’existe pas. On lance une [DaoException] de code 2 (ligne 8).
+  </li>
 </ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>saveOne</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -2118,14 +2225,20 @@
 <a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="p">...</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 4 : on vérifie la validité de la personne avec la méthode [check]. Cette méthode existait déjà dans la version précédente et avait été alors commentée. Elle lance une [DaoException] si la personne est invalide. On laisse remonter celle-ci.</li>
-<li>ligne 6 : si on arrive là, c’est qu’il n’y a pas eu d’exception. La personne est donc valide.</li>
-<li>lignes 6-11 : selon l’id de la personne, on a affaire à un ajout (id= -1) ou à une mise à jour (id&lt;&gt; -1). Dans les deux cas, on fait appel à deux méthodes internes à la classe :<ul>
-<li><strong>insertPersonne</strong> : pour l’ajout</li>
-<li><strong>updatePersonne</strong> : pour la mise à jour</li>
+  <li>ligne 4 : on vérifie la validité de la personne avec la méthode [check]. Cette méthode existait déjà dans la version précédente et avait été alors commentée. Elle lance une [DaoException] si la personne est invalide. On laisse remonter celle-ci.
+  </li>
+  <li>ligne 6 : si on arrive là, c’est qu’il n’y a pas eu d’exception. La personne est donc valide.
+  </li>
+  <li>lignes 6-11 : selon l’id de la personne, on a affaire à un ajout (id= -1) ou à une mise à jour (id&lt;&gt; -1). Dans les deux cas, on fait appel à deux méthodes internes à la classe :
+    <ul>
+      <li><b>insertPersonne</b> : pour l’ajout
+      </li>
+      <li><b>updatePersonne</b> : pour la mise à jour
+      </li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>insertPersonne</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -2151,9 +2264,12 @@
 <a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 4 : on met à 1 le n° de version de la personne que l’on est en train de créer</li>
-<li><span style="color: #000000">ligne 9 : on fait l’insertion via la requête nommée &quot; Personne.insertOne &quot; qui est la suivante :</span></li>
+  <li>ligne 4 : on met à 1 le n° de version de la personne que l’on est en train de créer
+  </li>
+  <li><span style="color: #000000">ligne 9 : on fait l’insertion via la requête nommée &quot; Personne.insertOne &quot; qui est la suivante :</span>
+  </li>
 </ul>
+
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
 <span class="odt-code-line">    <span style="color:#000000">    </span><span style="color:#0000e1">&lt;insert</span><span style="color:#000000"> </span><span style="color:#0000e1">id=</span><span style="color:#000080">&quot;Personne.insertOne&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">parameterClass=</span><span style="color:#000080">&quot;Personne.classe&quot;</span><span style="color:#0000e1">&gt;</span></span>
 <span class="odt-code-line"><span style="color:#000000">            </span><span style="color:#0000e1">&lt;selectKey</span><span style="color:#000000"> </span><span style="color:#0000e1">keyProperty=</span><span style="color:#000080">&quot;id&quot;</span><span style="color:#0000e1">&gt;</span></span>
@@ -2167,21 +2283,27 @@
 
 <p><span style="color: #000000">C’est une requête paramétrée et le paramètre est de type [Personne] (parameterClass=&quot;Personne.classe&quot;, ligne 1). Les champs de l’objet [Personne] passés en paramètre (ligne 9 de <em>insertPersonne</em>) sont utilisés pour remplir les colonnes de la ligne qui va être insérée dans la table [PERSONNES] (lignes 5-8). On a un problème à résoudre. Lors d&#x27;une insertion, l’objet [Personne] à insérer a son id égal à -1. Il faut remplacer cette valeur par une clé primaire valide. On utilise pour cela les lignes 2-4 de la balise &lt;<strong>selectKey</strong>&gt; ci-dessus. Elles indiquent :</span></p>
 <ul>
-<li>
-<p>(suite)</p>
+  <li>(suite)
+    <ul>
+      <li>la requête SQL à exécuter pour obtenir une valeur de clé primaire. Celle indiquée ici est celle que nous avons présentée au <span style="color: #000000">paragraphe </span><span style="color: #000000"><a href="#firebird-genid">17.1</a></span><span style="color: #000000">. Deux points sont à noter :</span>
+        <ul>
+          <li><span style="color: #000000"><b>as &quot; value &quot;</b> est obligatoire. On peut aussi écrire <i>as value</i> mais <i>value</i> est un mot clé de Firebird qui a du être protégé par des guillemets.</span>
+          </li>
+          <li>la table Firebird s&#x27;appelle en réalité [RDB$DATABASE]. Mais le caractère $ est interprété par [iBATIS]. Il a été protégé en le dédoublant.
+          </li>
+        </ul>
+      </li>
+      <li>le champ de l&#x27;objet [Personne] qu&#x27;il faut initialiser avec la valeur récupérée par l&#x27;ordre [SELECT], ici le champ [id]. C&#x27;est l&#x27;attribut [keyProperty] de la ligne 2 qui indique ce champ.
+      </li>
+    </ul>
+  </li>
+</ul>
+
 <ul>
-<li>la requête SQL à exécuter pour obtenir une valeur de clé primaire. Celle indiquée ici est celle que nous avons présentée au <span style="color: #000000">paragraphe </span><span style="color: #000000"><a href="#firebird-genid">17.1</a></span><span style="color: #000000">. Deux points sont à noter :</span><ul>
-<li><span style="color: #000000"><strong>as &quot; value &quot;</strong> est obligatoire. On peut aussi écrire <em>as value</em> mais <em>value</em> est un mot clé de Firebird qui a du être protégé par des guillemets.</span></li>
-<li>la table Firebird s&#x27;appelle en réalité [RDB$DATABASE]. Mais le caractère $ est interprété par [iBATIS]. Il a été protégé en le dédoublant.</li>
+  <li>lignes 6-7 : pour le besoin des tests, nous serons amenés à attendre 10 ms avant de faire l&#x27;insertion, ceci pour voir s’il y a des conflits entre threads qui voudraient faire en même temps des ajouts.
+  </li>
 </ul>
-</li>
-<li>le champ de l&#x27;objet [Personne] qu&#x27;il faut initialiser avec la valeur récupérée par l&#x27;ordre [SELECT], ici le champ [id]. C&#x27;est l&#x27;attribut [keyProperty] de la ligne 2 qui indique ce champ.</li>
-</ul>
-</li>
-<li>
-<p>lignes 6-7 : pour le besoin des tests, nous serons amenés à attendre 10 ms avant de faire l&#x27;insertion, ceci pour voir s’il y a des conflits entre threads qui voudraient faire en même temps des ajouts.</p>
-</li>
-</ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>updatePersonne</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -2211,17 +2333,21 @@
 <a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>
-<p>une mise à jour peut échouer pour au moins deux raisons :</p>
-<ol>
-<li>la personne à mettre à jour n’existe pas</li>
-<li>la personne à mettre à jour existe mais le thread qui veut la modifier n’a pas la bonne version</li>
-</ol>
-</li>
-<li>
-<p>lignes 7-8 : la requête SQL [update] nommée &quot; Personne.updateOne &quot; est exécutée. C&#x27;est la suivante :</p>
-</li>
+  <li>une mise à jour peut échouer pour au moins deux raisons :
+    <ol>
+      <li>la personne à mettre à jour n’existe pas
+      </li>
+      <li>la personne à mettre à jour existe mais le thread qui veut la modifier n’a pas la bonne version
+      </li>
+    </ol>
+  </li>
 </ul>
+
+<ul>
+  <li>lignes 7-8 : la requête SQL [update] nommée &quot; Personne.updateOne &quot; est exécutée. C&#x27;est la suivante :
+  </li>
+</ul>
+
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#228820">&lt;!--</span><span style="color:#000000"> </span><span style="color:#228820">mettre</span><span style="color:#000000"> </span><span style="color:#228820">à</span><span style="color:#000000"> </span><span style="color:#228820">jour</span><span style="color:#000000"> </span><span style="color:#228820">une</span><span style="color:#000000"> </span><span style="color:#228820">personne</span><span style="color:#000000"> </span><span style="color:#228820">--&gt;</span></span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000e1">&lt;update</span><span style="color:#000000"> </span><span style="color:#0000e1">id=</span><span style="color:#000080">&quot;Personne.updateOne&quot;</span><span style="color:#000000"> </span><span style="color:#0000e1">parameterClass=</span><span style="color:#000080">&quot;Personne.classe&quot;</span><span style="color:#0000e1">&gt;</span><span style="color:#000000"> update </span></span>
@@ -2231,18 +2357,23 @@
 </code></pre></div>
 
 <ul>
-<li>
-<p>(suite)</p>
+  <li>(suite)
+    <ul>
+      <li>ligne 2 : la requête est paramétrée et admet pour paramètre un type [Personne] (parameterClass=&quot;Personne.classe&quot;). Celui-ci est la personne à modifier (ligne 8 – updatePersonne).
+      </li>
+      <li>on ne veut modifier que la personne de la table [PERSONNES] ayant le même n° [id] et la même version [version] que le paramètre. C’est pourquoi, on a la contrainte [WHERE ID=#id# and <span style="color: #000000">VERSION=#version#]. Si cette personne est trouvée, elle est mise à jour avec la personne paramètre et sa version est augmentée de 1 (ligne 3 ci-dessus).</span>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 <ul>
-<li>ligne 2 : la requête est paramétrée et admet pour paramètre un type [Personne] (parameterClass=&quot;Personne.classe&quot;). Celui-ci est la personne à modifier (ligne 8 – updatePersonne).</li>
-<li>on ne veut modifier que la personne de la table [PERSONNES] ayant le même n° [id] et la même version [version] que le paramètre. C’est pourquoi, on a la contrainte [WHERE ID=#id# and <span style="color: #000000">VERSION=#version#]. Si cette personne est trouvée, elle est mise à jour avec la personne paramètre et sa version est augmentée de 1 (ligne 3 ci-dessus).</span></li>
+  <li><span style="color: #000000">ligne 9 : on récupère le nombre de lignes mises à jour.</span>
+  </li>
+  <li><span style="color: #000000">lignes 10-11 : si ce nombre est nul, on lance une [DaoException] de code 2, indiquant que, soit la personne à mettre à jour n’existe pas, soit elle a changé de version entre-temps.</span>
+  </li>
 </ul>
-</li>
-<li>
-<p><span style="color: #000000">ligne 9 : on récupère le nombre de lignes mises à jour.</span></p>
-</li>
-<li><span style="color: #000000">lignes 10-11 : si ce nombre est nul, on lance une [DaoException] de code 2, indiquant que, soit la personne à mettre à jour n’existe pas, soit elle a changé de version entre-temps.</span></li>
-</ul>
+
 <h2 id="174-tests-de-la-couche-dao">17.4. Tests de la couche [dao]</h2>
 <h3 id="1741-tests-de-limplementation-daoimplcommon">17.4.1. Tests de l&#x27;implémentation [DaoImplCommon]</h3>
 <p><span style="color: #000000">Maintenant que nous avons écrit la couche [dao], nous nous proposons de la tester avec des tests JUnit :</span></p>
@@ -2478,8 +2609,10 @@
 <a id="__codelineno-14-67" name="__codelineno-14-67"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>les tests [test1] à [test5] sont les mêmes que dans la version 1, sauf [test4] qui a légèrement évolué. Le test [test6] est lui nouveau. Nous ne commentons que ces deux tests.</li>
+  <li>les tests [test1] à [test5] sont les mêmes que dans la version 1, sauf [test4] qui a légèrement évolué. Le test [test6] est lui nouveau. Nous ne commentons que ces deux tests.
+  </li>
 </ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>[test4]</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -2509,8 +2642,10 @@
 <a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 4-5 : on attend 10 ms. On force ainsi le thread qui exécute [updatePersonne] à perdre le processeur, ce qui peut augmenter nos chances de voir des conflits d’accès entre threads concurrents.</li>
+  <li>lignes 4-5 : on attend 10 ms. On force ainsi le thread qui exécute [updatePersonne] à perdre le processeur, ce qui peut augmenter nos chances de voir des conflits d’accès entre threads concurrents.
+  </li>
 </ul>
+
 <p>[test4] lance N=100 threads chargés d’incrémenter, en même temps, de 1 le nombre d’enfants de la même personne. On veut voir comment les conflits de version et les conflits d’accès sont gérés.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
@@ -2781,8 +2916,10 @@
 <a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 6-7 : on attend 10 ms pour forcer le thread qui exécute [insertPersonne] à perdre le processeur et augmenter ainsi nos chances de voir apparaître des conflits dus à des threads qui font des insertions en même temps.</li>
+  <li>lignes 6-7 : on attend 10 ms pour forcer le thread qui exécute [insertPersonne] à perdre le processeur et augmenter ainsi nos chances de voir apparaître des conflits dus à des threads qui font des insertions en même temps.
+  </li>
 </ul>
+
 <p>Le code de [test6] est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
@@ -2836,10 +2973,14 @@
 </code></pre></div></td></tr></table></div>
 <p>On crée 100 threads qui vont insérer en même temps 100 personnes différentes. Ces 100 threads vont tous obtenir une clé primaire pour la personne qu’ils doivent insérer puis être interrompus pendant 10 ms (ligne 10 – insertPersonne) avant de pouvoir faire leur insertion. On veut vérifier que les choses se passent bien et que notamment ils obtiennent bien des valeurs de clé primaire différentes.</p>
 <ul>
-<li>lignes 7-11 : un tableau de 100 personnes est créé. Ces personnes sont toutes des copies de la personne p créée lignes 4-5.</li>
-<li>lignes 14-17 : les 100 threads d&#x27;insertion sont lancés. Chacun d&#x27;eux est chargé d&#x27;insérer l&#x27;une des 100 personnes créée précédemment..</li>
-<li>lignes 19-23 : [test6] attend la fin de chacun des 100 threads qu&#x27;il a lancés. Lorsqu&#x27;il a détecté la fin du thread n° i, il supprime la personne que ce thread vient d&#x27;insérer.</li>
+  <li>lignes 7-11 : un tableau de 100 personnes est créé. Ces personnes sont toutes des copies de la personne p créée lignes 4-5.
+  </li>
+  <li>lignes 14-17 : les 100 threads d&#x27;insertion sont lancés. Chacun d&#x27;eux est chargé d&#x27;insérer l&#x27;une des 100 personnes créée précédemment..
+  </li>
+  <li>lignes 19-23 : [test6] attend la fin de chacun des 100 threads qu&#x27;il a lancés. Lorsqu&#x27;il a détecté la fin du thread n° i, il supprime la personne que ce thread vient d&#x27;insérer.
+  </li>
 </ul>
+
 <p>Le thread d’insertion [ThreadDaoInsertPersonne] est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
@@ -2922,9 +3063,12 @@
 <a id="__codelineno-20-40" name="__codelineno-20-40"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 19-22 : le constructeur du thread mémorise la personne qu&#x27;il doit insérer et la couche [dao] qu&#x27;il doit utiliser pour faire cette insertion.</li>
-<li>ligne 30 : la personne est insérée. Si une exception se produit, elle remonte à [test6].</li>
+  <li>lignes 19-22 : le constructeur du thread mémorise la personne qu&#x27;il doit insérer et la couche [dao] qu&#x27;il doit utiliser pour faire cette insertion.
+  </li>
+  <li>ligne 30 : la personne est insérée. Si une exception se produit, elle remonte à [test6].
+  </li>
 </ul>
+
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>Tests</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
@@ -2945,10 +3089,14 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 1 – on a eu une exception Spring [org.springframework.jdbc.UncategorizedSQLException]. C&#x27;est une exception non contrôlée qui a été utilisée pour encapsuler une exception lancée par le pilote JDBC de Firebird, décrite ligne 6.</li>
-<li>ligne 6 – le pilote JDBC de Firebird a lancé une exception de type [org.firebirdsql.jdbc.FBSQLException] et de code d&#x27;erreur 335544336.</li>
-<li>ligne 7 : indique qu&#x27;on a eu un conflit d&#x27;accès entre deux threads qui voulaient mettre à jour en même temps la même ligne de la table [PERSONNES].</li>
+  <li>ligne 1 – on a eu une exception Spring [org.springframework.jdbc.UncategorizedSQLException]. C&#x27;est une exception non contrôlée qui a été utilisée pour encapsuler une exception lancée par le pilote JDBC de Firebird, décrite ligne 6.
+  </li>
+  <li>ligne 6 – le pilote JDBC de Firebird a lancé une exception de type [org.firebirdsql.jdbc.FBSQLException] et de code d&#x27;erreur 335544336.
+  </li>
+  <li>ligne 7 : indique qu&#x27;on a eu un conflit d&#x27;accès entre deux threads qui voulaient mettre à jour en même temps la même ligne de la table [PERSONNES].
+  </li>
 </ul>
+
 <p>Ce n&#x27;est pas une erreur irrécupérable. Le thread qui intercepte cette exception peut retenter la mise à jour. Il faut pour cela modifier le code de  [ThreadDaoMajEnfants] :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
@@ -2989,8 +3137,10 @@
 <a id="__codelineno-21-19" name="__codelineno-21-19"></a>                <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 8 : on gère une exception de type [DaoException]. D&#x27;après ce qui a été dit, il nous faudrait gérer l&#x27;exception qui est apparue aux tests, le type [org.springframework.jdbc.UncategorizedSQLException]. On ne peut cependant pas se contenter de gérer ce type qui est un type générique de Spring destiné à encapsuler des exceptions qu&#x27;il ne connaît pas. Spring connaît les exceptions émises par les pilotes JDBC d&#x27;un certain nombre de SGBD tels Oracle, MySQL, Postgres, DB2, SQL Server, ... mais pas Firebird. Aussi toute exception lancée par le pilote JDBC de Firebird se trouve-t-elle encapsulée dans le type Spring [org.springframework.jdbc.UncategorizedSQLException] :</li>
+  <li>ligne 8 : on gère une exception de type [DaoException]. D&#x27;après ce qui a été dit, il nous faudrait gérer l&#x27;exception qui est apparue aux tests, le type [org.springframework.jdbc.UncategorizedSQLException]. On ne peut cependant pas se contenter de gérer ce type qui est un type générique de Spring destiné à encapsuler des exceptions qu&#x27;il ne connaît pas. Spring connaît les exceptions émises par les pilotes JDBC d&#x27;un certain nombre de SGBD tels Oracle, MySQL, Postgres, DB2, SQL Server, ... mais pas Firebird. Aussi toute exception lancée par le pilote JDBC de Firebird se trouve-t-elle encapsulée dans le type Spring [org.springframework.jdbc.UncategorizedSQLException] :
+  </li>
 </ul>
+
 <p><img src="images/100000000000028B000000E859564A19.png" style="width:12.06cm;height:4.3cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000028B000000E859564A19.png" /></p>
 <p><span style="color: #000000">On voit ci-dessus, que la classe [UncategorizedSQLException] dérive de la classe [DataAccessException] que nous avons évoquée, paragraphe <a href="#dataaccessexception">17.3.3</a>. Il est possible de connaître l&#x27;exception qui a été encapsulée dans [UncategorizedSQLException] grâce à sa méthode [getSQLException] :</span></p>
 <p><img src="images/100000000000017C00000030DB1D901E.png" style="width:7.04cm;height:0.891cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017C00000030DB1D901E.png" /></p>
@@ -3096,8 +3246,10 @@
 <a id="__codelineno-22-47" name="__codelineno-22-47"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 34-36 : l&#x27;exception de type [DaoException] de code 4 est interceptée. Le thread [ThreadDaoMajEnfants] va être forcé de recommencer la procédure de mise à jour à son début (ligne 10)</li>
+  <li>lignes 34-36 : l&#x27;exception de type [DaoException] de code 4 est interceptée. Le thread [ThreadDaoMajEnfants] va être forcé de recommencer la procédure de mise à jour à son début (ligne 10)
+  </li>
 </ul>
+
 <p>Notre couche [dao] doit donc être capable de reconnaître une exception de type &quot; conflit de mise à jour &quot;. Celle-ci est émise par un pilote JDBC et lui est spécifique. Cette exception doit être gérée dans la méthode [updatePersonne] de la classe [DaoImplCommon] :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
@@ -3221,13 +3373,20 @@
 <a id="__codelineno-24-47" name="__codelineno-24-47"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 5 : la classe [DaoImplFirebird] dérive de [DaoImplCommon], la classe que nous venons d’étudier. Elle redéfinit, lignes 8-33, la méthode [updatePersonne] qui nous pose problème.</li>
-<li>lignes 20 : nous interceptons l&#x27;exception Spring de type [UncategorizedSQLException]</li>
-<li>lignes 21-22 : nous vérifions que l&#x27;exception sous-jacente de type [SQLException] et lancée par la couche [iBATIS] a pour cause une exception de type [org.firebirdsql.jdbc.FBSQLException]</li>
-<li>ligne 25 : on vérifie de plus que le code erreur de cette exception Firebird est  335544336, le code d&#x27;erreur du &quot; deadlock &quot;.</li>
-<li>lignes 26-27 : si toutes ces conditions sont réunies, une [DaoException] de code 4 est lancée.</li>
-<li>lignes 36-44 : la méthode [wait] permet d’arrêter le thread courant de N millisecondes. Elle n’a d’utilité que pour les tests.</li>
+  <li>ligne 5 : la classe [DaoImplFirebird] dérive de [DaoImplCommon], la classe que nous venons d’étudier. Elle redéfinit, lignes 8-33, la méthode [updatePersonne] qui nous pose problème.
+  </li>
+  <li>lignes 20 : nous interceptons l&#x27;exception Spring de type [UncategorizedSQLException]
+  </li>
+  <li>lignes 21-22 : nous vérifions que l&#x27;exception sous-jacente de type [SQLException] et lancée par la couche [iBATIS] a pour cause une exception de type [org.firebirdsql.jdbc.FBSQLException]
+  </li>
+  <li>ligne 25 : on vérifie de plus que le code erreur de cette exception Firebird est  335544336, le code d&#x27;erreur du &quot; deadlock &quot;.
+  </li>
+  <li>lignes 26-27 : si toutes ces conditions sont réunies, une [DaoException] de code 4 est lancée.
+  </li>
+  <li>lignes 36-44 : la méthode [wait] permet d’arrêter le thread courant de N millisecondes. Elle n’a d’utilité que pour les tests.
+  </li>
 </ul>
+
 <p>Nous sommes prêts pour les tests de la nouvelle couche [dao].</p>
 <h3 id="1743-tests-de-limplementation-daoimplfirebird">17.4.3. Tests de l&#x27;implémentation [DaoImplFirebird]</h3>
 <p><span style="color: #000000">Le fichier de configuration des tests [spring-config-test-dao-firebird.xml] est modifié pour utiliser l&#x27;implémentation [DaoImplFirebird] :</span></p>
@@ -3272,8 +3431,10 @@
 </code></pre></div>
 
 <ul>
-<li><span style="color: #000000">ligne 32 : la nouvelle implémentation [DaoImplFirebird] de la couche [dao].</span></li>
+  <li><span style="color: #000000">ligne 32 : la nouvelle implémentation [DaoImplFirebird] de la couche [dao].</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000">Les résultats du test [test4] qui avait échoué précédemment sont les suivants :</span></p>
 <p><img src="images/10000000000001960000009A5EEED091.png" style="width:7.519cm;height:2.85cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001960000009A5EEED091.png" /></p>
 <p>[test4] a été réussi. Les dernières lignes de logs écran sont les suivantes :</p>
@@ -3308,9 +3469,12 @@
 <p>La couche [service] est constituée des classes et interfaces suivantes :</p>
 <p><img src="images/10000000000000C300000031DC9C8C5E.png" style="width:3.611cm;height:0.91cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C300000031DC9C8C5E.png" /></p>
 <ul>
-<li>[IService] est l’interface présentée par la couche [service]</li>
-<li>[ServiceImpl] est une implémentation de celle-ci</li>
+  <li>[IService] est l’interface présentée par la couche [service]
+  </li>
+  <li>[ServiceImpl] est une implémentation de celle-ci
+  </li>
 </ul>
+
 <p>L’interface [IService] est la suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
@@ -3363,12 +3527,16 @@
 <a id="__codelineno-27-25" name="__codelineno-27-25"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>l’interface a les mêmes quatre méthodes que dans la version 1 mais elle en a deux de plus :<ul>
-<li><strong>saveMany</strong> : permet de sauvegarder plusieurs personnes en même temps de façon atomique. Soit elles sont toutes sauvegardées, soit aucune ne l’est.</li>
-<li><strong>deleteMany</strong> : permet de supprimer plusieurs personnes en même temps de façon atomique. Soit elles sont toutes supprimées, soit aucune ne l’est.</li>
+  <li>l’interface a les mêmes quatre méthodes que dans la version 1 mais elle en a deux de plus :
+    <ul>
+      <li><b>saveMany</b> : permet de sauvegarder plusieurs personnes en même temps de façon atomique. Soit elles sont toutes sauvegardées, soit aucune ne l’est.
+      </li>
+      <li><b>deleteMany</b> : permet de supprimer plusieurs personnes en même temps de façon atomique. Soit elles sont toutes supprimées, soit aucune ne l’est.
+      </li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
+
 <p>Ces deux méthodes ne seront pas utilisées par l’application web. Nous les avons rajoutées pour illustrer la notion de <strong>transaction</strong> sur une base de données. Les deux méthodes devront en effet être exécutées au sein d’une transaction pour obtenir l’atomicité désirée.</p>
 <p>La classe [ServiceImpl] implémentant cette interface sera la suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1"> 1</a></span>
@@ -3484,10 +3652,14 @@
 <a id="__codelineno-28-56" name="__codelineno-28-56"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>les méthodes [getAll, getOne, insertOne, saveOne] font appel aux méthodes de la couche [dao] de même nom.</li>
-<li>lignes 42-47 : la méthode [saveMany] sauvegarde, une par une, les personnes du tableau passé en paramètre.</li>
-<li>lignes 50-55 : la méthode [deleteMany] supprime, une par une, les personnes dont on lui a passé le tableau des <em>id</em> en paramètre</li>
+  <li>les méthodes [getAll, getOne, insertOne, saveOne] font appel aux méthodes de la couche [dao] de même nom.
+  </li>
+  <li>lignes 42-47 : la méthode [saveMany] sauvegarde, une par une, les personnes du tableau passé en paramètre.
+  </li>
+  <li>lignes 50-55 : la méthode [deleteMany] supprime, une par une, les personnes dont on lui a passé le tableau des <i>id</i> en paramètre
+  </li>
 </ul>
+
 <p>Nous avons dit que les méthodes [saveMany] et [deleteMany] devaient se faire au sein d’une transaction pour assurer l’aspect tout ou rien de ces méthodes. Nous pouvons constater que le code ci-dessus ignore totalement cette notion de transaction. Celle-ci n’apparaîtra que dans le fichier de configuration de la couche [service]. </p>
 <p><a id="spring-config-tests-service-firebird-xml"></a></p>
 <h3 id="1752-configuration-de-la-couche-service">17.5.2. Configuration de la couche [service]</h3>
@@ -3561,9 +3733,12 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 1-36 : configuration de la couche [dao]. Cette configuration a été expliquée lors de l’étude de la couche [dao] au paragraphe <a href="#spring-config-tests-dao-firebird-xml">17.3.2</a>.</li>
-<li>lignes 38-64 : configurent la couche [service]</li>
+  <li>lignes 1-36 : configuration de la couche [dao]. Cette configuration a été expliquée lors de l’étude de la couche [dao] au paragraphe <a href="#spring-config-tests-dao-firebird-xml">17.3.2</a>.
+  </li>
+  <li>lignes 38-64 : configurent la couche [service]
+  </li>
 </ul>
+
 <p>Ligne 46, on peut voir que l’implémentation de la couche [service] est faite par le type [TransactionProxyFactoryBean]. On s’attendait à trouver le type [ServiceImpl]. [TransactionProxyFactoryBean] est un type prédéfini de Spring. Comment se peut-il qu’un type prédéfini puisse implémenter l’interface [IService] qui elle, est spécifique à notre application ?</p>
 <p>Découvrons tout d’abord la classe [TransactionProxyFactoryBean] :</p>
 <p><img src="images/1000000000000286000000C19D27B199.png" style="width:11.959cm;height:3.57cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000286000000C19D27B199.png" /></p>
@@ -3571,23 +3746,32 @@
 <p><img src="images/100000000000027F00000032750C8BC4.png" style="width:11.83cm;height:0.93cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000027F00000032750C8BC4.png" /></p>
 <p>Dans notre cas, la couche [service] va être implémentée par l’objet rendu par <em>[TransactionProxyFactoryBean].getObject()</em>. Quelle est la nature de cet objet ? Nous n’allons pas rentrer dans les détails car ils sont complexes. Ils relèvent de ce qu’on appelle Spring AOP (Aspect Oriented Programming). Nous allons tenter d’éclaircir les choses avec de simples schémas. AOP permet la chose suivante :</p>
 <ul>
-<li>on a deux classes C1 et C2, C1 utilisant l&#x27;interface [I2] présentée par C2 :</li>
+  <li>on a deux classes C1 et C2, C1 utilisant l&#x27;interface [I2] présentée par C2 :
+  </li>
 </ul>
+
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000369000000A0EBDFB282.png" style="display:inline-block; margin:4px;width:11.55cm;height:2.117cm;" class="odt-zoomable" data-zoom-src="images/1000000000000369000000A0EBDFB282.png" /></td></tr></table>
 
 <ul>
-<li>grâce à AOP, on peut placer, de façon transparente pour les deux classes, un intercepteur entre les classes C1 et C2 :</li>
+  <li>grâce à AOP, on peut placer, de façon transparente pour les deux classes, un intercepteur entre les classes C1 et C2 :
+  </li>
 </ul>
+
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000033F000000A12EB1164C.png" style="display:inline-block; margin:4px;width:10.994cm;height:2.131cm;" class="odt-zoomable" data-zoom-src="images/100000000000033F000000A12EB1164C.png" /></td></tr></table>
 
 <p>La classe [C1] a été compilée pour travailler avec l&#x27;interface [I2] que [C2] implémente. Au moment de l’exécution, AOP vient placer la classe [intercepteur] entre [C1] et [C2]. Pour que cela soit possible, il faut bien sûr que la classe [intercepteur] présente à [C1] la même interface [I2] que [C2].</p>
 <p>A quoi cela peut-il servir ? La documentation Spring donne quelques exemples. On peut vouloir faire, par exemple, des logs à l&#x27;occasion des appels à une méthode M particulière de [C2], pour faire un audit de cette méthode. Dans [intercepteur], on écrira alors une méthode [M] qui fait ces logs. L’appel de [C1] à [C2].M va se passer ainsi (cf schéma ci-dessus) :</p>
 <ol>
-<li>[C1] appelle la méthode M de [C2]. C’est en fait la méthode M de [intercepteur] qui sera appelée. Cela est possible si [C1] s’adresse à une interface [I2] plutôt qu’à une implémentation particulière de [I2]. Il suffit alors que [intercepteur] implémente [I2].</li>
-<li>la méthode M de [intercepteur] fait les logs et appelle la méthode M de [C2] visée initialement par [C1].</li>
-<li>la méthode M de [C2] s’exécute et rend son résultat à la méthode M de [intercepteur] qui peut éventuellement ajouter quelque chose à ce qui a été fait en 2.</li>
-<li>la méthode M de [intercepteur] rend un résultat à la méthode appelante de [C1]</li>
+  <li>[C1] appelle la méthode M de [C2]. C’est en fait la méthode M de [intercepteur] qui sera appelée. Cela est possible si [C1] s’adresse à une interface [I2] plutôt qu’à une implémentation particulière de [I2]. Il suffit alors que [intercepteur] implémente [I2].
+  </li>
+  <li>la méthode M de [intercepteur] fait les logs et appelle la méthode M de [C2] visée initialement par [C1].
+  </li>
+  <li>la méthode M de [C2] s’exécute et rend son résultat à la méthode M de [intercepteur] qui peut éventuellement ajouter quelque chose à ce qui a été fait en 2.
+  </li>
+  <li>la méthode M de [intercepteur] rend un résultat à la méthode appelante de [C1]
+  </li>
 </ol>
+
 <p>On voit que la méthode M de [intercepteur] peut faire quelque chose <strong>avant</strong> et <strong>après</strong> l’appel de la méthode M de [C2]. Vis à vis de [C1], elle enrichit donc la méthode M de [C2]. On peut donc voir la technologie AOP comme une façon d’enrichir l’interface présentée par une classe.</p>
 <p>Comment ce concept s’applique-t-il à notre couche [service] ? Si on implémente la couche [service] directement avec une instance [ServiceImpl], notre application web aura l’architecture suivante :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000003C20000009A6E51F50F.png" style="display:inline-block; margin:4px;width:12.726cm;height:2.037cm;" class="odt-zoomable" data-zoom-src="images/10000000000003C20000009A6E51F50F.png" /></td></tr></table>
@@ -3597,18 +3781,28 @@
 
 <p>On peut dire que la couche [service] est instanciée avec deux objets :</p>
 <ul>
-<li>l’objet que nous appelons ci-dessus [proxy transactionnel] et qui est en fait l’objet rendu par la méthode [getObject] de [TransactionProxyFactoryBean]. C’est cet objet qui fera l’interface de la couche [service] avec la couche [web]. Il implémente par construction l’interface [IService].</li>
-<li>une instance [ServiceImpl] qui elle aussi implémente l’interface [IService]. Elle seule sait comment travailler avec la couche [dao], aussi est-elle nécessaire.</li>
+  <li>l’objet que nous appelons ci-dessus [proxy transactionnel] et qui est en fait l’objet rendu par la méthode [getObject] de [TransactionProxyFactoryBean]. C’est cet objet qui fera l’interface de la couche [service] avec la couche [web]. Il implémente par construction l’interface [IService].
+  </li>
+  <li>une instance [ServiceImpl] qui elle aussi implémente l’interface [IService]. Elle seule sait comment travailler avec la couche [dao], aussi est-elle nécessaire.
+  </li>
 </ul>
+
 <p>Imaginons que la couche [web] appelle la méthode [saveMany] de l’interface [IService]. Nous savons que fonctionnellement, les ajouts / mises à jour faits par cette méthode doivent l&#x27;être dans une transaction. Soit ils réussissent tous, soit aucun n’est fait. Nous avons présenté la méthode [saveMany] de la classe [ServiceImpl] et nous avons pointé le fait qu’elle n’avait pas la notion de transaction. La méthode [saveMany] du [proxy transactionnel] va enrichir la méthode [saveMany] de la classe [ServiceImpl] avec cette notion de transaction. Suivons le schéma ci-dessus :</p>
 <ol>
-<li>la couche [web] appelle la méthode [saveMany] de l’interface [IService]. </li>
-<li>la méthode [saveMany] de [proxy transactionnel] est exécutée. Elle commence une transaction. Il faut qu’elle ait les informations suffisantes pour le faire, notamment un objet [DataSource] pour obtenir une connexion au SGBD. Puis elle fait appel à la méthode [saveMany] de [ServiceImpl].</li>
-<li>celle-ci s’exécute. Elle fait appel de façon répétée à la couche [dao] pour exécuter les insertions ou les mises à jour. Les ordres SQL exécutés à cette occasion le sont dans la transaction commencée en 2.</li>
-<li>supposons qu’une de ces opérations échoue. La couche [dao] va laisser remonter une exception vers la couche [service], en l’occurrence la méthode [saveMany] de l’instance [ServiceImpl].</li>
-<li>celle-ci ne fait rien et laisse remonter l’exception jusqu’à la méthode [saveMany] de [proxy transactionnel].</li>
-<li>à réception de l’exception, la méthode [saveMany] de [proxy transactionnel] qui est propriétaire de la transaction fait un [rollback] de celle-ci pour annuler la totalité des mises à jour, puis laisse remonter l’exception jusqu’à la couche [web] qui sera chargée de la gérer.</li>
+  <li>la couche [web] appelle la méthode [saveMany] de l’interface [IService]. 
+  </li>
+  <li>la méthode [saveMany] de [proxy transactionnel] est exécutée. Elle commence une transaction. Il faut qu’elle ait les informations suffisantes pour le faire, notamment un objet [DataSource] pour obtenir une connexion au SGBD. Puis elle fait appel à la méthode [saveMany] de [ServiceImpl].
+  </li>
+  <li>celle-ci s’exécute. Elle fait appel de façon répétée à la couche [dao] pour exécuter les insertions ou les mises à jour. Les ordres SQL exécutés à cette occasion le sont dans la transaction commencée en 2.
+  </li>
+  <li>supposons qu’une de ces opérations échoue. La couche [dao] va laisser remonter une exception vers la couche [service], en l’occurrence la méthode [saveMany] de l’instance [ServiceImpl].
+  </li>
+  <li>celle-ci ne fait rien et laisse remonter l’exception jusqu’à la méthode [saveMany] de [proxy transactionnel].
+  </li>
+  <li>à réception de l’exception, la méthode [saveMany] de [proxy transactionnel] qui est propriétaire de la transaction fait un [rollback] de celle-ci pour annuler la totalité des mises à jour, puis laisse remonter l’exception jusqu’à la couche [web] qui sera chargée de la gérer.
+  </li>
 </ol>
+
 <p>A l’étape 4, nous avons supposé qu’une des  insertions ou des mises à jour échouait. Si ce n’est pas le cas, en [5] aucune exception ne remonte. Idem en [6]. Dans ce cas, la méthode [saveMany] de [proxy transactionnel] fait un [commit] de la transaction pour valider la totalité des mises à jour.</p>
 <p>Nous avons maintenant une idée plus précise de l’architecture mise en place par le bean [TransactionProxyFactoryBean]. Revenons sur la configuration de celui-ci :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
@@ -3646,35 +3840,49 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000443000000B2476A2576.png" style="display:inline-block; margin:4px;width:14.434cm;height:2.355cm;" class="odt-zoomable" data-zoom-src="images/1000000000000443000000B2476A2576.png" /></td></tr></table>
 
 <ul>
-<li>[proxy transactionnel] va gérer les transactions. Spring offre plusieurs stratégies de gestion de celles-ci. [proxy transactionnel] a besoin d’une référence sur le gestionnaire de transactions choisi.</li>
-<li>lignes 11 – 13 : définissent l’attribut [transactionManager] du bean [TransactionProxyFactoryBean] avec une référence sur un gestionnaire de transactions. Celui-ci est défini lignes 2 – 7.</li>
-<li>lignes 2-7 : le  gestionnaire de transactions est de type [DataSourceTransactionManager] :</li>
+  <li>[proxy transactionnel] va gérer les transactions. Spring offre plusieurs stratégies de gestion de celles-ci. [proxy transactionnel] a besoin d’une référence sur le gestionnaire de transactions choisi.
+  </li>
+  <li>lignes 11 – 13 : définissent l’attribut [transactionManager] du bean [TransactionProxyFactoryBean] avec une référence sur un gestionnaire de transactions. Celui-ci est défini lignes 2 – 7.
+  </li>
+  <li>lignes 2-7 : le  gestionnaire de transactions est de type [DataSourceTransactionManager] :
+  </li>
 </ul>
+
 <p><img src="images/100000000000027D000000BB274A2ADE.png" style="width:11.8cm;height:3.461cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000027D000000BB274A2ADE.png" /></p>
 <p>[DataSourceTransactionManager] est un gestionnaire de transactions adapté aux SGBD accédés via un objet [DataSource]. Il ne sait gérer que les transactions sur un unique SGBD. Il ne sait pas gérer des transactions distribuées sur plusieurs SGBD. Ici, nous n’avons qu’un seul SGBD. Aussi ce gestionnaire de transactions convient-il. Lorsque [proxy transactionnel] va démarrer une transaction, il va le faire sur une connexion attachée au thread. C’est cette connexion qui sera utilisée dans toutes les couches qui mènent à la base de données : [ServiceImpl, DaoImplCommon, SqlMapClientTemplate, JDBC].</p>
 <p>La classe [DataSourceTransactionManager] a besoin de connaître la source de données auprès de laquelle elle doit demander une connexion pour l’attacher au thread. Celle-ci est définie lignes 4-6 : c’est la même source de données que celle utilisée par la couche [dao] (cf paragraphe <a href="#spring-config-tests-service-firebird-xml">17.5.2</a>).</p>
 <ul>
-<li>
-<p>lignes 14-19 : l’attribut &quot;<strong> target </strong>&quot; indique la classe qui doit être interceptée, ici la classe [ServiceImpl]. Cette information est nécessaire pour deux raisons :</p>
+  <li>lignes 14-19 : l’attribut &quot;<b> target </b>&quot; indique la classe qui doit être interceptée, ici la classe [ServiceImpl]. Cette information est nécessaire pour deux raisons :
+    <ul>
+      <li>la classe [ServiceImpl] doit être instanciée puisque c’est elle qui assure le dialogue avec la couche [dao]
+      </li>
+      <li>[TransactionProxyFactoryBean] doit générer un proxy qui présente à la couche [web] la même interface que [ServiceImpl].
+      </li>
+    </ul>
+  </li>
+</ul>
+
 <ul>
-<li>la classe [ServiceImpl] doit être instanciée puisque c’est elle qui assure le dialogue avec la couche [dao]</li>
-<li>[TransactionProxyFactoryBean] doit générer un proxy qui présente à la couche [web] la même interface que [ServiceImpl].</li>
+  <li>lignes 21-27 : indiquent quelles méthodes de [ServiceImpl], le proxy doit intercepter. L’attribut [<b>transactionAttributes</b>], ligne 21, indique quelles méthodes de [ServiceImpl] nécessitent une transaction et quels sont les attributs de celle-ci :
+  </li>
+  <li>ligne 23 : les méthodes dont le nom commencent par <b>get</b> [getOne, getAll] s’exécutent dans une transaction d’attribut [<span style="color: #000000">PROPAGATION_REQUIRED,readOnly] :</span>
+    <ul>
+      <li><span style="color: #000000">PROPAGATION_REQUIRED : la méthode s’exécute dans une transaction s&#x27;il y en a déjà une attachée au thread, sinon une nouvelle est créée et la méthode s’exécute dedans.</span>
+      </li>
+      <li><span style="color: #000000">readOnly : transaction en lecture seule</span>
+      </li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>
-<p>lignes 21-27 : indiquent quelles méthodes de [ServiceImpl], le proxy doit intercepter. L’attribut [<strong>transactionAttributes</strong>], ligne 21, indique quelles méthodes de [ServiceImpl] nécessitent une transaction et quels sont les attributs de celle-ci :</p>
-</li>
-<li>ligne 23 : les méthodes dont le nom commencent par <strong>get</strong> [getOne, getAll] s’exécutent dans une transaction d’attribut [<span style="color: #000000">PROPAGATION_REQUIRED,readOnly] :</span><ul>
-<li><span style="color: #000000">PROPAGATION_REQUIRED : la méthode s’exécute dans une transaction s&#x27;il y en a déjà une attachée au thread, sinon une nouvelle est créée et la méthode s’exécute dedans.</span></li>
-<li><span style="color: #000000">readOnly : transaction en lecture seule</span></li>
-</ul>
-</li>
-</ul>
+
 <p><span style="color: #000000">Ici les méthodes [getOne] et [getAll] de [ServiceImpl] s’exécuteront dans une transaction alors qu&#x27;en fait ce n&#x27;est pas nécessaire. Il s&#x27;agit à chaque fois d&#x27;une opération constituée d&#x27;un unique ordre SELECT. On ne voit pas l&#x27;utilité de mettre ce SELECT dans une transaction.</span></p>
 <ul>
-<li><span style="color: #000000">ligne 24 : les méthodes dont le nom commencent par <strong>save,</strong> [saveOne, saveMany] s’exécutent dans une transaction d’attribut [PROPAGATION_REQUIRED].</span></li>
-<li><span style="color: #000000">ligne 25 : les méthodes [deleteOne] et [deleteMany] de [ServiceImpl] sont configurées de façon identique aux méthodes [saveOne, saveMany].</span></li>
+  <li><span style="color: #000000">ligne 24 : les méthodes dont le nom commencent par <b>save,</b> [saveOne, saveMany] s’exécutent dans une transaction d’attribut [PROPAGATION_REQUIRED].</span>
+  </li>
+  <li><span style="color: #000000">ligne 25 : les méthodes [deleteOne] et [deleteMany] de [ServiceImpl] sont configurées de façon identique aux méthodes [saveOne, saveMany].</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000">Dans notre couche [service], seules les méthodes [saveMany] et [deleteMany] ont besoin de s’exécuter dans une transaction. La configuration aurait pu être réduite aux lignes suivantes :</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
 <span class="odt-code-line">        <span style="color:#0000e1">&lt;property</span> <span style="color:#0000e1">name=</span><span style="color:#000080">&quot;transactionAttributes&quot;</span><span style="color:#0000e1">&gt;</span></span>
@@ -4005,22 +4213,33 @@
 <a id="__codelineno-29-157" name="__codelineno-29-157"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li><span style="color: #000000">lignes 19-22 : le programme teste des couches [dao] et [service] configurées par le fichier [spring-config-test-service-firebird.xml], celui étudié dans la section précédente.</span></li>
-<li><span style="color: #000000">les tests [test1] à [test6] sont identiques dans leur esprit à leurs homologues de même nom dans la classe de test [TestDaoFirebird] de la couche [dao]. La seule différence est que par configuration, les méthodes [saveOne] et [deleteOne] s’exécutent désormais dans une transaction.</span></li>
-<li>
-<p><span style="color: #000000">la méthode [test7] a pour but de tester les méthodes [saveMany] et [deleteMany]. On veut vérifier qu’elles s’exécutent bien dans une transaction. Commentons le code de cette méthode :</span></p>
-</li>
-<li>
-<p><span style="color: #000000">lignes 62-63 : on compte le nombre de personnes [nbPersonnes1] actuellement dans la liste</span></p>
-</li>
-<li><span style="color: #000000">lignes 67-72 : on crée trois personnes</span></li>
-<li><span style="color: #000000">lignes 73-83 : ces trois personnes sont sauvegardées par la méthode [saveMany] – ligne 77. Les deux premières personnes p1 et p2 ayant un id égal à -1 vont être ajoutées à la table [PERSONNES]. La personne p3 a elle un id égal à -2. Il ne s’agit donc pas d’une insertion mais d’une mise à jour. Celle-ci va échouer car il n’y a aucune personne avec un id égal à – 2 dans la table [PERSONNES]. La couche [dao] va donc lancer une exception qui va remonter jusqu’à la couche [service]. L’existence de cette exception est testée ligne 83.</span></li>
-<li><span style="color: #000000">à cause de l’exception précédente, la couche [service] devrait faire un [rollback] de l’ensemble des ordres SQL émis pendant l’exécution de la méthode [saveMany], ceci parce que cette méthode s’exécute dans une transaction. Lignes 86-87, on vérifie que le nombre de personnes de la liste n’a pas bougé et que donc les insertions de p1 et p2 n’ont pas eu lieu.</span></li>
-<li><span style="color: #000000">lignes 88-103 : on ajoute les seules personnes p1 et p2 et on vérifie qu’ensuite on a deux personnes de plus dans la liste.</span></li>
-<li><span style="color: #000000">lignes 106-114 : on supprime un groupe de personnes constitué des personnes p1 et p2 qu’on vient d’ajouter et d’une personne inexistante (id= -1). La méthode [deleteMany] est utilisée pour cela, ligne 108. Cette méthode va échouer car il n’y a aucune personne avec un id égal à – 1 dans la table [PERSONNES]. La couche [dao] va donc lancer une exception qui va remonter jusqu’à la couche [service]. L’existence de cette exception est testée ligne 114.</span></li>
-<li><span style="color: #000000">à cause de l’exception précédente, la couche [service] devrait faire un [rollback] de l’ensemble des ordres SQL émis pendant l’exécution de la méthode [deleteMany], ceci parce que cette méthode s’exécute dans une transaction. Lignes 116-117, on vérifie que le nombre de personnes de la liste n’a pas bougé et que donc les suppressions de p1 et p2 n’ont pas eu lieu.</span></li>
-<li><span style="color: #000000">ligne 122 : on supprime un groupe constitué des seules personnes p1 et p2. Cela devrait réussir. Le reste de la méthode vérifie que c’est bien le cas.</span></li>
+  <li><span style="color: #000000">lignes 19-22 : le programme teste des couches [dao] et [service] configurées par le fichier [spring-config-test-service-firebird.xml], celui étudié dans la section précédente.</span>
+  </li>
+  <li><span style="color: #000000">les tests [test1] à [test6] sont identiques dans leur esprit à leurs homologues de même nom dans la classe de test [TestDaoFirebird] de la couche [dao]. La seule différence est que par configuration, les méthodes [saveOne] et [deleteOne] s’exécutent désormais dans une transaction.</span>
+  </li>
+  <li><span style="color: #000000">la méthode [test7] a pour but de tester les méthodes [saveMany] et [deleteMany]. On veut vérifier qu’elles s’exécutent bien dans une transaction. Commentons le code de cette méthode :</span>
+  </li>
 </ul>
+
+<ul>
+  <li><span style="color: #000000">lignes 62-63 : on compte le nombre de personnes [nbPersonnes1] actuellement dans la liste</span>
+  </li>
+  <li><span style="color: #000000">lignes 67-72 : on crée trois personnes</span>
+  </li>
+  <li><span style="color: #000000">lignes 73-83 : ces trois personnes sont sauvegardées par la méthode [saveMany] – ligne 77. Les deux premières personnes p1 et p2 ayant un id égal à -1 vont être ajoutées à la table [PERSONNES]. La personne p3 a elle un id égal à -2. Il ne s’agit donc pas d’une insertion mais d’une mise à jour. Celle-ci va échouer car il n’y a aucune personne avec un id égal à – 2 dans la table [PERSONNES]. La couche [dao] va donc lancer une exception qui va remonter jusqu’à la couche [service]. L’existence de cette exception est testée ligne 83.</span>
+  </li>
+  <li><span style="color: #000000">à cause de l’exception précédente, la couche [service] devrait faire un [rollback] de l’ensemble des ordres SQL émis pendant l’exécution de la méthode [saveMany], ceci parce que cette méthode s’exécute dans une transaction. Lignes 86-87, on vérifie que le nombre de personnes de la liste n’a pas bougé et que donc les insertions de p1 et p2 n’ont pas eu lieu.</span>
+  </li>
+  <li><span style="color: #000000">lignes 88-103 : on ajoute les seules personnes p1 et p2 et on vérifie qu’ensuite on a deux personnes de plus dans la liste.</span>
+  </li>
+  <li><span style="color: #000000">lignes 106-114 : on supprime un groupe de personnes constitué des personnes p1 et p2 qu’on vient d’ajouter et d’une personne inexistante (id= -1). La méthode [deleteMany] est utilisée pour cela, ligne 108. Cette méthode va échouer car il n’y a aucune personne avec un id égal à – 1 dans la table [PERSONNES]. La couche [dao] va donc lancer une exception qui va remonter jusqu’à la couche [service]. L’existence de cette exception est testée ligne 114.</span>
+  </li>
+  <li><span style="color: #000000">à cause de l’exception précédente, la couche [service] devrait faire un [rollback] de l’ensemble des ordres SQL émis pendant l’exécution de la méthode [deleteMany], ceci parce que cette méthode s’exécute dans une transaction. Lignes 116-117, on vérifie que le nombre de personnes de la liste n’a pas bougé et que donc les suppressions de p1 et p2 n’ont pas eu lieu.</span>
+  </li>
+  <li><span style="color: #000000">ligne 122 : on supprime un groupe constitué des seules personnes p1 et p2. Cela devrait réussir. Le reste de la méthode vérifie que c’est bien le cas.</span>
+  </li>
+</ul>
+
 <p><span style="color: #000000">L’exécution des tests donne les résultats suivants :</span></p>
 <p><img src="images/100000000000018D0000010571318D11.png" style="width:7.35cm;height:4.83cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018D0000010571318D11.png" /></p>
 <p><span style="color: #000000">Les sept tests ont été réussis. Nous considèrerons notre couche [service] comme opérationnelle.</span></p>
@@ -4117,8 +4336,10 @@
 </code></pre></div>
 
 <ul>
-<li><span style="color: #000000">ligne 12 : l’url de la base de données Firebird. Nous continuons à utiliser la base qui a servi aux tests des couches [dao] et [service]</span></li>
+  <li><span style="color: #000000">ligne 12 : l’url de la base de données Firebird. Nous continuons à utiliser la base qui a servi aux tests des couches [dao] et [service]</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000">Nous déployons le projet web [mvc-personnes-03B] au sein de Tomcat :</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000015C0000008F166B9EAC.png" style="display:inline-block; margin:4px;width:6.451cm;height:2.649cm;" class="odt-zoomable" data-zoom-src="images/100000000000015C0000008F166B9EAC.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000135000000578B719C71.png" style="display:inline-block; margin:4px;width:5.72cm;height:1.61cm;" class="odt-zoomable" data-zoom-src="images/1000000000000135000000578B719C71.png" /></td></tr></table>
 
@@ -4158,17 +4379,26 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000454000001E38C609435.png" style="display:inline-block; margin:4px;width:14.658cm;height:6.391cm;" class="odt-zoomable" data-zoom-src="images/1000000000000454000001E38C609435.png" /></td></tr></table>
 
 <ul>
-<li><span style="color: #000000">version 3 : le SGBD est Postgres</span></li>
-<li><span style="color: #000000">version 4 : le SGBD est MySQL</span></li>
-<li><span style="color: #000000">version 5 : le SGBD est SQL Server Express 2005</span></li>
+  <li><span style="color: #000000">version 3 : le SGBD est Postgres</span>
+  </li>
+  <li><span style="color: #000000">version 4 : le SGBD est MySQL</span>
+  </li>
+  <li><span style="color: #000000">version 5 : le SGBD est SQL Server Express 2005</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000">Les changements se font aux endroits suivants :</span></p>
 <ul>
-<li><span style="color: #000000">la classe [DaoImplFirebird] implémente des fonctionnalités de la couche [dao] liées au SGBD Firebird.  Si ce besoin persiste, elle sera remplacée respectivement par les classes [DaoImplPostgres], [DaoImplMySQL] et [DaoImplSqlExpress].</span></li>
-<li><span style="color: #000000">le fichier de mapping [personnes-firebird.xml] d’iBATIS pour le SGBD Firebird va être remplacé respectivement par les fichiers de mapping [personnes-postgres.xml], [personnes-mysql.xml] et [personnes-sqlexpress.xml].</span></li>
-<li>la configuration de l’objet [DataSource] de la couche [dao] est spécifique à un SGBD. Elle va donc changer à chaque version.</li>
-<li>le pilote JDBC du SGBD change également à chaque version</li>
+  <li><span style="color: #000000">la classe [DaoImplFirebird] implémente des fonctionnalités de la couche [dao] liées au SGBD Firebird.  Si ce besoin persiste, elle sera remplacée respectivement par les classes [DaoImplPostgres], [DaoImplMySQL] et [DaoImplSqlExpress].</span>
+  </li>
+  <li><span style="color: #000000">le fichier de mapping [personnes-firebird.xml] d’iBATIS pour le SGBD Firebird va être remplacé respectivement par les fichiers de mapping [personnes-postgres.xml], [personnes-mysql.xml] et [personnes-sqlexpress.xml].</span>
+  </li>
+  <li>la configuration de l’objet [DataSource] de la couche [dao] est spécifique à un SGBD. Elle va donc changer à chaque version.
+  </li>
+  <li>le pilote JDBC du SGBD change également à chaque version
+  </li>
 </ul>
+
 <p>En-dehors de ces points, tout reste à l’identique. Dans la suite, nous décrivons ces nouvelles versions en ne nous attachant qu’aux seules nouveautés amenées par chacune d&#x27;elles.</p>
 
 

@@ -1219,9 +1219,12 @@
 
 <p>Ce fichier est identique à celui de la version précédente hormis quelques détails :</p>
 <ul>
-<li>ligne 6 : le nom d&#x27;affichage de l&#x27;application web a changé en [mvc-personne-05]</li>
-<li>ligne 18 : les Url traitées par l&#x27;application sont de la forme [/do/*]. Auparavant, seule l&#x27;Url [/main] était traitée. Maintenant, on a autant d&#x27;Url que d&#x27;actions à traiter.</li>
+  <li>ligne 6 : le nom d&#x27;affichage de l&#x27;application web a changé en [mvc-personne-05]
+  </li>
+  <li>ligne 18 : les Url traitées par l&#x27;application sont de la forme [/do/*]. Auparavant, seule l&#x27;Url [/main] était traitée. Maintenant, on a autant d&#x27;Url que d&#x27;actions à traiter.
+  </li>
 </ul>
+
 <p>La page d&#x27;accueil [index.jsp] change :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span style="color:#bf5f3f">&lt;%@ </span><span style="color:#3f7f7f">page </span><span style="color:#7f007f">language</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;java&quot; </span><span style="color:#7f007f">contentType</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;text/html; charset=ISO-8859-1&quot;</span></span>
@@ -1232,8 +1235,10 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 5 : la page [index.jsp] redirige le client vers l&#x27;url [/personne5/do/formulaire], ce qui revient à demander au contrôleur d&#x27;exécuter l&#x27;action [formulaire].</li>
+  <li>ligne 5 : la page [index.jsp] redirige le client vers l&#x27;url [/personne5/do/formulaire], ce qui revient à demander au contrôleur d&#x27;exécuter l&#x27;action [formulaire].
+  </li>
 </ul>
+
 <h2 id="104-le-code-des-vues">10.4. Le code des vues</h2>
 <p>Les vues [formulaire, réponse, erreurs] changent peu. L&#x27;unique changement vient du fait que l&#x27;action à accomplir n&#x27;est plus précisée de la même façon qu&#x27;auparavant où elle était définie dans un champ caché nommé [action] des formulaires postés. Maintenant elle est définie dans l&#x27;Url cible des formulaires postés, c.a.d. dans l&#x27;attribut [action] de la balise &lt;form&gt; :</p>
 <p>[formulaire.jsp] :</p>
@@ -1259,9 +1264,12 @@
 </code></pre></div>
 
 <ul>
-<li>ligne [13]: le paramètre [action] du formulaire réapparaît après avoir disparu un certain temps dans les versions précédentes. Pour comprendre la valeur de cet attribut ici, il faut se rappeler que toutes les Url traitées par l&#x27;application sont de la forme [/do/action]. Ligne [13], l&#x27;attribut [action] a pour valeur une Url relative (ne commençant pas par /). Aussi le navigateur va-t-il la compléter avec l&#x27;Url de la page actuellement affichée donc nécessairement une Url de la forme [/do/action]. Le dernier élément va être remplacé par l&#x27;Url relative de l&#x27;attribut [action] de la balise &lt;form&gt; pour donner l&#x27;Url [/do/validationFormulaire] comme cible du POST.</li>
-<li>le champ caché [action] a disparu</li>
+  <li>ligne [13]: le paramètre [action] du formulaire réapparaît après avoir disparu un certain temps dans les versions précédentes. Pour comprendre la valeur de cet attribut ici, il faut se rappeler que toutes les Url traitées par l&#x27;application sont de la forme [/do/action]. Ligne [13], l&#x27;attribut [action] a pour valeur une Url relative (ne commençant pas par /). Aussi le navigateur va-t-il la compléter avec l&#x27;Url de la page actuellement affichée donc nécessairement une Url de la forme [/do/action]. Le dernier élément va être remplacé par l&#x27;Url relative de l&#x27;attribut [action] de la balise &lt;form&gt; pour donner l&#x27;Url [/do/validationFormulaire] comme cible du POST.
+  </li>
+  <li>le champ caché [action] a disparu
+  </li>
 </ul>
+
 <p>[réponse.jsp] :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line">...</span>
@@ -1281,9 +1289,12 @@
 </code></pre></div>
 
 <ul>
-<li>ligne [7]: la cible du POST sera [/do/retourFormulaire]</li>
-<li>le champ caché [action] a disparu dans le formulaire des lignes 7-8.</li>
+  <li>ligne [7]: la cible du POST sera [/do/retourFormulaire]
+  </li>
+  <li>le champ caché [action] a disparu dans le formulaire des lignes 7-8.
+  </li>
 </ul>
+
 <p>[erreurs.jsp] :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line">...</span>
@@ -1302,13 +1313,16 @@
 </code></pre></div>
 
 <ul>
-<li>ligne [6]: la cible du POST sera [/do/retourFormulaire]</li>
-<li>le champ caché [action] a disparu dans le formulaire des lignes 6-7.</li>
+  <li>ligne [6]: la cible du POST sera [/do/retourFormulaire]
+  </li>
+  <li>le champ caché [action] a disparu dans le formulaire des lignes 6-7.
+  </li>
 </ul>
+
 <p>Le lecteur est invité à tester ces nouvelles vues selon le principe vu dans les versions précédentes.</p>
 <h2 id="105-le-controleur-servletpersonne">10.5. Le contrôleur [ServletPersonne]</h2>
 <p>Le contrôleur [ServletPersonne] de l&#x27;application web [/personne5] va traiter les actions suivantes :</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">n°</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">demande</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">origine</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">traitement</mark></b></p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">1</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[GET /personne5/do/formulaire]</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">url tapée par l&#x27;utilisateur</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- envoyer la vue [formulaire] vide</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">2</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[POST</p><p style="margin:0;">/personne5/do/validationFormulaire]</p><p style="margin:0;">avec paramètres [txtNom, txtAge]</p><p style="margin:0;">postés</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">clic sur le bouton</p><p style="margin:0;">[Envoyer] de la vue</p><p style="margin:0;">[formulaire]</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- vérifier les valeurs des paramètres [txtNom, txtAge]</p><p style="margin:0;">- si elles sont incorrectes, envoyer la vue [erreurs(erreurs)]</p><p style="margin:0;">- si elles sont correctes, envoyer la vue [reponse(nom,age)]</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">3</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[POST</p><p style="margin:0;">/personne5/do/retourFormulaire]</p><p style="margin:0;">sans paramètres postés</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">clic sur le lien [Retour au</p><p style="margin:0;">formulaire] des vues</p><p style="margin:0;">[réponse] et [erreurs].</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- envoyer la vue [formulaire] pré-remplie avec les dernières valeurs saisies</p></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">n°</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">demande</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">origine</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">traitement</mark></b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[GET /personne5/do/formulaire]</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">url tapée par l&#x27;utilisateur</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- envoyer la vue [formulaire] vide</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[POST</div><div style="margin:0 0 0.5em 0">/personne5/do/validationFormulaire]</div><div style="margin:0 0 0.5em 0">avec paramètres [txtNom, txtAge]</div><div style="margin:0 0 0.5em 0">postés</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">clic sur le bouton</div><div style="margin:0 0 0.5em 0">[Envoyer] de la vue</div><div style="margin:0 0 0.5em 0">[formulaire]</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- vérifier les valeurs des paramètres [txtNom, txtAge]</div><div style="margin:0 0 0.5em 0">- si elles sont incorrectes, envoyer la vue [erreurs(erreurs)]</div><div style="margin:0 0 0.5em 0">- si elles sont correctes, envoyer la vue [reponse(nom,age)]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">3</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[POST</div><div style="margin:0 0 0.5em 0">/personne5/do/retourFormulaire]</div><div style="margin:0 0 0.5em 0">sans paramètres postés</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">clic sur le lien [Retour au</div><div style="margin:0 0 0.5em 0">formulaire] des vues</div><div style="margin:0 0 0.5em 0">[réponse] et [erreurs].</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- envoyer la vue [formulaire] pré-remplie avec les dernières valeurs saisies</div></td></tr></table>
 
 <p>Le squelette du contrôleur [ServletPersonne] est identique à celui de la version précédente. Nous passons en revue les modifications amenées aux méthodes [doValidationFormulaire, doRetourFormulaire, doGet], les méthodes [init, doInit, doPost] ne changeant pas.</p>
 <h3 id="1051-la-methode-doget">10.5.1. La méthode [doGet]</h3>
@@ -1384,11 +1398,16 @@
 <a id="__codelineno-5-35" name="__codelineno-5-35"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 12 : on récupère l&#x27;action à exécuter. Elle est de la forme [/action].</li>
-<li>lignes 18-22 : traitement de l&#x27;action [/formulaire] demandée par une requête GET</li>
-<li>lignes 23-27 : traitement de l&#x27;action [/validationFormulaire] demandée par une requête POST</li>
-<li>lignes 28-32 : traitement de l&#x27;action [/retourFormulaire] demandée par une requête POST</li>
+  <li>ligne 12 : on récupère l&#x27;action à exécuter. Elle est de la forme [/action].
+  </li>
+  <li>lignes 18-22 : traitement de l&#x27;action [/formulaire] demandée par une requête GET
+  </li>
+  <li>lignes 23-27 : traitement de l&#x27;action [/validationFormulaire] demandée par une requête POST
+  </li>
+  <li>lignes 28-32 : traitement de l&#x27;action [/retourFormulaire] demandée par une requête POST
+  </li>
 </ul>
+
 <h3 id="1052-la-methode-dovalidationformulaire">10.5.2. La méthode [doValidationFormulaire]</h3>
 <p>Cette méthode traite la requête n° 2 [POST /personne5/do/validationFormulaire] avec [txtNom, txtAge] dans les éléments postés. Son code est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
@@ -1417,11 +1436,16 @@
 </code></pre></div></td></tr></table></div>
 <p>Les nouveautés :</p>
 <ul>
-<li>la méthode [doValidationFormulaire] envoie en réponse l&#x27;une des vues [réponse, erreurs]. Quelle que soit cette réponse, le contrôleur met dedans deux cookies, lignes 8-9. Un cookie est représenté par un objet [Cookie] dont le constructeur admet deux paramètres, la clé du cookie et la valeur associée à celle-ci.</li>
-<li>ligne 8 : la valeur saisie pour le nom est mise dans un cookie de clé &quot;nom&quot;</li>
-<li>ligne 9 : la valeur saisie pour l&#x27;âge est mise dans un cookie de clé &quot;age&quot;</li>
-<li>un cookie est ajouté à la réponse HTTP faite au client avec la méthode [response.addCookie]. Cette réponse n&#x27;est ici que préparée. Elle ne sera envoyée véritablement que par exécution de la page JSP de la vue envoyée au client.</li>
+  <li>la méthode [doValidationFormulaire] envoie en réponse l&#x27;une des vues [réponse, erreurs]. Quelle que soit cette réponse, le contrôleur met dedans deux cookies, lignes 8-9. Un cookie est représenté par un objet [Cookie] dont le constructeur admet deux paramètres, la clé du cookie et la valeur associée à celle-ci.
+  </li>
+  <li>ligne 8 : la valeur saisie pour le nom est mise dans un cookie de clé &quot;nom&quot;
+  </li>
+  <li>ligne 9 : la valeur saisie pour l&#x27;âge est mise dans un cookie de clé &quot;age&quot;
+  </li>
+  <li>un cookie est ajouté à la réponse HTTP faite au client avec la méthode [response.addCookie]. Cette réponse n&#x27;est ici que préparée. Elle ne sera envoyée véritablement que par exécution de la page JSP de la vue envoyée au client.
+  </li>
 </ul>
+
 <h3 id="1053-la-methode-doretourformulaire">10.5.3. La méthode [doRetourFormulaire]</h3>
 <p>Cette méthode traite la requête n° 2 [POST /personne5/do/retourFormulaire] sans éléments postés. Son code est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
@@ -1479,9 +1503,12 @@
 <p>Les nouveautés :</p>
 <p>La méthode [doRetourFormulaire] doit faire afficher un formulaire pré-rempli avec les dernières saisies faites. Dans la version précédente, celles-ci étaient dans la session. Dans celle-ci, on n&#x27;utilise plus la session mais des cookies pour mémoriser des éléments entre deux échanges client-serveur. Lorsque le client a demandé la validation du formulaire, il a reçu en réponse la vue [réponse] ou [erreurs] selon les cas, accompagnée de deux cookies libellés &quot; nom &quot; et &quot; age &quot;. Lors du clic sur le lien [Retour au formulaire] de ces deux vues qui provoque un POST sur l&#x27;Url [/do/retourFormulaire], le navigateur va renvoyer au serveur les deux cookies qu&#x27;il a reçus.</p>
 <ul>
-<li>lignes 4-18 : on récupère les valeurs des cookies libellés &quot; nom &quot; et &quot; age &quot;. Assez bizarrement, il n&#x27;existe pas de méthode permettant d&#x27;avoir la valeur d&#x27;un cookie à partir de sa clé. Aussi est-on obligé de passer en revue chacun des cookies reçu.</li>
-<li>ceci fait, les deux valeurs obtenues sont placées dans le modèle de la vue [formulaire] (lignes 20-21) afin que celle-ci les affiche.</li>
+  <li>lignes 4-18 : on récupère les valeurs des cookies libellés &quot; nom &quot; et &quot; age &quot;. Assez bizarrement, il n&#x27;existe pas de méthode permettant d&#x27;avoir la valeur d&#x27;un cookie à partir de sa clé. Aussi est-on obligé de passer en revue chacun des cookies reçu.
+  </li>
+  <li>ceci fait, les deux valeurs obtenues sont placées dans le modèle de la vue [formulaire] (lignes 20-21) afin que celle-ci les affiche.
+  </li>
 </ul>
+
 <h2 id="106-tests">10.6. Tests</h2>
 <p>Lancer ou relancer Tomcat après y avoir intégré le projet Eclipse [personne-mvc-05] puis demander l&#x27;url [http://localhost:8080/personne5].</p>
 

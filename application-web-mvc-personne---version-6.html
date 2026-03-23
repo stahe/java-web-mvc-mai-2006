@@ -1053,7 +1053,7 @@
 <h2 id="111-introduction">11.1. Introduction</h2>
 <p>Dans cette version, nous apportons la modification suivante :</p>
 <p>La version précédente n&#x27;a pas utilisé la session pour garder en mémoire des éléments entre deux échanges client / serveur. Elle a utilisé la technique des cookies, qui fait que les éléments à mémoriser sont envoyés au client par le serveur afin que celui-ci les lui renvoie lors du prochain échange. Dans cette nouvelle version, nous utilisons une technique proche, celles des champs cachés dans les formulaires. Il existe des différences entre ces deux techniques :</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>Cookies</b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b>Champs cachés</b></p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- le serveur place les éléments à mémoriser dans le flux HTTP qui précède le document HTML.</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- le serveur place les éléments à mémoriser dans le document HTML.</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- la technique nécessite que le navigateur accepte les cookies pour que celui-ci les renvoie au serveur lors de ses demandes GET ou POST.</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- la technique nécessite que tous les appels du client au serveur soient des POST afin que les champs cachés soient envoyés au serveur.</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- l&#x27;utilisateur a accès aux éléments mémorisés en faisant afficher les cookies reçus par son navigateur. La plupart des navigateurs proposent cette option.</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- l&#x27;utilisateur a accès aux éléments mémorisés en faisant afficher le code source du document HTML reçu.</p></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Cookies</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Champs cachés</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- le serveur place les éléments à mémoriser dans le flux HTTP qui précède le document HTML.</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- le serveur place les éléments à mémoriser dans le document HTML.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- la technique nécessite que le navigateur accepte les cookies pour que celui-ci les renvoie au serveur lors de ses demandes GET ou POST.</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- la technique nécessite que tous les appels du client au serveur soient des POST afin que les champs cachés soient envoyés au serveur.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- l&#x27;utilisateur a accès aux éléments mémorisés en faisant afficher les cookies reçus par son navigateur. La plupart des navigateurs proposent cette option.</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- l&#x27;utilisateur a accès aux éléments mémorisés en faisant afficher le code source du document HTML reçu.</div></td></tr></table>
 
 <p>La technique des champs cachés est utilisable ici car tous les appels du client sont de type POST.</p>
 <h2 id="112-le-projet-eclipse">11.2. Le projet Eclipse</h2>
@@ -1074,8 +1074,10 @@
 
 <p>Ce fichier est identique à celui de la version précédente hormis quelques détails :</p>
 <ul>
-<li>ligne 6 : le nom d&#x27;affichage de l&#x27;application web a changé en [mvc-personne-06]</li>
+  <li>ligne 6 : le nom d&#x27;affichage de l&#x27;application web a changé en [mvc-personne-06]
+  </li>
 </ul>
+
 <p>La page d&#x27;accueil [index.jsp] est identique à celle de l&#x27;application [/personne5] :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line">&lt;%@ <span style="color:#3f7f7f">page </span><span style="color:#7f007f">language</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;java&quot; </span><span style="color:#7f007f">contentType</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;text/html; charset=ISO-8859-1&quot;</span></span>
@@ -1108,10 +1110,14 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 6-9 : le formulaire qui sera posté au serveur lors du clic sur le lien des lignes 10-12</li>
-<li>ligne 6 : la cible du POST sera [/do/retourFormulaire]</li>
-<li>lignes 7-8 : les champs cachés [nom] et [age] seront postés. Leurs valeurs ${nom} et ${age} seront fixées par le contrôleur qui affichera [réponse.jsp]. Ce seront les valeurs saisies dans le formulaire.</li>
+  <li>lignes 6-9 : le formulaire qui sera posté au serveur lors du clic sur le lien des lignes 10-12
+  </li>
+  <li>ligne 6 : la cible du POST sera [/do/retourFormulaire]
+  </li>
+  <li>lignes 7-8 : les champs cachés [nom] et [age] seront postés. Leurs valeurs ${nom} et ${age} seront fixées par le contrôleur qui affichera [réponse.jsp]. Ce seront les valeurs saisies dans le formulaire.
+  </li>
 </ul>
+
 <p>[erreurs.jsp] :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line">...</span>

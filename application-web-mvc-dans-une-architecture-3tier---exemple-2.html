@@ -1005,10 +1005,14 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 5 : définit le bean nommé [dao] comme une instance de la classe [DaoImpl]. Après instanciation, la méthode [init] de l&#x27;instance est exécutée.</li>
-<li>lignes 7-10 : définissent le bean nommé [service] comme une instance de la classe [ServiceImpl].</li>
-<li>lignes 8-10 : la propriété [dao] de l&#x27;instance [DaoImpl] est initialisée avec la référence de la couche [dao] créée ligne 5. Rappelons que la classe [ServiceImpl] a bien la propriété [dao] et le setter qui va avec :</li>
+  <li>ligne 5 : définit le bean nommé [dao] comme une instance de la classe [DaoImpl]. Après instanciation, la méthode [init] de l&#x27;instance est exécutée.
+  </li>
+  <li>lignes 7-10 : définissent le bean nommé [service] comme une instance de la classe [ServiceImpl].
+  </li>
+  <li>lignes 8-10 : la propriété [dao] de l&#x27;instance [DaoImpl] est initialisée avec la référence de la couche [dao] créée ligne 5. Rappelons que la classe [ServiceImpl] a bien la propriété [dao] et le setter qui va avec :
+  </li>
 </ul>
+
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -1102,9 +1106,12 @@
 <a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 7 : le champ privé [service] n&#x27;est plus de type [ServiceImpl] mais de type [IService], c.a.d. du type de l&#x27;interface de la couche [service]. La couche [web] n&#x27;est donc plus liée à une implémentation particulière de cette interface.</li>
-<li>ligne 14 : initialisation du champ [service] à partir du fichier de configuration [spring-config.xml].</li>
+  <li>ligne 7 : le champ privé [service] n&#x27;est plus de type [ServiceImpl] mais de type [IService], c.a.d. du type de l&#x27;interface de la couche [service]. La couche [web] n&#x27;est donc plus liée à une implémentation particulière de cette interface.
+  </li>
+  <li>ligne 14 : initialisation du champ [service] à partir du fichier de configuration [spring-config.xml].
+  </li>
 </ul>
+
 <p>Ce sont les seules modifications à faire. Intégrons cette nouvelle application dans Tomcat, lançons celui-ci puis demandons l&#x27;Url [http://localhost:8080/personnes-02] :</p>
 <p><img src="images/100000000000029D000001041F5344F7.png" style="width:12.351cm;height:4.821cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029D000001041F5344F7.png" /></p>
 <h2 id="162-mise-en-archives-de-lapplication-web">16.2. Mise en archives de l’application web</h2>
@@ -1113,10 +1120,14 @@
 
 <p>Dans une version à venir, le groupe de personnes va être placée dans une table de base de données. </p>
 <ul>
-<li>Cela va induire une réécriture de la couche [<strong>dao</strong>]. Cela, on peut aisément le comprendre.</li>
-<li>La couche [<strong>service</strong>] va être également modifiée. Actuellement, son unique rôle est d’assurer un accès synchronisé aux données gérées par la couche [dao]. Dans ce but, nous avons synchronisé toutes les méthodes de la couche [service]. Nous avons expliqué pourquoi cette synchronisation était placée dans cette couche plutôt que dans la couche [dao]. Dans la nouvelle version, la couche [service] aura encore l’unique rôle de synchronisation des accès mais celle-ci sera assurée par des transactions de base de données plutôt que par une synchronisation de méthodes Java.</li>
-<li>La couche [<strong>web</strong>] va elle rester inchangée.</li>
+  <li>Cela va induire une réécriture de la couche [<b>dao</b>]. Cela, on peut aisément le comprendre.
+  </li>
+  <li>La couche [<b>service</b>] va être également modifiée. Actuellement, son unique rôle est d’assurer un accès synchronisé aux données gérées par la couche [dao]. Dans ce but, nous avons synchronisé toutes les méthodes de la couche [service]. Nous avons expliqué pourquoi cette synchronisation était placée dans cette couche plutôt que dans la couche [dao]. Dans la nouvelle version, la couche [service] aura encore l’unique rôle de synchronisation des accès mais celle-ci sera assurée par des transactions de base de données plutôt que par une synchronisation de méthodes Java.
+  </li>
+  <li>La couche [<b>web</b>] va elle rester inchangée.
+  </li>
 </ul>
+
 <p>Afin de faciliter le passage d’une version à l’autre, nous créons un nouveau projet Eclipse [mvc-personnes-02B], copie du projet précédent [mvc-personnes-02] mais où les couches [web, service, dao, entites] ont été mises dans des archives .jar :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000164000002BC0809F742.png" style="display:inline-block; margin:4px;width:4.71cm;height:9.26cm;" class="odt-zoomable" data-zoom-src="images/1000000000000164000002BC0809F742.png" /></td></tr></table>
 

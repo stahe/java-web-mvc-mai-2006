@@ -1037,9 +1037,12 @@
 </code></pre></div></td></tr></table></div>
 <p>MySQL 4.x semble plus pauvre que les deux SGBD précédents. Je n&#x27;ai pas pu mettre de contraintes (checks) à la table.</p>
 <ul>
-<li>ligne 10 : la table doit avoir le type [InnoDB] et non le type [MyISAM] qui ne supporte pas les transactions.</li>
-<li>ligne 2 : la clé primaire est de type <strong>auto_increment</strong>. Si on insère une ligne sans valeur pour la colonne ID de la table, MySQL générera automatiquement un nombre entier pour cette colonne. Cela va nous éviter de générer les clés primaires nous-mêmes.</li>
+  <li>ligne 10 : la table doit avoir le type [InnoDB] et non le type [MyISAM] qui ne supporte pas les transactions.
+  </li>
+  <li>ligne 2 : la clé primaire est de type <b>auto_increment</b>. Si on insère une ligne sans valeur pour la colonne ID de la table, MySQL générera automatiquement un nombre entier pour cette colonne. Cela va nous éviter de générer les clés primaires nous-mêmes.
+  </li>
 </ul>
+
 <p>La table [PERSONNES] pourrait avoir le contenu suivant :</p>
 <p><img src="images/1000000000000250000000B6397F308B.png" style="width:10.961cm;height:3.371cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000250000000B6397F308B.png" /></p>
 <p>Nous savons que lors de l&#x27;insertion d&#x27;un objet [Personne] par notre couche [dao], le champ [id] de cet objet est égal à -1 avant l&#x27;insertion et a une valeur différente de -1 ensuite, cette valeur étant la clé primaire affectée à la nouvelle ligne insérée dans la table [PERSONNES]. Voyons sur un exemple comment nous allons pouvoir connaître cette valeur.</p>
@@ -1213,26 +1216,40 @@
 
 <p>C’est le même contenu que [personnes-firebird.xml] aux détails près suivants :</p>
 <ul>
-<li><span style="color: #000000">l’ordre SQL &quot; Personne.insertOne &quot; a changé lignes 29-37 :</span></li>
-<li><span style="color: #000000">l&#x27;ordre SQL d&#x27;insertion est exécuté avant l&#x27;ordre SELECT qui va permettre de récupérer la valeur de la clé primaire de la ligne insérée</span></li>
-<li><span style="color: #000000">l&#x27;ordre SQL d&#x27;insertion n&#x27;a pas de valeur pour la colonne ID de la table [PERSONNES]</span></li>
+  <li><span style="color: #000000">l’ordre SQL &quot; Personne.insertOne &quot; a changé lignes 29-37 :</span>
+  </li>
+  <li><span style="color: #000000">l&#x27;ordre SQL d&#x27;insertion est exécuté avant l&#x27;ordre SELECT qui va permettre de récupérer la valeur de la clé primaire de la ligne insérée</span>
+  </li>
+  <li><span style="color: #000000">l&#x27;ordre SQL d&#x27;insertion n&#x27;a pas de valeur pour la colonne ID de la table [PERSONNES]</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000">Cela reflète l&#x27;exemple d&#x27;insertion que nous avons commenté paragraphe <a href="#dao-mysql-exemple-insertion">19.1</a>.</span></p>
 <p><span style="color: #000000"><a id="pb-select-after-insert-mysql"></a>On notera qu&#x27;il y a peut-être là une source possible de problèmes entre threads concurrents. Imaginons deux threads Th1 et Th2 qui font une insertion en même temps. Il y a au total quatre ordres SQL à émettre. Supposons qu&#x27;ils soient faits dans l&#x27;ordre suivant :</span></p>
 <ol>
-<li><span style="color: #000000">insertion I1 de Th1</span></li>
-<li><span style="color: #000000">insertion I2 de Th2</span></li>
-<li><span style="color: #000000">select S1 de Th1</span></li>
-<li><span style="color: #000000">select S2 de Th2</span></li>
+  <li><span style="color: #000000">insertion I1 de Th1</span>
+  </li>
+  <li><span style="color: #000000">insertion I2 de Th2</span>
+  </li>
+  <li><span style="color: #000000">select S1 de Th1</span>
+  </li>
+  <li><span style="color: #000000">select S2 de Th2</span>
+  </li>
 </ol>
+
 <p><span style="color: #000000">En 3, Th1 récupère la clé primaire générée lors de la dernière insertion, donc celle de Th2 et non la sienne. Je ne sais pas si la méthode [insert] d&#x27;iBATIS est protégée pour ce cas de figure. Nous allons supposer qu&#x27;elle le gère proprement. Si ce n&#x27;était pas le cas, il nous faudrait dériver la classe d’implémentation [DaoImplCommon] de la couche [dao] en une classe [DaoImplMySQL] où la méthode [insertPersonne] serait synchronisée. Ceci ne résoudrait le problème que pour les threads de notre application. Si ci-dessus, Th1 et Th2 sont des threads de deux applications différentes, il faudrait alors résoudre le problème à la fois avec des transactions et un niveau d&#x27;étanchéité adéquat (isolation level) entre transactions. Le niveau [serializable] dans lequel les transactions sont exécutées comme si elles s&#x27;exécutaient séquentiellement serait approprié.</span></p>
 <p><span style="color: #000000">On notera que ce problème n&#x27;existe pas avec les SGBD Firebird et Postgres qui eux font le SELECT avant l&#x27;INSERT. Si on a par exemple la séquence :</span></p>
 <ol>
-<li><span style="color: #000000">select S1 de Th1</span></li>
-<li><span style="color: #000000">select S2 de Th2</span></li>
-<li><span style="color: #000000">insertion I1 de Th1</span></li>
-<li><span style="color: #000000">insertion I2 de Th2</span></li>
+  <li><span style="color: #000000">select S1 de Th1</span>
+  </li>
+  <li><span style="color: #000000">select S2 de Th2</span>
+  </li>
+  <li><span style="color: #000000">insertion I1 de Th1</span>
+  </li>
+  <li><span style="color: #000000">insertion I2 de Th2</span>
+  </li>
 </ol>
+
 <p><span style="color: #000000">Aux étapes 1 et 2, Th1 et Th2 récupèrent des valeurs de clé primaire auprès du même générateur. Cette opération est normalement atomique, et Th1 et Th2 vont récupérer deux valeurs différentes. Si l&#x27;opération n&#x27;était pas atomique, et que Th1 et Th2 récupéraient deux valeurs identiques, l&#x27;insertion faite en 4 par Th2 échouerait pour cause de doublon de clé primaire. C&#x27;est une erreur tout à fait récupérable et Th2 peut retenter l&#x27;insertion.</span></p>
 <p><span style="color: #000000">On va laisser l&#x27;opération &quot; Personne.insertOne &quot; telle qu&#x27;elle est actuellement dans le fichier [personnes-mysql.xml] mais le lecteur doit avoir conscience qu&#x27;il y a là potentiellement un problème.</span></p>
 <p><span style="color: #000000">La classe d’implémentation [DaoImplCommon] de la couche [dao] est celle des deux versions précédentes.</span></p>
@@ -1277,9 +1294,12 @@
 </code></pre></div>
 
 <ul>
-<li><span style="color: #000000">lignes 5-19 : le bean [dataSource] désigne maintenant la base [MySQL] [dbpersonnes] dont l’administrateur est [root] sans mot de passe. Le lecteur modifiera cette configuration selon son propre environnement.</span></li>
-<li><span style="color: #000000">ligne 31 : la classe [DaoImplCommon] est la classe d&#x27;implémentation de la couche [dao]</span></li>
+  <li><span style="color: #000000">lignes 5-19 : le bean [dataSource] désigne maintenant la base [MySQL] [dbpersonnes] dont l’administrateur est [root] sans mot de passe. Le lecteur modifiera cette configuration selon son propre environnement.</span>
+  </li>
+  <li><span style="color: #000000">ligne 31 : la classe [DaoImplCommon] est la classe d&#x27;implémentation de la couche [dao]</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000">Ces modifications faites, on peut passer aux tests.</span></p>
 <h2 id="194-les-tests-des-couches-dao-et-service">19.4. Les tests des couches [dao] et [service]</h2>
 <p><span style="color: #000000">Les tests des couches [dao] et [service] sont les mêmes que pour la version [Firebird]. Les résultats obtenus sont les suivants :</span></p>

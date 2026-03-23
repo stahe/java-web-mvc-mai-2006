@@ -1064,17 +1064,24 @@
 <h2 id="121-introduction">12.1. Introduction</h2>
 <p>Dans cette version, nous supposons qu&#x27;il peut y avoir des navigateurs clients qui ont inhibé :</p>
 <ol>
-<li>le renvoi des cookies qu&#x27;envoie le serveur</li>
-<li>l&#x27;exécution de code Javascript embarqué dans les pages HTML affichées</li>
+  <li>le renvoi des cookies qu&#x27;envoie le serveur
+  </li>
+  <li>l&#x27;exécution de code Javascript embarqué dans les pages HTML affichées
+  </li>
 </ol>
+
 <p>On veut néanmoins que ce type de navigateurs puisse utiliser notre application. Le point 2 nous ramène à la version 2 de notre application, le Javascript ayant été utilisé à partir de la version 3. La version 2 faisait fonctionner l&#x27;application sans Javascript donc le point 2 est résolu.</p>
 <p>Le point 1 peut être délicat ou non à gérer. La version 6 de notre application fonctionnait sans cookies. En fusionnant les versions 2 et 6, nous obtenons le résultat demandé. Nous allons ajouter une contrainte supplémentaire : l&#x27;application doit gérer une session. Ce n&#x27;est pas une contrainte dénuée de sens. Dans une application où les utilisateurs doivent s&#x27;authentifier, le serveur doit mémoriser le couple (identifiant / mot de passe) de l&#x27;utilisateur pour lui éviter de s&#x27;authentifier à chaque page qu&#x27;il demande.</p>
 <p>Nous avons utilisé jusqu&#x27;à maintenant trois solutions pour mémoriser des informations au fil des échanges client / serveur : </p>
 <ol>
-<li>la session</li>
-<li>les cookies</li>
-<li>les champs cachés.</li>
+  <li>la session
+  </li>
+  <li>les cookies
+  </li>
+  <li>les champs cachés.
+  </li>
 </ol>
+
 <p>La solution 2 peut être éliminée puisque le navigateur client peut avoir inhibé l&#x27;utilisation des cookies.</p>
 <p>La solution 3 est celle de la version 6 précédemment étudiée. Elle ne peut être utilisée pour des raisons de sécurité. Si le couple (login / mot de passe) est encapsulé dans chaque page envoyée au navigateur, cela veut dire qu&#x27;il transite sur le réseau à chaque échange client / serveur. Cela n&#x27;est pas bon pour la sécurité de l&#x27;application. On peut alors envisager d&#x27;utiliser le protocole HTTPS qui crypte les échanges client / serveur. Mais l&#x27;utiliser pour chaque page de l&#x27;application va alourdir la charge du serveur.</p>
 <p>On pourrait vouloir éliminer la solution 1 parce qu&#x27;elle est également à base de cookies. Lors du premier échange client / serveur, le serveur envoie au client un jeton de session que celui-ci va renvoyer au serveur à chaque nouvelle demande. Grâce à ce jeton, le serveur va pouvoir reconnaître son client et lui affecter des informations qu&#x27;il avait mémorisées lors d&#x27;un échange précédent. Le jeton de session est envoyé par le serveur dans un cookie. Le navigateur qui n&#x27;a pas inhibé ses cookies peut lui renvoyer ce cookie lors de ses demandes suivantes. S&#x27;il a inhibé ses cookies, il dispose d&#x27;une autre solution : il peut inclure le jeton de session dans l&#x27;Url qu&#x27;il demande. C&#x27;est ce que nous voyons maintenant en reprenant l&#x27;étude du fichier [index.jsp] de la version 4 :</p>
@@ -1127,10 +1134,14 @@
 <a id="__codelineno-1-7" name="__codelineno-1-7"></a>Date: Tue, 23 May 2006 09:10:05 GMT
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 1 : le serveur demande au client de se rediriger</li>
-<li>ligne 3 : le serveur envoie un jeton de session associé à l&#x27;attribut [JSESSIONID]</li>
-<li>ligne 4 : l&#x27;Url de redirection contient le jeton de session. La balise &lt;c:redirect&gt; l&#x27;y a placé parce que le client n&#x27;avait pas envoyé de cookie de session.</li>
+  <li>ligne 1 : le serveur demande au client de se rediriger
+  </li>
+  <li>ligne 3 : le serveur envoie un jeton de session associé à l&#x27;attribut [JSESSIONID]
+  </li>
+  <li>ligne 4 : l&#x27;Url de redirection contient le jeton de session. La balise &lt;c:redirect&gt; l&#x27;y a placé parce que le client n&#x27;avait pas envoyé de cookie de session.
+  </li>
 </ul>
+
 <p>Le navigateur, à qui on a demandé de se rediriger, a ensuite fait la demande suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
@@ -1153,9 +1164,12 @@
 <a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="n">Cookie</span><span class="p">:</span> <span class="n">JSESSIONID</span><span class="o">=</span><span class="mi">1</span><span class="n">ACA010A6BA28FB9E30A1D3184F574BC</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 1 : il demande l&#x27;Url de redirection, jeton de session inclus. C&#x27;est pourquoi sur la copie d&#x27;écran, le navigateur affiche-t-il cette Url.</li>
-<li>ligne 10 : le navigateur renvoie le jeton de session que lui a envoyé dans l&#x27;échange précédent le serveur. C&#x27;est le fonctionnement normal des cookies lorsque ceux-ci sont autorisés sur le navigateur client. Si ce n&#x27;est pas le cas, les cookies reçus ne sont pas renvoyés.</li>
+  <li>ligne 1 : il demande l&#x27;Url de redirection, jeton de session inclus. C&#x27;est pourquoi sur la copie d&#x27;écran, le navigateur affiche-t-il cette Url.
+  </li>
+  <li>ligne 10 : le navigateur renvoie le jeton de session que lui a envoyé dans l&#x27;échange précédent le serveur. C&#x27;est le fonctionnement normal des cookies lorsque ceux-ci sont autorisés sur le navigateur client. Si ce n&#x27;est pas le cas, les cookies reçus ne sont pas renvoyés.
+  </li>
 </ul>
+
 <p>Le serveur a répondu la chose suivante à cette seconde demande :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
 <span class="normal"><a href="#__codelineno-3-2">2</a></span>
@@ -1281,27 +1295,39 @@
 <a id="__codelineno-7-33" name="__codelineno-7-33"></a><span class="n">Date</span><span class="p">:</span> <span class="n">Tue</span><span class="p">,</span> <span class="mi">23</span> <span class="n">May</span> <span class="mi">2006</span> <span class="mi">09</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">55</span> <span class="n">GMT</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 1-9 : la demande n° 1 du navigateur. Il n&#x27;envoie pas de cookie de session.</li>
-<li>lignes 11-17 : la réponse du serveur qui lui demande de se rediriger vers une autre Url. Il envoie un cookie de session ligne 13 : la balise &lt;c:redirect&gt; a inclus le jeton dans l&#x27;Url de redirection ligne 14.</li>
-<li>lignes 19-27 : la demande n° 2 du navigateur. Il ne renvoie pas le cookie de session que vient de lui envoyer le serveur parce que ses cookies sont inhibés.</li>
-<li>lignes 29-33 : la réponse du serveur. On peut constater que bien que le navigateur ne lui ait pas envoyé de cookie de session, il ne redémarre cependant pas une nouvelle session comme on aurait pu s&#x27;y attendre. On voit cela au fait qu&#x27;il n&#x27;envoie l&#x27;entête HTTP [Set-Cookie] comme il l&#x27;avait fait ligne 13. Cela signifie qu&#x27;il continue la session précédente. Il a pu retrouver celle-ci grâce au jeton de session présent dans l&#x27;Url demandée par le navigateur ligne 19.</li>
+  <li>lignes 1-9 : la demande n° 1 du navigateur. Il n&#x27;envoie pas de cookie de session.
+  </li>
+  <li>lignes 11-17 : la réponse du serveur qui lui demande de se rediriger vers une autre Url. Il envoie un cookie de session ligne 13 : la balise &lt;c:redirect&gt; a inclus le jeton dans l&#x27;Url de redirection ligne 14.
+  </li>
+  <li>lignes 19-27 : la demande n° 2 du navigateur. Il ne renvoie pas le cookie de session que vient de lui envoyer le serveur parce que ses cookies sont inhibés.
+  </li>
+  <li>lignes 29-33 : la réponse du serveur. On peut constater que bien que le navigateur ne lui ait pas envoyé de cookie de session, il ne redémarre cependant pas une nouvelle session comme on aurait pu s&#x27;y attendre. On voit cela au fait qu&#x27;il n&#x27;envoie l&#x27;entête HTTP [Set-Cookie] comme il l&#x27;avait fait ligne 13. Cela signifie qu&#x27;il continue la session précédente. Il a pu retrouver celle-ci grâce au jeton de session présent dans l&#x27;Url demandée par le navigateur ligne 19.
+  </li>
 </ul>
+
 <p>On retiendra que le serveur suit une session en récupérant le jeton de session envoyé par le client, de deux façons possibles :</p>
 <ul>
-<li>dans l&#x27;entête HTTP [Set-Cookie] envoyé par le client</li>
-<li>dans l&#x27;Url demandée par le client</li>
+  <li>dans l&#x27;entête HTTP [Set-Cookie] envoyé par le client
+  </li>
+  <li>dans l&#x27;Url demandée par le client
+  </li>
 </ul>
+
 <p>Maintenant, avec le même navigateur, demandons de nouveau l&#x27;Url [http://localhost:8080/personne4] en la tapant à la main, comme il avait été fait lorsque les cookies étaient autorisés. On obtient alors la page suivante :</p>
 <p><img src="images/10000000000001DD000000E82DD0E474.png" style="width:8.83cm;height:4.3cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001DD000000E82DD0E474.png" /></p>
 <p>On a un résultat différent de celui obtenu  lorsque les cookies étaient autorisés : le jeton de session est dans l&#x27;Url affichée par le navigateur. Exliquons ce résultat sans étudier les échanges HTTP qui ont eu lieu :</p>
 <p><strong>[cookies autorisés]</strong></p>
 <ul>
-<li>lors de la seconde demande de l&#x27;Url [http://localhost:8080/personne4], le navigateur client avait renvoyé le cookie de session qu&#x27;il avait reçu du serveur lors de la première demande de cette même Url. La balise &lt;c:redirect&gt; n&#x27;avait donc pas inclus le jeton de session dans l&#x27;adresse de redirection.</li>
+  <li>lors de la seconde demande de l&#x27;Url [http://localhost:8080/personne4], le navigateur client avait renvoyé le cookie de session qu&#x27;il avait reçu du serveur lors de la première demande de cette même Url. La balise &lt;c:redirect&gt; n&#x27;avait donc pas inclus le jeton de session dans l&#x27;adresse de redirection.
+  </li>
 </ul>
+
 <p><strong>[cookies inhibés]</strong></p>
 <ul>
-<li>lors de la seconde demande de l&#x27;Url [http://localhost:8080/personne4], le navigateur client n&#x27;envoie pas le cookie de session qu&#x27;il a reçu du serveur lors de la première demande de cette même Url, puisque ses cookies sont inhibés. La balise &lt;c:redirect&gt; inclut donc le jeton de session dans l&#x27;adresse de redirection. C&#x27;est pourquoi on le trouve sur la copie d&#x27;écran ci-dessus.</li>
+  <li>lors de la seconde demande de l&#x27;Url [http://localhost:8080/personne4], le navigateur client n&#x27;envoie pas le cookie de session qu&#x27;il a reçu du serveur lors de la première demande de cette même Url, puisque ses cookies sont inhibés. La balise &lt;c:redirect&gt; inclut donc le jeton de session dans l&#x27;adresse de redirection. C&#x27;est pourquoi on le trouve sur la copie d&#x27;écran ci-dessus.
+  </li>
 </ul>
+
 <p>Les balises <strong>&lt;c:redirect&gt;</strong> et <strong>&lt;c:url&gt;</strong> permettent d&#x27;inclure le jeton de session dans les Url. C&#x27;est la solution qui est proposée ici.</p>
 <h2 id="122-le-projet-eclipse">12.2. Le projet Eclipse</h2>
 <p>Pour créer le projet Eclipse [mvc-personne-07] de l&#x27;application web [/personne7], on dupliquera le projet [mvc-personne-06] en suivant la procédure décrite au paragraphe  <a href="application-web-mvc-personne---version-2.html#personne2-eclipse">6.2</a>.</p>
@@ -1368,11 +1394,16 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 14 : l&#x27;Url cible du POST est écrite avec la balise &lt;c:url&gt; afin que le jeton de session y soit au cas où le client serait un navigateur n&#x27;envoyant pas l&#x27;entête HTTP [Cookie].</li>
-<li>le formulaire a deux boutons de type [submit] : [Envoyer] (ligne 28) et [Effacer] (ligne 30). Les deux boutons portent le même nom : <em>bouton</em>. Au moment du POST, le navigateur enverra le paramètre :</li>
-<li><em>bouton=Envoyer</em> si le POST a été provoqué par le bouton [Envoyer]</li>
-<li><em>bouton=Effacer</em> si le POST a été provoqué par le bouton [Effacer]</li>
+  <li>ligne 14 : l&#x27;Url cible du POST est écrite avec la balise &lt;c:url&gt; afin que le jeton de session y soit au cas où le client serait un navigateur n&#x27;envoyant pas l&#x27;entête HTTP [Cookie].
+  </li>
+  <li>le formulaire a deux boutons de type [submit] : [Envoyer] (ligne 28) et [Effacer] (ligne 30). Les deux boutons portent le même nom : <i>bouton</i>. Au moment du POST, le navigateur enverra le paramètre :
+  </li>
+  <li><i>bouton=Envoyer</i> si le POST a été provoqué par le bouton [Envoyer]
+  </li>
+  <li><i>bouton=Effacer</i> si le POST a été provoqué par le bouton [Effacer]
+  </li>
 </ul>
+
 <p>C&#x27;est ce paramètre qui nous aidera à définir l&#x27;action exacte à faire, l&#x27;Url [/do/validationFormulaire] correspondant maintenant à deux actions distinctes.</p>
 <h3 id="1242-la-vue-reponse">12.4.2. La vue [réponse]</h3>
 <p><img src="images/10000000000000FC000000DF7959044F.png" style="width:4.671cm;height:4.129cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000FC000000DF7959044F.png" /></p>
@@ -1408,8 +1439,10 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 24 : l&#x27;Url cible du HREF est écrite avec la balise &lt;c:url&gt; afin que le jeton de session y soit au cas où le client serait un navigateur n&#x27;envoyant pas l&#x27;entête HTTP [Cookie].</li>
+  <li>ligne 24 : l&#x27;Url cible du HREF est écrite avec la balise &lt;c:url&gt; afin que le jeton de session y soit au cas où le client serait un navigateur n&#x27;envoyant pas l&#x27;entête HTTP [Cookie].
+  </li>
 </ul>
+
 <h3 id="1243-la-vue-erreurs">12.4.3. La vue [erreurs]</h3>
 <p><img src="images/100000000000020C000000CF2FE8287F.png" style="width:9.7cm;height:3.829cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000020C000000CF2FE8287F.png" /></p>
 <p>[erreurs.jsp] :</p>
@@ -1438,8 +1471,10 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 18 : l&#x27;Url cible du HREF est écrite avec la balise &lt;c:url&gt; afin que le jeton de session y soit au cas où le client serait un navigateur n&#x27;envoyant pas l&#x27;entête HTTP [Cookie].</li>
+  <li>ligne 18 : l&#x27;Url cible du HREF est écrite avec la balise &lt;c:url&gt; afin que le jeton de session y soit au cas où le client serait un navigateur n&#x27;envoyant pas l&#x27;entête HTTP [Cookie].
+  </li>
 </ul>
+
 <p>Le lecteur est invité à tester ces nouvelles vues selon le principe vu dans les versions précédentes.</p>
 <h2 id="125-le-controleur-servletpersonne">12.5. Le contrôleur [ServletPersonne]</h2>
 <p>Le contrôleur [ServletPersonne] de l&#x27;application web [/personne7] est le suivant : </p>
@@ -1690,12 +1725,18 @@
 <a id="__codelineno-8-123" name="__codelineno-8-123"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 35 : l&#x27;action [/retourFormulaire] est faite par un GET et non plus par un POST comme dans la version précédente.</li>
-<li>lignes 70-87 :  l&#x27;action [/validationFormulaire] est faite par un POST provoqué par un clic sur l&#x27;un des boutons [Envoyer] ou [Effacer] de la vue [formulaire]. La méthode [doValidationFormulaire] fait traiter ces deux cas par deux méthodes différentes.</li>
-<li>lignes 90-103 : la méthode [doEnvoyer] correspond à la méthode [doValidationFormulaire] de la version précédente. Les données saisies sont mises dans la session (lignes 96-98) alors dans la version précédente elles étaient placées dans la requête.</li>
-<li>lignes 58-67 : la nouvelle méthode [doEffacer] doit afficher un formulaire vide. On pourrait faire appel à la méthode [doInit] qui fait déjà ce travail. Ici, on en profite pour également effacer les éléments [nom, age] de la session afin que celle-ci continue à refléter le dernier état du formulaire.</li>
-<li>lignes 50-55 : demandent l&#x27;affichage de la vue [formulaire] sans initialisation apparente du modèle de cette vue. Ce modèle est en fait constitué des éléments [nom, age] déjà dans la session. Il n&#x27;y a pas lieu de faire davantage.</li>
+  <li>ligne 35 : l&#x27;action [/retourFormulaire] est faite par un GET et non plus par un POST comme dans la version précédente.
+  </li>
+  <li>lignes 70-87 :  l&#x27;action [/validationFormulaire] est faite par un POST provoqué par un clic sur l&#x27;un des boutons [Envoyer] ou [Effacer] de la vue [formulaire]. La méthode [doValidationFormulaire] fait traiter ces deux cas par deux méthodes différentes.
+  </li>
+  <li>lignes 90-103 : la méthode [doEnvoyer] correspond à la méthode [doValidationFormulaire] de la version précédente. Les données saisies sont mises dans la session (lignes 96-98) alors dans la version précédente elles étaient placées dans la requête.
+  </li>
+  <li>lignes 58-67 : la nouvelle méthode [doEffacer] doit afficher un formulaire vide. On pourrait faire appel à la méthode [doInit] qui fait déjà ce travail. Ici, on en profite pour également effacer les éléments [nom, age] de la session afin que celle-ci continue à refléter le dernier état du formulaire.
+  </li>
+  <li>lignes 50-55 : demandent l&#x27;affichage de la vue [formulaire] sans initialisation apparente du modèle de cette vue. Ce modèle est en fait constitué des éléments [nom, age] déjà dans la session. Il n&#x27;y a pas lieu de faire davantage.
+  </li>
 </ul>
+
 <h2 id="126-tests">12.6. Tests</h2>
 <p>Lancer ou relancer Tomcat après y avoir intégré le projet Eclipse [personne-mvc-07] puis demander l&#x27;url [http://localhost:8080/personne7] avec un navigateur dont on a inhibé les cookies et supprimé ceux existant déjà. On obtient la réponse suivante :</p>
 <p><img src="images/10000000000001F1000000F0D47059AE.png" style="width:9.2cm;height:4.45cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F1000000F0D47059AE.png" /></p>

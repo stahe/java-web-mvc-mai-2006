@@ -1103,9 +1103,12 @@
 <a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>ligne 6 : la couche [dao] a été instanciée par la création explicite d&#x27;une instance [DaoImpl]</li>
-<li>ligne 9 : la couche [service] a été instanciée par la création explicite d&#x27;une instance [ServiceImpl]</li>
+  <li>ligne 6 : la couche [dao] a été instanciée par la création explicite d&#x27;une instance [DaoImpl]
+  </li>
+  <li>ligne 9 : la couche [service] a été instanciée par la création explicite d&#x27;une instance [ServiceImpl]
+  </li>
 </ul>
+
 <p>Rappelons que les classes [DaoImpl] et [ServiceImpl] implémentent des interfaces, respectivement les interfaces [IDao] et [IService]. Dans des versions à venir, l&#x27;interface [IDao] sera implémentée par une classe gérant une liste des personnes placée en base de données. Appelons cette classe [DaoBD] pour l&#x27;exemple. Remplacer l&#x27;implémentation [DaoImpl] de la couche [dao) par l&#x27;implémentation [DaoBD] va nécessiter une recompilation de la couche [web]. En effet, la ligne 6 ci-dessus qui instancie la couche [dao] avec un type [DaoImpl] doit désormais l&#x27;instancier avec un type [DaoBD]. Notre couche [web] est donc dépendante de la couche [dao]. La ligne 9 ci-dessus montre qu&#x27;elle est également dépendante de la couche [service].</p>
 <p>Spring IoC va nous permettre de créer une application 3tier où les couches sont indépendantes des autres, c.a.d. que changer l&#x27;une ne nécessite pas de changer les autres. Cela apporte une grande souplesse dans l&#x27;évolution de l&#x27;application.</p>
 <p>L&#x27;architecture précédente va évoluer de la façon suivante :</p>
@@ -1113,10 +1116,14 @@
 
 <p>Avec [Spring IoC], le contrôleur [Application] va obtenir la référence dont il a besoin sur la couche [service] de la façon suivante :</p>
 <ol>
-<li>dans sa méthode [init], il va demander à la couche [Spring IoC] de lui donner une référence sur la couche [service]</li>
-<li>[Spring IoC] va alors exploiter un fichier XML de configuration qui lui indique quelle classe doit être instanciée et comment elle doit être initialisée.</li>
-<li>[Spring IoC] rend au contrôleur [Application] la référence de la couche [service] créée.</li>
+  <li>dans sa méthode [init], il va demander à la couche [Spring IoC] de lui donner une référence sur la couche [service]
+  </li>
+  <li>[Spring IoC] va alors exploiter un fichier XML de configuration qui lui indique quelle classe doit être instanciée et comment elle doit être initialisée.
+  </li>
+  <li>[Spring IoC] rend au contrôleur [Application] la référence de la couche [service] créée.
+  </li>
 </ol>
+
 <p>L&#x27;avantage de cette solution est que désormais le nom des classes instanciant les différentes couches n&#x27;est plus codé en dur dans la méthode [init] du contrôleur mais simplement présent dans un fichier de configuration. Changer l&#x27;implémentation d&#x27;une couche induira un changement dans ce fichier de configuration mais pas dans le contrôleur.</p>
 <p>Présentons maintenant les possibilités de [Spring IoC] à l&#x27;aide d&#x27;exemples.</p>
 <h2 id="152-spring-ioc-par-la-pratique">15.2. Spring IoC par la pratique</h2>
@@ -1127,11 +1134,16 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000055C00000206D5AD27C3.png" style="display:inline-block; margin:4px;width:17.997cm;height:6.795cm;" class="odt-zoomable" data-zoom-src="images/100000000000055C00000206D5AD27C3.png" /></td></tr></table>
 
 <ul>
-<li>[1] : Spring utilise diverses technologies tierces appelées ici <em>dépendances</em>. Il faut télécharger la version avce <em>dépendances</em> afin d&#x27;éviter d&#x27;être obligés ensuite de télécharger les bibliothèques des outils tiers.</li>
-<li>[2] : l&#x27;arborescence du fichier zippé téléchargé</li>
-<li>[3] : la distribution [Spring], c.a.d. les archives .jar du projet Spring lui-même sans ses dépendances. L&#x27;aspect [IoC] de Spring est assuré par les archives [spring-core.jar, spring-beans.jar].</li>
-<li>[4,5] : les archives des outils tiers</li>
+  <li>[1] : Spring utilise diverses technologies tierces appelées ici <i>dépendances</i>. Il faut télécharger la version avce <i>dépendances</i> afin d&#x27;éviter d&#x27;être obligés ensuite de télécharger les bibliothèques des outils tiers.
+  </li>
+  <li>[2] : l&#x27;arborescence du fichier zippé téléchargé
+  </li>
+  <li>[3] : la distribution [Spring], c.a.d. les archives .jar du projet Spring lui-même sans ses dépendances. L&#x27;aspect [IoC] de Spring est assuré par les archives [spring-core.jar, spring-beans.jar].
+  </li>
+  <li>[4,5] : les archives des outils tiers
+  </li>
 </ul>
+
 <h3 id="1522-projets-eclipse-des-exemples">15.2.2. Projets Eclipse des exemples</h3>
 <p>Nous allons construire trois exemples illustrant l&#x27;utilisation de Spring IoC. Ils seront tous dans le projet Eclipse suivant :</p>
 <p><img src="images/10000000000000E2000000C8BC0AE59E.png" style="width:4.189cm;height:3.701cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E2000000C8BC0AE59E.png" /></p>
@@ -1139,13 +1151,20 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000054A000000F6CDD98110.png" style="display:inline-block; margin:4px;width:17.912cm;height:3.254cm;" class="odt-zoomable" data-zoom-src="images/100000000000054A000000F6CDD98110.png" /></td></tr></table>
 
 <ul>
-<li>[1] : l&#x27;arborescence du dossier du projet [Eclipse]</li>
-<li>[2] : les fichiers de configuration de Spring sont à la racine du projet, donc dans le <em>Classpath</em> de l&#x27;application</li>
-<li>[3] : les classes de l&#x27;exemple 1</li>
-<li>[4] : les classes de l&#x27;exemple 2</li>
-<li>[5] : les classes de l&#x27;exemple 3</li>
-<li>[6] : les bibliothèques du projet [spring-core.jar, spring-beans.jar] seront trouvés dans le dossier [dist] de la distribution de Spring et [commons-logging.jar] dans le dossier [lib/jakarta-commons]. Ces trois archives ont été incluses dans le <em>Classpath</em> de l&#x27;application.</li>
+  <li>[1] : l&#x27;arborescence du dossier du projet [Eclipse]
+  </li>
+  <li>[2] : les fichiers de configuration de Spring sont à la racine du projet, donc dans le <i>Classpath</i> de l&#x27;application
+  </li>
+  <li>[3] : les classes de l&#x27;exemple 1
+  </li>
+  <li>[4] : les classes de l&#x27;exemple 2
+  </li>
+  <li>[5] : les classes de l&#x27;exemple 3
+  </li>
+  <li>[6] : les bibliothèques du projet [spring-core.jar, spring-beans.jar] seront trouvés dans le dossier [dist] de la distribution de Spring et [commons-logging.jar] dans le dossier [lib/jakarta-commons]. Ces trois archives ont été incluses dans le <i>Classpath</i> de l&#x27;application.
+  </li>
 </ul>
+
 <h3 id="1523-exemple-1">15.2.3. Exemple 1</h3>
 <p>Les éléments de l&#x27;exemple 1 ont été placés dans le paquetage [springioc01] du projet :</p>
 <p><img src="images/100000000000009B000000426EF57E51.png" style="width:2.87cm;height:1.221cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000009B000000426EF57E51.png" /></p>
@@ -1232,11 +1251,16 @@
 </code></pre></div></td></tr></table></div>
 <p>La classe présente :</p>
 <ul>
-<li>lignes 6-7 : deux champs privés <strong>nom</strong> et <strong>age</strong></li>
-<li>lignes 23-38 : les méthodes de lecture (get) et d&#x27;écriture (set) de ces deux champs</li>
-<li>lignes 10-12 : une méthode <strong>toString</strong> pour récupérer la valeur de l&#x27;objet [Personne] sous la forme d&#x27;une chaîne de caractères</li>
-<li>lignes 15-21 : une méthode <strong>init</strong> qui sera appelée par Spring à la création de l&#x27;objet, une méthode <strong>close</strong> qui sera appelée à la destruction de l&#x27;objet</li>
+  <li>lignes 6-7 : deux champs privés <b>nom</b> et <b>age</b>
+  </li>
+  <li>lignes 23-38 : les méthodes de lecture (get) et d&#x27;écriture (set) de ces deux champs
+  </li>
+  <li>lignes 10-12 : une méthode <b>toString</b> pour récupérer la valeur de l&#x27;objet [Personne] sous la forme d&#x27;une chaîne de caractères
+  </li>
+  <li>lignes 15-21 : une méthode <b>init</b> qui sera appelée par Spring à la création de l&#x27;objet, une méthode <b>close</b> qui sera appelée à la destruction de l&#x27;objet
+  </li>
 </ul>
+
 <p>Pour instancier des objets de type [Personne] à l&#x27;aide de Spring, nous utiliserons le fichier [spring-config-01.xml] suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
 <span class="odt-code-line"><span style="color:#008080">&lt;?</span><span style="color:#3f7f7f">xml </span><span style="color:#7f007f">version</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;1.0&quot; </span><span style="color:#7f007f">encoding</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;UTF-8&quot;</span><span style="color:#008080">?&gt;</span></span>
@@ -1254,13 +1278,20 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 3, 12 : la balise &lt;beans&gt; est la balise racine des fichiers de configuration Spring. A l&#x27;intérieur de cette balise, la balise &lt;bean&gt; sert à définir les différents objets à créer.</li>
-<li>lignes 4-7 : définition d&#x27;un bean</li>
-<li>ligne 4 : le bean s&#x27;appelle [personne1] (attribut <em>id</em>) et est une instance de la classe [istia.st.springioc01.Personne] (attribut <em>class</em>). La méthode [init] de l&#x27;instance sera appelée une fois celle-ci créée (attribut <em>init-method</em>) et la méthode [close] de l&#x27;instance sera appelée avant sa destruction (attribut <em>destroy-method</em>).</li>
-<li>ligne 5 : définissent la valeur à donner à la propriété [nom] (attribut <em>name</em>) de l&#x27;instance [Personne] créée. Pour faire cette initialisation, Spring utilisera la méthode [setNom]. Il faut donc que cette méthode existe. C&#x27;est le cas ici.</li>
-<li>ligne 6 : idem pour la propriété [age].</li>
-<li>lignes 8-11 : définition analogue d&#x27;un bean nommé [personne2]</li>
+  <li>lignes 3, 12 : la balise &lt;beans&gt; est la balise racine des fichiers de configuration Spring. A l&#x27;intérieur de cette balise, la balise &lt;bean&gt; sert à définir les différents objets à créer.
+  </li>
+  <li>lignes 4-7 : définition d&#x27;un bean
+  </li>
+  <li>ligne 4 : le bean s&#x27;appelle [personne1] (attribut <i>id</i>) et est une instance de la classe [istia.st.springioc01.Personne] (attribut <i>class</i>). La méthode [init] de l&#x27;instance sera appelée une fois celle-ci créée (attribut <i>init-method</i>) et la méthode [close] de l&#x27;instance sera appelée avant sa destruction (attribut <i>destroy-method</i>).
+  </li>
+  <li>ligne 5 : définissent la valeur à donner à la propriété [nom] (attribut <i>name</i>) de l&#x27;instance [Personne] créée. Pour faire cette initialisation, Spring utilisera la méthode [setNom]. Il faut donc que cette méthode existe. C&#x27;est le cas ici.
+  </li>
+  <li>ligne 6 : idem pour la propriété [age].
+  </li>
+  <li>lignes 8-11 : définition analogue d&#x27;un bean nommé [personne2]
+  </li>
 </ul>
+
 <p>La classe de test [Main] est la suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
@@ -1310,13 +1341,20 @@
 </code></pre></div></td></tr></table></div>
 <p>Commentaires :</p>
 <ul>
-<li>ligne 10 : pour obtenir les beans définis dans le fichier [spring-config-01.xml], nous utilisons un objet de type [XmlBeanFactory] qui permet d&#x27;instancier les beans définis dans un fichier XML. Le fichier [spring-config-01.xml] sera placé dans le [ClassPath] de l&#x27;application, c.a.d. dans l&#x27;un des répertoires explorés par la machine virtuelle Java lorsqu&#x27;elle cherche une classe référencée par l&#x27;application. L&#x27;objet [ClassPathResource] sert à rechercher une ressource dans le [ClassPath] d&#x27;une application, ici le fichier [spring-config-01.xml]. L&#x27;objet [bf] obtenu (Bean Factory) permet d&#x27;obtenir la référence d&#x27;un bean nommé &quot;XX&quot; par l&#x27;instruction <strong>bf.getBean(&quot;XX&quot;).</strong></li>
-<li>ligne 12 : on demande une référence sur le bean nommé [personne1] dans le fichier [spring-config-01.xml].</li>
-<li>ligne 13 : on affiche la valeur de l&#x27;objet [Personne] correspondant.</li>
-<li>lignes 15-16 : on fait de même pour le bean nommé [personne2].</li>
-<li>lignes 18-19 : on redemande le bean nommé [personne2].</li>
-<li>ligne 21 : on supprime tous les beans de [bf] c.a.d. ceux créés à partir du fichier [spring-config-01.xml].</li>
+  <li>ligne 10 : pour obtenir les beans définis dans le fichier [spring-config-01.xml], nous utilisons un objet de type [XmlBeanFactory] qui permet d&#x27;instancier les beans définis dans un fichier XML. Le fichier [spring-config-01.xml] sera placé dans le [ClassPath] de l&#x27;application, c.a.d. dans l&#x27;un des répertoires explorés par la machine virtuelle Java lorsqu&#x27;elle cherche une classe référencée par l&#x27;application. L&#x27;objet [ClassPathResource] sert à rechercher une ressource dans le [ClassPath] d&#x27;une application, ici le fichier [spring-config-01.xml]. L&#x27;objet [bf] obtenu (Bean Factory) permet d&#x27;obtenir la référence d&#x27;un bean nommé &quot;XX&quot; par l&#x27;instruction <b>bf.getBean(&quot;XX&quot;).</b>
+  </li>
+  <li>ligne 12 : on demande une référence sur le bean nommé [personne1] dans le fichier [spring-config-01.xml].
+  </li>
+  <li>ligne 13 : on affiche la valeur de l&#x27;objet [Personne] correspondant.
+  </li>
+  <li>lignes 15-16 : on fait de même pour le bean nommé [personne2].
+  </li>
+  <li>lignes 18-19 : on redemande le bean nommé [personne2].
+  </li>
+  <li>ligne 21 : on supprime tous les beans de [bf] c.a.d. ceux créés à partir du fichier [spring-config-01.xml].
+  </li>
 </ul>
+
 <p>L&#x27;exécution de la classe [Main] donne les résultats suivants :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
 <span class="normal"><a href="#__codelineno-3-2">2</a></span>
@@ -1334,23 +1372,31 @@
 </code></pre></div></td></tr></table></div>
 <p>Commentaires :</p>
 <ul>
-<li>la ligne 1 a été obtenue par l&#x27;exécution de la ligne 12 de [Main]. L&#x27;opération</li>
+  <li>la ligne 1 a été obtenue par l&#x27;exécution de la ligne 12 de [Main]. L&#x27;opération
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Personne personne1 = (Personne) bf.getBean(&quot;personne1&quot;);
 </code></pre></div>
 <p>a forcé la création du bean [personne1]. Parce que dans la définition du bean [personne1] on avait écrit [init-method=&quot;init&quot;], la méthode [init] de l&#x27;objet [Personne] créé a été exécutée. Le message correspondant est affiché.</p>
 <ul>
-<li>ligne 2 : la ligne 13 de [Main] a fait afficher la valeur de l&#x27;objet [Personne] créé.</li>
-<li>lignes 3-4 : le même phénomène se répète pour le bean nommé [personne2].</li>
-<li>ligne 5 : l&#x27;opération des lignes 18-19 de [Main]</li>
+  <li>ligne 2 : la ligne 13 de [Main] a fait afficher la valeur de l&#x27;objet [Personne] créé.
+  </li>
+  <li>lignes 3-4 : le même phénomène se répète pour le bean nommé [personne2].
+  </li>
+  <li>ligne 5 : l&#x27;opération des lignes 18-19 de [Main]
+  </li>
 </ul>
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="n">personne2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Personne</span><span class="p">)</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;personne2&quot;</span><span class="p">);</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;personne2=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personne2</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
 </code></pre></div>
 <p>n&#x27;a pas provoqué la création d&#x27;un nouvel objet de type [Personne]. Si cela avait été le cas, on aurait eu l&#x27;affichage de la méthode [init]. C&#x27;est le principe du <strong>singleton</strong>. Spring, par défaut, ne crée qu&#x27;un seul exemplaire des beans de son fichier de configuration. C&#x27;est un service de références d&#x27;objet. Si on lui demande la référence d&#x27;un objet non encore créé, il le crée et en rend une référence. Si l&#x27;objet a déjà été créé, Spring se contente d&#x27;en donner une référence. Ici [personne2] ayant déjà été créé, Spring se contente d&#x27;en rendre une référence.</p>
 <ul>
-<li>les affichages des lignes 6-7 ont été provoqués par la ligne 21 de [Main] qui demande la destruction de tous les beans référencés par l&#x27;objet [XmlBeanFactory bf], donc les beans [personne1, personne2]. Parce que ces deux beans ont l&#x27;attribut [destroy-method=&quot;close&quot;], la méthode [close] des deux beans est exécutée et provoque l&#x27;affichage des lignes 6-7.</li>
+  <li>les affichages des lignes 6-7 ont été provoqués par la ligne 21 de [Main] qui demande la destruction de tous les beans référencés par l&#x27;objet [XmlBeanFactory bf], donc les beans [personne1, personne2]. Parce que ces deux beans ont l&#x27;attribut [destroy-method=&quot;close&quot;], la méthode [close] des deux beans est exécutée et provoque l&#x27;affichage des lignes 6-7.
+  </li>
 </ul>
+
 <p>Les bases d&#x27;une configuration Spring étant maintenant acquises, nous serons désormais un peu plus rapides dans nos explications.</p>
 <h3 id="1524-exemple-2">15.2.4. Exemple 2</h3>
 <p>Les éléments de l&#x27;exemple 2 sont placés dans le paquetage [springioc02] du projet :</p>
@@ -1475,10 +1521,14 @@
 </code></pre></div></td></tr></table></div>
 <p>La classe présente :</p>
 <ul>
-<li>lignes 5-7 : trois champs privés <strong>type</strong>, <strong>marque</strong> et <strong>propriétaire</strong>. Ces champs peuvent être initialisés et lus par des méthodes publiques de beans <strong>get</strong> et <strong>set</strong> des lignes 26-48. Ils peuvent être également initialisés à l&#x27;aide du constructeur <strong>Voiture(String, String, Personne)</strong> défini lignes 13-17. La classe possède également un constructeur sans arguments afin de suivre la norme JavaBean.</li>
-<li>lignes 20-23 : une méthode <strong>toString</strong> pour récupérer la valeur de l&#x27;objet [Voiture] sous la forme d&#x27;une chaîne de caractères</li>
-<li>lignes 51-57 : une méthode <strong>init</strong> qui sera appelée par Spring juste après la création de l&#x27;objet, une méthode <strong>close</strong> qui sera appelée à la destruction de l&#x27;objet</li>
+  <li>lignes 5-7 : trois champs privés <b>type</b>, <b>marque</b> et <b>propriétaire</b>. Ces champs peuvent être initialisés et lus par des méthodes publiques de beans <b>get</b> et <b>set</b> des lignes 26-48. Ils peuvent être également initialisés à l&#x27;aide du constructeur <b>Voiture(String, String, Personne)</b> défini lignes 13-17. La classe possède également un constructeur sans arguments afin de suivre la norme JavaBean.
+  </li>
+  <li>lignes 20-23 : une méthode <b>toString</b> pour récupérer la valeur de l&#x27;objet [Voiture] sous la forme d&#x27;une chaîne de caractères
+  </li>
+  <li>lignes 51-57 : une méthode <b>init</b> qui sera appelée par Spring juste après la création de l&#x27;objet, une méthode <b>close</b> qui sera appelée à la destruction de l&#x27;objet
+  </li>
 </ul>
+
 <p>Pour créer des objets de type [Voiture], nous utiliserons le fichier Spring [<strong>spring-config-02.xml</strong>] suivant :</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
 <span class="odt-code-line"><span style="color:#008080">&lt;?</span><span style="color:#3f7f7f">xml </span><span style="color:#7f007f">version</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;1.0&quot; </span><span style="color:#7f007f">encoding</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;UTF-8&quot;</span><span style="color:#008080">?&gt;</span></span>
@@ -1519,11 +1569,16 @@
 </code></pre></div></td></tr></table></div>
 <p>Plutôt que de choisir cette méthode déjà présentée dans l&#x27;exemple 1, nous avons choisi d&#x27;utiliser ici le constructeur <strong>Voiture(String, String, Personne)</strong> de la classe.</p>
 <ul>
-<li>ligne 12 : définition du nom du bean, de sa classe, de la méthode à exécuter après son instanciation,  de la méthode à exécuter après sa suppression.</li>
-<li>ligne 13 : valeur du 1er paramètre du constructeur [Voiture(String, String, Personne)].</li>
-<li>ligne 14 : valeur du 2ième paramètre du constructeur [Voiture(String, String, Personne)].</li>
-<li>lignes 15-17 : valeur du 3ième paramètre du constructeur [Voiture(String, String, Personne)]. Ce paramètre est de type [Personne]. On lui fournit comme valeur, la référence (balise <em>ref</em>) du bean [personne2] défini dans le même fichier (attribut <em>local</em>).</li>
+  <li>ligne 12 : définition du nom du bean, de sa classe, de la méthode à exécuter après son instanciation,  de la méthode à exécuter après sa suppression.
+  </li>
+  <li>ligne 13 : valeur du 1er paramètre du constructeur [Voiture(String, String, Personne)].
+  </li>
+  <li>ligne 14 : valeur du 2ième paramètre du constructeur [Voiture(String, String, Personne)].
+  </li>
+  <li>lignes 15-17 : valeur du 3ième paramètre du constructeur [Voiture(String, String, Personne)]. Ce paramètre est de type [Personne]. On lui fournit comme valeur, la référence (balise <i>ref</i>) du bean [personne2] défini dans le même fichier (attribut <i>local</i>).
+  </li>
 </ul>
+
 <p>Pour nos tests, nous utiliserons la classe [Main] suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
@@ -1572,10 +1627,14 @@
 </code></pre></div></td></tr></table></div>
 <p>Commentaires :</p>
 <ol>
-<li>la méthode [main] demande une référence sur le bean [voiture1] (ligne 12). Spring commence la création du bean [voiture1] car ce bean n&#x27;a pas encore été créé (singleton). Parce que le bean [voiture1] référence le bean [personne2], ce dernier bean est construit à son tour. Le bean [personne2] a été créé. Sa méthode [init] est alors exécutée (ligne 1) des résultats. Le bean [voiture1] est ensuite instancié. Sa méthode [init] est alors exécutée (ligne 2) des résultats.</li>
-<li>la ligne 3 des résultats provient de la ligne 13 de [main] : la valeur du bean [voiture1] est affichée.</li>
-<li>la ligne 15 de [main] demande la destruction de tous les beans existants, ce qui provoque les affichages des lignes 4 et 5 des résultats.</li>
+  <li>la méthode [main] demande une référence sur le bean [voiture1] (ligne 12). Spring commence la création du bean [voiture1] car ce bean n&#x27;a pas encore été créé (singleton). Parce que le bean [voiture1] référence le bean [personne2], ce dernier bean est construit à son tour. Le bean [personne2] a été créé. Sa méthode [init] est alors exécutée (ligne 1) des résultats. Le bean [voiture1] est ensuite instancié. Sa méthode [init] est alors exécutée (ligne 2) des résultats.
+  </li>
+  <li>la ligne 3 des résultats provient de la ligne 13 de [main] : la valeur du bean [voiture1] est affichée.
+  </li>
+  <li>la ligne 15 de [main] demande la destruction de tous les beans existants, ce qui provoque les affichages des lignes 4 et 5 des résultats.
+  </li>
 </ol>
+
 <h3 id="1525-exemple-3">15.2.5. Exemple 3</h3>
 <p>Les éléments de l&#x27;exemple 3 sont placés dans le paquetage [springioc03] du projet :</p>
 <p><img src="images/10000000000000BF00000075638DEA11.png" style="width:3.54cm;height:2.17cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000BF00000075638DEA11.png" /></p>
@@ -1708,9 +1767,12 @@
 </code></pre></div>
 
 <ul>
-<li>lignes 14-17 : la balise &lt;<strong>list</strong>&gt; permet d&#x27;initialiser un champ de type tableau ou implémentant l&#x27;interface <strong>List</strong> avec différentes valeurs.</li>
-<li>lignes 20-23 : la balise &lt;<strong>map</strong>&gt; permet de faire la même chose avec un champ implémentant l&#x27;interface <strong>Map.</strong></li>
+  <li>lignes 14-17 : la balise &lt;<b>list</b>&gt; permet d&#x27;initialiser un champ de type tableau ou implémentant l&#x27;interface <b>List</b> avec différentes valeurs.
+  </li>
+  <li>lignes 20-23 : la balise &lt;<b>map</b>&gt; permet de faire la même chose avec un champ implémentant l&#x27;interface <b>Map.</b>
+  </li>
 </ul>
+
 <p>Pour nos tests, nous utiliserons la classe [Main] suivante :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
@@ -1747,8 +1809,10 @@
 <a id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>lignes 12-13 : on demande à spring une référence sur le bean [groupe1] et on affiche la valeur de celui-ci.</li>
+  <li>lignes 12-13 : on demande à spring une référence sur le bean [groupe1] et on affiche la valeur de celui-ci.
+  </li>
 </ul>
+
 <p>Les résultats obtenus sont les suivants :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
 <span class="normal"><a href="#__codelineno-12-2">2</a></span>
@@ -1766,41 +1830,61 @@
 </code></pre></div></td></tr></table></div>
 <p>Commentaires :</p>
 <ul>
-<li>ligne 12 de [Main], on demande une référence du bean [groupe1]. Spring commence la création de ce bean. Parce que le bean [groupe1] référence les beans [personne1] et [personne2], ces deux beans sont créés (lignes 1 et 2) des résultats. Le bean [groupe1] est ensuite instancié et sa méthode [init] exécutée (ligne 3 des résultats).</li>
-<li>la ligne 13 de [Main] fait afficher la ligne 4 des résultats.</li>
-<li>la ligne 15 de [Main] fait afficher les lignes 5-7 des résultats.</li>
+  <li>ligne 12 de [Main], on demande une référence du bean [groupe1]. Spring commence la création de ce bean. Parce que le bean [groupe1] référence les beans [personne1] et [personne2], ces deux beans sont créés (lignes 1 et 2) des résultats. Le bean [groupe1] est ensuite instancié et sa méthode [init] exécutée (ligne 3 des résultats).
+  </li>
+  <li>la ligne 13 de [Main] fait afficher la ligne 4 des résultats.
+  </li>
+  <li>la ligne 15 de [Main] fait afficher les lignes 5-7 des résultats.
+  </li>
 </ul>
+
 <h2 id="153-configuration-dune-application-n-tier-avec-spring">15.3. Configuration d&#x27;une application n tier avec Spring</h2>
 <p>Considérons une application 3-tier ayant la structure suivante :</p>
-<p>Couche interface utilisateur [<strong>ui</strong>]Couche d&#x27;accès aux données [<strong>dao</strong>]Couche métier [<strong>metier</strong>]Donnéesutilisateur</p>
+<p>utilisateurDonnéesCouche métier [<strong>metier</strong>]Couche d&#x27;accès aux données [<strong>dao</strong>]Couche interface utilisateur [<strong>ui</strong>]</p>
 <p>Nous nous proposons de montrer ici l&#x27;intérêt de Spring pour construire une telle architecture.</p>
 <ul>
-<li>les trois couches seront rendues indépendantes grâce à l&#x27;utilisation d&#x27;interfaces Java</li>
-<li>l&#x27;intégration des trois couches sera réalisée par Spring</li>
+  <li>les trois couches seront rendues indépendantes grâce à l&#x27;utilisation d&#x27;interfaces Java
+  </li>
+  <li>l&#x27;intégration des trois couches sera réalisée par Spring
+  </li>
 </ul>
+
 <p>La structure de l&#x27;application sous Eclipse pourrait être la suivante :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000017200000229ABFDDE8B.png" style="display:inline-block; margin:4px;width:4.895cm;height:7.317cm;" class="odt-zoomable" data-zoom-src="images/100000000000017200000229ABFDDE8B.png" /></td></tr></table>
 
 <ul>
-<li>[1] : la couche [dao] : <ul>
-<li>[IDao] : l&#x27;interface de la couche</li>
-<li>[Dao1, Dao2] : deux implémentations de cette interface</li>
+  <li>[1] : la couche [dao] : 
+    <ul>
+      <li>[IDao] : l&#x27;interface de la couche
+      </li>
+      <li>[Dao1, Dao2] : deux implémentations de cette interface
+      </li>
+    </ul>
+  </li>
+  <li>[2] : la couche [metier] : 
+    <ul>
+      <li>[IMetier] : l&#x27;interface de la couche
+      </li>
+      <li>[Metier1, Metier2] : deux implémentations de cette interface
+      </li>
+    </ul>
+  </li>
+  <li>[3] : la couche [ui] : 
+    <ul>
+      <li>[IUi] : l&#x27;interface de la couche
+      </li>
+      <li>[Ui1, Ui2] : deux implémentations de cette interface
+      </li>
+    </ul>
+  </li>
+  <li>[4] : les fichiers de configuration Spring de l&#x27;application. Nous configurerons l&#x27;application de deux façons. 
+  </li>
+  <li>[5] : les bibliothèques nécessaires à l&#x27;application. Ce sont celles utilisées dans les exemples précédents.
+  </li>
+  <li>[6] : le paquetage des tests. [Main1] utilisera la configuration [spring-config-01.xml] et  [Main2] la configuration [spring-config-02.xml].
+  </li>
 </ul>
-</li>
-<li>[2] : la couche [metier] : <ul>
-<li>[IMetier] : l&#x27;interface de la couche</li>
-<li>[Metier1, Metier2] : deux implémentations de cette interface</li>
-</ul>
-</li>
-<li>[3] : la couche [ui] : <ul>
-<li>[IUi] : l&#x27;interface de la couche</li>
-<li>[Ui1, Ui2] : deux implémentations de cette interface</li>
-</ul>
-</li>
-<li>[4] : les fichiers de configuration Spring de l&#x27;application. Nous configurerons l&#x27;application de deux façons. </li>
-<li>[5] : les bibliothèques nécessaires à l&#x27;application. Ce sont celles utilisées dans les exemples précédents.</li>
-<li>[6] : le paquetage des tests. [Main1] utilisera la configuration [spring-config-01.xml] et  [Main2] la configuration [spring-config-02.xml].</li>
-</ul>
+
 <p>Le but de cet exemple est de montrer que nous pouvons changer l&#x27;implémentation d&#x27;une ou plusieurs couches de l&#x27;application avec un impact zéro sur les autres couches. Tout se passe dans le fichier de configuration de Spring.</p>
 <hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
 <p>La couche [dao]</p>

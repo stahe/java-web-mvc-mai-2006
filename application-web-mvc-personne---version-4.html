@@ -1127,10 +1127,14 @@
 </code></pre></div>
 
 <ul>
-<li>ligne 5 : la page [index.jsp] redirige le client vers l&#x27;url [/main] qui mène au contrôleur [ServletPersonne] de l&#x27;application [/personne4]. La balise &lt;c:redirect&gt; appartient à la bibliothèque JSTL / Core. Elle présente la particularité de compléter l&#x27;Url de son attribut [url] en y ajoutant :</li>
-<li>le préfixe [/contexte], où [contexte] est le contexte de l&#x27;application, ici [personne4].</li>
-<li>le suffixe [?jsessionid=id_session] si le navigateur qui fait la requête n&#x27;a pas envoyé de cookie de session. L&#x27;identifiant [jsessionid] désigne l&#x27;identifiant du jeton de session envoyé par le serveur web à ses clients. Il dépend du serveur web. Ici, c&#x27;est celui du serveur Tomcat. [id_session] est le jeton de session lui-même.</li>
+  <li>ligne 5 : la page [index.jsp] redirige le client vers l&#x27;url [/main] qui mène au contrôleur [ServletPersonne] de l&#x27;application [/personne4]. La balise &lt;c:redirect&gt; appartient à la bibliothèque JSTL / Core. Elle présente la particularité de compléter l&#x27;Url de son attribut [url] en y ajoutant :
+  </li>
+  <li>le préfixe [/contexte], où [contexte] est le contexte de l&#x27;application, ici [personne4].
+  </li>
+  <li>le suffixe [?jsessionid=id_session] si le navigateur qui fait la requête n&#x27;a pas envoyé de cookie de session. L&#x27;identifiant [jsessionid] désigne l&#x27;identifiant du jeton de session envoyé par le serveur web à ses clients. Il dépend du serveur web. Ici, c&#x27;est celui du serveur Tomcat. [id_session] est le jeton de session lui-même.
+  </li>
 </ul>
+
 <p>Ainsi, la véritable Url de redirection de la ligne 5 de [index.jsp] est l&#x27;Url [/personne4/main?jsessionid=XX] où XX est le jeton de session. C&#x27;est ce que montre la page ci-dessous obtenue après avoir demandé initialement l&#x27;Url [http://localhost:8080/personne4] :</p>
 <p><img src="images/10000000000001C900000100E465AB41.png" style="width:8.46cm;height:4.74cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C900000100E465AB41.png" /></p>
 <p>Le lien entre la balise &lt;c:redirect&gt; et le jeton de session est assez subtil. Son étude est ici prématurée mais nous aurons l&#x27;occasion d&#x27;y revenir.</p>
@@ -1186,10 +1190,14 @@
 
 <p>Les nouveautés :</p>
 <ul>
-<li>ligne 4 : déclaration de la bibliothèque de balises JSTL / Core</li>
-<li>lignes 21, 25 : récupération d&#x27;attributs [nom, age] dans le modèle de la page. Rappelons que ces attributs seront cherchés successivement dans la requête [request], la session [session] et l&#x27;application [application] de la page JSP. Dans notre cas, le contrôleur les mettra dans la session.</li>
-<li>il n&#x27;y a plus de code Java en début de page JSP pour récupérer le modèle de la page du fait du fonctionnement précédent.</li>
+  <li>ligne 4 : déclaration de la bibliothèque de balises JSTL / Core
+  </li>
+  <li>lignes 21, 25 : récupération d&#x27;attributs [nom, age] dans le modèle de la page. Rappelons que ces attributs seront cherchés successivement dans la requête [request], la session [session] et l&#x27;application [application] de la page JSP. Dans notre cas, le contrôleur les mettra dans la session.
+  </li>
+  <li>il n&#x27;y a plus de code Java en début de page JSP pour récupérer le modèle de la page du fait du fonctionnement précédent.
+  </li>
 </ul>
+
 <h3 id="932-la-vue-reponse">9.3.2. La vue [reponse]</h3>
 <p>Cette vue n&#x27;a pas changé :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000163000000FE805EBD6A.png" style="display:inline-block; margin:4px;width:6.57cm;height:4.701cm;" class="odt-zoomable" data-zoom-src="images/1000000000000163000000FE805EBD6A.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000132000000E5D2700262.png" style="display:inline-block; margin:4px;width:5.669cm;height:4.219cm;" class="odt-zoomable" data-zoom-src="images/1000000000000132000000E5D2700262.png" /></td></tr></table>
@@ -1232,9 +1240,12 @@
 
 <p>Les nouveautés :</p>
 <ul>
-<li>ligne 4 : déclaration de la bibliothèque de balises JSTL / Core</li>
-<li>lignes 16, 20, 28 : récupération d&#x27;attributs [nom, age, lienRetourFormulaire] dans le modèle de la page. Il n&#x27;y a plus de code Java en début de page JSP pour récupérer celui-ci.</li>
+  <li>ligne 4 : déclaration de la bibliothèque de balises JSTL / Core
+  </li>
+  <li>lignes 16, 20, 28 : récupération d&#x27;attributs [nom, age, lienRetourFormulaire] dans le modèle de la page. Il n&#x27;y a plus de code Java en début de page JSP pour récupérer celui-ci.
+  </li>
 </ul>
+
 <h3 id="933-la-vue-erreurs">9.3.3. La vue [erreurs]</h3>
 <p>Cette vue n&#x27;a pas changé :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000195000000CDC590A812.png" style="display:inline-block; margin:4px;width:7.519cm;height:3.799cm;" class="odt-zoomable" data-zoom-src="images/1000000000000195000000CDC590A812.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000169000000FFB9EB5CDB.png" style="display:inline-block; margin:4px;width:6.69cm;height:4.72cm;" class="odt-zoomable" data-zoom-src="images/1000000000000169000000FFB9EB5CDB.png" /></td></tr></table>
@@ -1271,10 +1282,14 @@
 
 <p>Les nouveautés :</p>
 <ul>
-<li>ligne 4 : déclaration de la bibliothèque de balises JSTL / Core</li>
-<li>lignes 13-15 : affichage de la liste d&#x27;erreurs à l&#x27;aide de JSTL</li>
-<li>il n&#x27;y a plus de code Java en début de page JSP pour récupérer le modèle de celle-ci.</li>
+  <li>ligne 4 : déclaration de la bibliothèque de balises JSTL / Core
+  </li>
+  <li>lignes 13-15 : affichage de la liste d&#x27;erreurs à l&#x27;aide de JSTL
+  </li>
+  <li>il n&#x27;y a plus de code Java en début de page JSP pour récupérer le modèle de celle-ci.
+  </li>
 </ul>
+
 <h2 id="94-tests-des-vues">9.4. Tests des vues</h2>
 <p>Pour réaliser les tests des vues précédentes, nous dupliquons leurs pages JSP dans le dossier /WebContent/JSP du projet Eclipse :</p>
 <p><img src="images/100000000000015D0000014DEC0E83C0.png" style="width:4.618cm;height:4.406cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015D0000014DEC0E83C0.png" /></p>
@@ -1338,7 +1353,7 @@
 <p>Nous obtenons bien les vues attendues. </p>
 <h2 id="95-le-controleur-servletpersonne">9.5. Le contrôleur [ServletPersonne]</h2>
 <p>Le contrôleur [ServletPersonne] de l&#x27;application web [/personne3] va traiter les actions suivantes :</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">n°</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">demande</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">origine</mark></b></p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;"><b><mark style="background-color: #c0c0c0">traitement</mark></b></p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">1</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[GET /personne4/main]</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">url tapée par l&#x27;utilisateur</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- envoyer la vue [formulaire] vide</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">2</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[POST /personne4/main]</p><p style="margin:0;">avec paramètres [txtNom,</p><p style="margin:0;">txtAge,</p><p style="margin:0;">action=validationFormulaire]</p><p style="margin:0;"> postés</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">clic sur le bouton</p><p style="margin:0;">[Envoyer] de la vue</p><p style="margin:0;">[formulaire]</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- vérifier les valeurs des paramètres [txtNom, txtAge]</p><p style="margin:0;">- si elles sont incorrectes, envoyer la vue [erreurs(erreurs)]</p><p style="margin:0;">- si elles sont correctes, envoyer la vue [reponse(nom,age)]</p></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">3</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">[POST /personne4/main]</p><p style="margin:0;">avec paramètres</p><p style="margin:0;">[action=retourFormulaire]</p><p style="margin:0;">postés</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">clic sur le lien [Retour au</p><p style="margin:0;">formulaire] des vues</p><p style="margin:0;">[réponse] et [erreurs].</p></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><p style="margin:0;">- envoyer la vue [formulaire] pré-remplie avec les dernières valeurs saisies</p></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">n°</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">demande</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">origine</mark></b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b><mark style="background-color: #c0c0c0">traitement</mark></b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[GET /personne4/main]</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">url tapée par l&#x27;utilisateur</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- envoyer la vue [formulaire] vide</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[POST /personne4/main]</div><div style="margin:0 0 0.5em 0">avec paramètres [txtNom,</div><div style="margin:0 0 0.5em 0">txtAge,</div><div style="margin:0 0 0.5em 0">action=validationFormulaire]</div><div style="margin:0 0 0.5em 0"> postés</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">clic sur le bouton</div><div style="margin:0 0 0.5em 0">[Envoyer] de la vue</div><div style="margin:0 0 0.5em 0">[formulaire]</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- vérifier les valeurs des paramètres [txtNom, txtAge]</div><div style="margin:0 0 0.5em 0">- si elles sont incorrectes, envoyer la vue [erreurs(erreurs)]</div><div style="margin:0 0 0.5em 0">- si elles sont correctes, envoyer la vue [reponse(nom,age)]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">3</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[POST /personne4/main]</div><div style="margin:0 0 0.5em 0">avec paramètres</div><div style="margin:0 0 0.5em 0">[action=retourFormulaire]</div><div style="margin:0 0 0.5em 0">postés</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">clic sur le lien [Retour au</div><div style="margin:0 0 0.5em 0">formulaire] des vues</div><div style="margin:0 0 0.5em 0">[réponse] et [erreurs].</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">- envoyer la vue [formulaire] pré-remplie avec les dernières valeurs saisies</div></td></tr></table>
 
 <p>Le squelette du contrôleur [ServletPersonne] est identique à celui de la version précédente. Nous passons en revue les modifications amenées aux méthodes [doInit, doValidationFormulaire, doRetourFormulaire], les méthodes [init, doGet, doPost] ne changeant pas.</p>
 <h3 id="951-la-methode-doinit">9.5.1. La méthode [doInit]</h3>
@@ -1357,8 +1372,10 @@
 </code></pre></div></td></tr></table></div>
 <p>Les nouveautés :</p>
 <ul>
-<li>ligne 3 : on affiche la vue [formulaire]. Celle-ci attend dans son modèle des attributs &quot; nom &quot; et &quot; age &quot;. Elle ne va pas les y trouver puisqu&#x27;ici le contrôleur ne les y met pas. Dans ce cas, la bibliothèque JSTL va récupérer des pointeurs <em>null</em> pour ces attributs. Cela ne provoque pas d&#x27;erreurs et des valeurs vides seront affichées pour les éléments <em>${nom}</em> et <em>${age}</em> de la vue [formulaire]. Cela nous convient. Nous évitons ainsi d&#x27;avoir à initialiser le modèle de la vue [formulaire].</li>
+  <li>ligne 3 : on affiche la vue [formulaire]. Celle-ci attend dans son modèle des attributs &quot; nom &quot; et &quot; age &quot;. Elle ne va pas les y trouver puisqu&#x27;ici le contrôleur ne les y met pas. Dans ce cas, la bibliothèque JSTL va récupérer des pointeurs <i>null</i> pour ces attributs. Cela ne provoque pas d&#x27;erreurs et des valeurs vides seront affichées pour les éléments <i>${nom}</i> et <i>${age}</i> de la vue [formulaire]. Cela nous convient. Nous évitons ainsi d&#x27;avoir à initialiser le modèle de la vue [formulaire].
+  </li>
 </ul>
+
 <h3 id="952-la-methode-dovalidationformulaire">9.5.2. La méthode [doValidationFormulaire]</h3>
 <p>Cette méthode traite la requête n° 2 [POST /personne4/main] avec [action, txtNom, txtAge] dans les éléments postés. Son code est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
@@ -1399,8 +1416,10 @@
 </code></pre></div></td></tr></table></div>
 <p>Les nouveautés :</p>
 <ul>
-<li>ligne 15 : la méthode [doValidationFormulaire] envoie en réponse la vue [réponse]. Celle-ci a dans son modèle les éléments [nom, age, lienRetourFormulaire]. [lienRetourFormulaire] est mis dans le modèle ligne 14, via la requête. Les éléments [nom,age] sont eux mis dans le modèle lignes 8-10, via la session. Dans la version précédente, on avait placé les éléments [nom, age] également dans la requête lorsqu&#x27;on envoyait la vue [réponse] cat cette vue les attendait là. Ici, avec la bibliothèque JSTL, on sait que les différents contextes (request, session, application) vont être explorés pour trouver les éléments du modèle. Ils seront donc trouvés dans la session puisque le contrôleur les y a mis (lignes 8-10).</li>
+  <li>ligne 15 : la méthode [doValidationFormulaire] envoie en réponse la vue [réponse]. Celle-ci a dans son modèle les éléments [nom, age, lienRetourFormulaire]. [lienRetourFormulaire] est mis dans le modèle ligne 14, via la requête. Les éléments [nom,age] sont eux mis dans le modèle lignes 8-10, via la session. Dans la version précédente, on avait placé les éléments [nom, age] également dans la requête lorsqu&#x27;on envoyait la vue [réponse] cat cette vue les attendait là. Ici, avec la bibliothèque JSTL, on sait que les différents contextes (request, session, application) vont être explorés pour trouver les éléments du modèle. Ils seront donc trouvés dans la session puisque le contrôleur les y a mis (lignes 8-10).
+  </li>
 </ul>
+
 <h3 id="953-la-methode-doretourformulaire">9.5.3. La méthode [doRetourFormulaire]</h3>
 <p>Cette méthode traite la requête n° 3 [POST /personne4/main] avec [action=retourFormulaire] dans les éléments postés. Son code est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
@@ -1419,8 +1438,10 @@
 </code></pre></div></td></tr></table></div>
 <p>Les nouveautés :</p>
 <ul>
-<li>ligne 4 : on affiche la vue [formulaire]. Celle-ci attend dans son modèle des attributs &quot; nom &quot; et &quot; age &quot;. Elle les trouvera dans la session puisque la méthode [doValidationFormulaire] les y a mis et que cette méthode est forcément exécutée avant la méthode [doRetourFormulaire]. Il n&#x27;y a donc pas à initialiser le modèle de [formulaire] avant son affichage ligne 4. Du coup, les méthodes [doInit] et [doRetourFormulaire] sont identiques et on pourrait supprimer l&#x27;action [retourFormulaire] pour la remplacer par l&#x27;action [init]. La méthode [doRetourFormulaire] disparaîtrait alors.</li>
+  <li>ligne 4 : on affiche la vue [formulaire]. Celle-ci attend dans son modèle des attributs &quot; nom &quot; et &quot; age &quot;. Elle les trouvera dans la session puisque la méthode [doValidationFormulaire] les y a mis et que cette méthode est forcément exécutée avant la méthode [doRetourFormulaire]. Il n&#x27;y a donc pas à initialiser le modèle de [formulaire] avant son affichage ligne 4. Du coup, les méthodes [doInit] et [doRetourFormulaire] sont identiques et on pourrait supprimer l&#x27;action [retourFormulaire] pour la remplacer par l&#x27;action [init]. La méthode [doRetourFormulaire] disparaîtrait alors.
+  </li>
 </ul>
+
 <h2 id="96-tests">9.6. Tests</h2>
 <p>Dans cette nouvelle version, seules les vues changent. Le contrôleur [ServletPersonne] lui ne change pas. L&#x27;utilisation de JSTL nous a simplement permis d&#x27;exploiter plus simplement dans les pages JSP, le modèle construit par le contrôleur.</p>
 <p>Lancer ou relancer Tomcat après y avoir intégré le projet Eclipse [personne-mvc-04]. Demander l&#x27;url [http://localhost:8080/personne4].</p>

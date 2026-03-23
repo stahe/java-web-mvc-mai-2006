@@ -922,48 +922,77 @@
 <p>Une application web a souvent une architecture 3tier :</p>
 <p><img src="images/1000000000000440000000AA79C81013.png" style="width:14.393cm;height:2.249cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000440000000AA79C81013.png" /></p>
 <ul>
-<li>la couche [<strong>dao</strong>] s&#x27;occupe de l&#x27;accès aux données, le plus souvent des données persistantes au sein d&#x27;un SGBD. Mais cela peut être aussi des données qui proviennent de capteurs, du réseau, ...</li>
-<li>la couche [<strong>metier</strong>] implémente les algorithmes &quot; métier &quot; de l&#x27;application. Cette couche est indépendante de toute forme d&#x27;interface avec l&#x27;utilisateur. Ainsi elle doit être utilisable aussi bien avec une interface console, une interface web, une interface de client riche. Elle doit ainsi pouvoir être testée en-dehors de l&#x27;interface web et notamment avec une interface console. C&#x27;est généralement la couche la plus stable de l&#x27;architecture. Elle ne change pas si on change l&#x27;interface utilisateur ou la façon d&#x27;accéder aux données nécessaires au fonctionnement de l&#x27;application. </li>
-<li>la couche [<strong>interface utilisateur</strong>] qui est l&#x27;interface (graphique souvent) qui permet à l&#x27;utilisateur de piloter l&#x27;application et d&#x27;en recevoir des informations.</li>
+  <li>la couche [<b>dao</b>] s&#x27;occupe de l&#x27;accès aux données, le plus souvent des données persistantes au sein d&#x27;un SGBD. Mais cela peut être aussi des données qui proviennent de capteurs, du réseau, ...
+  </li>
+  <li>la couche [<b>metier</b>] implémente les algorithmes &quot; métier &quot; de l&#x27;application. Cette couche est indépendante de toute forme d&#x27;interface avec l&#x27;utilisateur. Ainsi elle doit être utilisable aussi bien avec une interface console, une interface web, une interface de client riche. Elle doit ainsi pouvoir être testée en-dehors de l&#x27;interface web et notamment avec une interface console. C&#x27;est généralement la couche la plus stable de l&#x27;architecture. Elle ne change pas si on change l&#x27;interface utilisateur ou la façon d&#x27;accéder aux données nécessaires au fonctionnement de l&#x27;application. 
+  </li>
+  <li>la couche [<b>interface utilisateur</b>] qui est l&#x27;interface (graphique souvent) qui permet à l&#x27;utilisateur de piloter l&#x27;application et d&#x27;en recevoir des informations.
+  </li>
 </ul>
+
 <p>La communication va de la gauche vers la droite :</p>
 <ul>
-<li>l&#x27;utilisateur fait une demande à la couche [<strong>interface utilisateur</strong>]</li>
-<li>cette demande est mise en forme par la couche [<strong>interface utilisateur</strong>] et transmise à la couche [<strong>métier</strong>]</li>
-<li>si pour traiter cette demande, la couche [<strong>métier</strong>] a besoin des données, elle les demande à la couche [<strong>dao</strong>]</li>
-<li>chaque couche interrogée rend sa réponse à la couche de gauche jusqu&#x27;à la réponse finale à l&#x27;utilisateur.</li>
+  <li>l&#x27;utilisateur fait une demande à la couche [<b>interface utilisateur</b>]
+  </li>
+  <li>cette demande est mise en forme par la couche [<b>interface utilisateur</b>] et transmise à la couche [<b>métier</b>]
+  </li>
+  <li>si pour traiter cette demande, la couche [<b>métier</b>] a besoin des données, elle les demande à la couche [<b>dao</b>]
+  </li>
+  <li>chaque couche interrogée rend sa réponse à la couche de gauche jusqu&#x27;à la réponse finale à l&#x27;utilisateur.
+  </li>
 </ul>
+
 <p>Les couches [métier] et [dao] sont normalement utilisées via des interfaces Java. Ainsi la couche [métier] ne connaît de la couche [dao] que son ou ses interfaces et ne connaît pas les classes les implémentant. C&#x27;est ce qui assure l&#x27;indépendance des couches entre-elles : changer l&#x27;implémentation de la couche [dao] n&#x27;a aucune incidence sur la couche [métier] tant qu&#x27;on ne touche pas à la définition de l&#x27;interface de la couche [dao]. Il en est de même entre les couches [interface utilisateur] et [métier].</p>
 <p>L&#x27;architecture MVC (Modèle – Vue – Contrôleur) prend place dans la couche [<strong>interface utilisateur</strong>] lorsque celle-ci est une interface web :</p>
 <p><img src="images/100000000000044A000001096FF0D59E.png" style="width:14.526cm;height:3.507cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000044A000001096FF0D59E.png" /></p>
 <p>Le traitement d&#x27;une demande d&#x27;un client se déroule selon les étapes suivantes :</p>
 <ol>
-<li>le client fait une demande au contrôleur. Celui-ci voit passer toutes les demandes des clients. C&#x27;est la porte d&#x27;entrée de l&#x27;application. C&#x27;est le <strong>C</strong> de MVC.</li>
-<li>le contrôleur <strong>C</strong> traite cette demande. Pour ce faire, il peut avoir besoin de l&#x27;aide de la couche métier. Une fois la demande du client traitée, celle-ci peut appeler diverses réponses. Un exemple classique est :<ul>
-<li>une page d&#x27;erreurs si la demande n&#x27;a pu être traitée correctement</li>
-<li>une page de confirmation sinon</li>
-</ul>
-</li>
-<li>le contrôleur choisit la réponse (= vue) à envoyer au client. Choisir la réponse à envoyer au client nécessite plusieurs étapes :<ul>
-<li>choisir l&#x27;objet qui va générer la réponse. C&#x27;est ce qu&#x27;on appelle la vue <strong>V</strong>, le <strong>V</strong> de MVC. Ce choix dépend en général du résultat de l&#x27;exécution de l&#x27;action demandée par l&#x27;utilisateur.</li>
-<li>lui fournir les données dont il a besoin pour générer cette réponse. En effet, celle-ci contient le plus souvent des informations calculées par le contrôleur. Ces informations forment ce qu&#x27;on appelle le modèle <strong>M</strong> de la vue, le <strong>M</strong> de MVC.</li>
-<li>L&#x27;étape 3 consiste donc en le choix d&#x27;une vue <strong>V</strong> et en la construction du modèle <strong>M</strong> nécessaire à celle-ci.</li>
-</ul>
-</li>
-<li>le contrôleur <strong>C</strong> demande à la vue choisie de s&#x27;afficher. Il s&#x27;agit le plus souvent de faire exécuter une méthode particulière de la vue <strong>V</strong> chargée de générer la réponse au client. Dans ce document, nous appelerons vue, aussi bien l&#x27;objet qui génère la réponse au client que cette réponse elle-même. La littérature MVC n&#x27;est pas explicite sur ce point. Si c&#x27;est la réponse qui devait s&#x27;appeler vue, on pourrait appeler générateur de vue, l&#x27;objet qui génère cette réponse.</li>
-<li>le générateur de vue <strong>V</strong> utilise le modèle <strong>M</strong> préparé par le contrôleur <strong>C</strong> pour initialiser les parties dynamiques de la réponse qu&#x27;il doit envoyer au client.</li>
-<li>la réponse est envoyée au client. La forme exacte de celle-ci dépend du générateur de vue. Ce peut être un flux HTML, PDF, Excel, ...</li>
+  <li>le client fait une demande au contrôleur. Celui-ci voit passer toutes les demandes des clients. C&#x27;est la porte d&#x27;entrée de l&#x27;application. C&#x27;est le <b>C</b> de MVC.
+  </li>
+  <li>le contrôleur <b>C</b> traite cette demande. Pour ce faire, il peut avoir besoin de l&#x27;aide de la couche métier. Une fois la demande du client traitée, celle-ci peut appeler diverses réponses. Un exemple classique est :
+    <ul>
+      <li>une page d&#x27;erreurs si la demande n&#x27;a pu être traitée correctement
+      </li>
+      <li>une page de confirmation sinon
+      </li>
+    </ul>
+  </li>
+  <li>le contrôleur choisit la réponse (= vue) à envoyer au client. Choisir la réponse à envoyer au client nécessite plusieurs étapes :
+    <ul>
+      <li>choisir l&#x27;objet qui va générer la réponse. C&#x27;est ce qu&#x27;on appelle la vue <b>V</b>, le <b>V</b> de MVC. Ce choix dépend en général du résultat de l&#x27;exécution de l&#x27;action demandée par l&#x27;utilisateur.
+      </li>
+      <li>lui fournir les données dont il a besoin pour générer cette réponse. En effet, celle-ci contient le plus souvent des informations calculées par le contrôleur. Ces informations forment ce qu&#x27;on appelle le modèle <b>M</b> de la vue, le <b>M</b> de MVC.
+      </li>
+      <li>L&#x27;étape 3 consiste donc en le choix d&#x27;une vue <b>V</b> et en la construction du modèle <b>M</b> nécessaire à celle-ci.
+      </li>
+    </ul>
+  </li>
+  <li>le contrôleur <b>C</b> demande à la vue choisie de s&#x27;afficher. Il s&#x27;agit le plus souvent de faire exécuter une méthode particulière de la vue <b>V</b> chargée de générer la réponse au client. Dans ce document, nous appelerons vue, aussi bien l&#x27;objet qui génère la réponse au client que cette réponse elle-même. La littérature MVC n&#x27;est pas explicite sur ce point. Si c&#x27;est la réponse qui devait s&#x27;appeler vue, on pourrait appeler générateur de vue, l&#x27;objet qui génère cette réponse.
+  </li>
+  <li>le générateur de vue <b>V</b> utilise le modèle <b>M</b> préparé par le contrôleur <b>C</b> pour initialiser les parties dynamiques de la réponse qu&#x27;il doit envoyer au client.
+  </li>
+  <li>la réponse est envoyée au client. La forme exacte de celle-ci dépend du générateur de vue. Ce peut être un flux HTML, PDF, Excel, ...
+  </li>
 </ol>
+
 <p>La méthodologie de développement web MVC ne nécessite pas nécessairement d&#x27;outils externes. On peut ainsi développer une application web Java avec une architecture MVC avec un simple JDK et les bibliothèques de base du développement web. Une méthode utilisable pour des applications simples est la suivante :</p>
 <ul>
-<li>le contrôleur est assuré par une servlet unique. C&#x27;est le <strong>C</strong> de MVC.</li>
-<li>toutes les requêtes du client contiennent un attribut <strong>action</strong>, par exemple (http://.../appli?<strong>action=liste</strong>).</li>
-<li>selon la valeur de l&#x27;attribut <strong>action</strong>, la servlet fait exécuter une méthode interne de type [<strong>doAction</strong>(...)].</li>
-<li>la méthode [<strong>doAction</strong>] exécute l&#x27;action demandée par l&#x27;utilisateur. Pour cela, si besoin est, elle utilise la couche [métier].</li>
-<li>selon le résultat de l&#x27;exécution, la méthode [<strong>doAction</strong>] décide d&#x27;une page JSP à afficher. C&#x27;est la vue <strong>V</strong> du modèle MVC.</li>
-<li>la page JSP a des éléments dynamiques qui doivent être fournis par la servlet. La méthode [<strong>doAction</strong>] va fournir ces éléments. C&#x27;est le modèle de la vue, le <strong>M</strong> de MVC. Ce modèle est placé le plus souvent dans le contexte de la requête (request.setAttribute(&quot; clé &quot;, &quot;valeur &quot;), voire moins fréquemment, dans le contexte de la session ou de l&#x27;application. Une page JSP a accès à ces trois contextes.</li>
-<li>la méthode [<strong>doAction</strong>] fait afficher la vue en transmettant le flux d&#x27;exécution à la page JSP choisie. Elle  utilise pour cela, une instruction du genre [getServletContext()    .getRequestDispatcher(&quot; pageJSP &quot;).forward(request, response)].</li>
+  <li>le contrôleur est assuré par une servlet unique. C&#x27;est le <b>C</b> de MVC.
+  </li>
+  <li>toutes les requêtes du client contiennent un attribut <b>action</b>, par exemple (http://.../appli?<b>action=liste</b>).
+  </li>
+  <li>selon la valeur de l&#x27;attribut <b>action</b>, la servlet fait exécuter une méthode interne de type [<b>doAction</b>(...)].
+  </li>
+  <li>la méthode [<b>doAction</b>] exécute l&#x27;action demandée par l&#x27;utilisateur. Pour cela, si besoin est, elle utilise la couche [métier].
+  </li>
+  <li>selon le résultat de l&#x27;exécution, la méthode [<b>doAction</b>] décide d&#x27;une page JSP à afficher. C&#x27;est la vue <b>V</b> du modèle MVC.
+  </li>
+  <li>la page JSP a des éléments dynamiques qui doivent être fournis par la servlet. La méthode [<b>doAction</b>] va fournir ces éléments. C&#x27;est le modèle de la vue, le <b>M</b> de MVC. Ce modèle est placé le plus souvent dans le contexte de la requête (request.setAttribute(&quot; clé &quot;, &quot;valeur &quot;), voire moins fréquemment, dans le contexte de la session ou de l&#x27;application. Une page JSP a accès à ces trois contextes.
+  </li>
+  <li>la méthode [<b>doAction</b>] fait afficher la vue en transmettant le flux d&#x27;exécution à la page JSP choisie. Elle  utilise pour cela, une instruction du genre [getServletContext()    .getRequestDispatcher(&quot; pageJSP &quot;).forward(request, response)].
+  </li>
 </ul>
+
 <p>Ce modèle d&#x27;architecture (Design Pattern) MVC est appelée le modèle &quot; Front Controller &quot; ou encore modèle à contrôleur unique. Une servlet unique traite toutes les requêtes de tous les utilisateurs.</p>
 <p>Revenons à l&#x27;architecture de l&#x27;application web précédente :</p>
 <p><img src="images/100000000000039C00000162A72C5060.png" style="width:12.224cm;height:4.683cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000039C00000162A72C5060.png" /></p>
@@ -973,15 +1002,22 @@
 <p><img src="images/10000000000004740000015E370B9BE9.png" style="width:15.081cm;height:4.63cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004740000015E370B9BE9.png" /></p>
 <p>Pour des applications simples, cette architecture est suffisante. Lorsqu&#x27;on a écrit plusieurs applications de ce type, on s&#x27;aperçoit que les servlets de deux applications différentes :</p>
 <ol>
-<li>ont le même mécanisme pour déterminer quelle méthode [doAction] il faut exécuter pour traiter l&#x27;action demandée par l&#x27;utilisateur</li>
-<li>ne diffèrent en fait que par le contenu de ces méthodes [doAction]</li>
+  <li>ont le même mécanisme pour déterminer quelle méthode [doAction] il faut exécuter pour traiter l&#x27;action demandée par l&#x27;utilisateur
+  </li>
+  <li>ne diffèrent en fait que par le contenu de ces méthodes [doAction]
+  </li>
 </ol>
+
 <p>La tentation est alors grande de :</p>
 <ul>
-<li>factoriser le traitement (1) dans une servlet générique ignorante de l&#x27;application qui l&#x27;utilise</li>
-<li>déléguer le traitement (2) à des classes externes puisque la servlet générique ne sait pas dans quelle application elle est utilisée</li>
-<li>faire le lien entre l&#x27;action demandée par l&#x27;utilisateur et la classe qui doit la traiter à l&#x27;aide d&#x27;un fichier de configuration</li>
+  <li>factoriser le traitement (1) dans une servlet générique ignorante de l&#x27;application qui l&#x27;utilise
+  </li>
+  <li>déléguer le traitement (2) à des classes externes puisque la servlet générique ne sait pas dans quelle application elle est utilisée
+  </li>
+  <li>faire le lien entre l&#x27;action demandée par l&#x27;utilisateur et la classe qui doit la traiter à l&#x27;aide d&#x27;un fichier de configuration
+  </li>
 </ul>
+
 <p>Des outils, souvent appelés  &quot; frameworks &quot;, sont apparus pour apporter les facilités précédentes aux développeurs. Le plus ancien et probablement le plus connu d&#x27;entre-eux est  <strong>Struts</strong> (http://struts.apache.org/). <strong>Jakarta Struts</strong> est un projet de l&#x27;<strong>Apache Software Foundation</strong> (www.apache.org). Ce framework est décrit dans (http://tahe.developpez.com/java/struts/).</p>
 <p>Apparu plus récemment, le framework <strong>Spring</strong> (http://www.springframework.org/) offre des facilités analogues à celles de Struts. Son utilisation a été décrite dans plusieurs articles (http://tahe.developpez.com/java/springmvc-part1/).</p>
 <p>Nous présentons maintenant un exemple d&#x27;architecture MVC à base de servlet et pages JSP.</p>

@@ -1244,14 +1244,20 @@
 
 <p>C’est le même contenu que [personnes-firebird.xml] aux détails près suivants :</p>
 <ul>
-<li><span style="color: #000000">les noms des colonnes et des tables sont entre guillemets et ces noms sont sensibles à la casse</span></li>
-<li><span style="color: #000000">l’ordre SQL &quot; Personne.insertOne &quot; a changé lignes 34-41. La façon de générer la clé primaire avec Postgres est différente de celle utilisée avec Firebird :</span><ul>
-<li><span style="color: #000000">ligne 36 : l’ordre SQL [SELECT nextval(&#x27;&quot;SEQ_ID&quot;&#x27;)] fournit la clé primaire. La syntaxe [as value] est obligatoire. [value] représente la clé obtenue. Cette valeur va être affectée au champ de l’objet [Personne] désigné par l’attribut [keyProperty] (line 35), ici le champ [id].</span></li>
-<li><span style="color: #000000">les ordres SQL de la balise &lt;insert&gt; sont exécutés dans l’ordre où ils sont rencontrés. Donc le SELECT est fait avant l’INSERT. Au moment de l’opération d’insertion, le champ [id] de l’objet [Personne] aura donc été mis à jour par l’ordre SQL SELECT.</span></li>
-<li><span style="color: #000000">lignes 38-40 : insertion de l’objet [Personne]</span></li>
+  <li><span style="color: #000000">les noms des colonnes et des tables sont entre guillemets et ces noms sont sensibles à la casse</span>
+  </li>
+  <li><span style="color: #000000">l’ordre SQL &quot; Personne.insertOne &quot; a changé lignes 34-41. La façon de générer la clé primaire avec Postgres est différente de celle utilisée avec Firebird :</span>
+    <ul>
+      <li><span style="color: #000000">ligne 36 : l’ordre SQL [SELECT nextval(&#x27;&quot;SEQ_ID&quot;&#x27;)] fournit la clé primaire. La syntaxe [as value] est obligatoire. [value] représente la clé obtenue. Cette valeur va être affectée au champ de l’objet [Personne] désigné par l’attribut [keyProperty] (line 35), ici le champ [id].</span>
+      </li>
+      <li><span style="color: #000000">les ordres SQL de la balise &lt;insert&gt; sont exécutés dans l’ordre où ils sont rencontrés. Donc le SELECT est fait avant l’INSERT. Au moment de l’opération d’insertion, le champ [id] de l’objet [Personne] aura donc été mis à jour par l’ordre SQL SELECT.</span>
+      </li>
+      <li><span style="color: #000000">lignes 38-40 : insertion de l’objet [Personne]</span>
+      </li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
+
 <p><span style="color: #000000">La classe d’implémentation [DaoImplCommon] de la couche [dao] est celle étudiée dans la version [Firebird].</span></p>
 <p><span style="color: #000000">La configuration de la couche [dao] a été adaptée au SGBD [Postgres]. Ainsi, le fichier de configuration [spring-config-test-dao-postgres.xml] est-il le suivant :</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
@@ -1294,9 +1300,12 @@
 </code></pre></div>
 
 <ul>
-<li><span style="color: #000000">lignes 5-19 : le bean [dataSource] désigne maintenant la base [Postgres] [dbpersonnes] dont l’administrateur est [postgres] avec le mot de passe [postgres]. Le lecteur modifiera cette configuration selon son propre environnement.</span></li>
-<li><span style="color: #000000">ligne 31 : la classe [DaoImplCommon] est la classe d&#x27;implémentation de la couche [dao]</span></li>
+  <li><span style="color: #000000">lignes 5-19 : le bean [dataSource] désigne maintenant la base [Postgres] [dbpersonnes] dont l’administrateur est [postgres] avec le mot de passe [postgres]. Le lecteur modifiera cette configuration selon son propre environnement.</span>
+  </li>
+  <li><span style="color: #000000">ligne 31 : la classe [DaoImplCommon] est la classe d&#x27;implémentation de la couche [dao]</span>
+  </li>
 </ul>
+
 <p><span style="color: #000000">Ces modifications faites, on peut passer aux tests.</span></p>
 <h2 id="184-les-tests-des-couches-dao-et-service">18.4. Les tests des couches [dao] et [service]</h2>
 <p><span style="color: #000000">Les tests des couches [dao] et [service] sont les mêmes que pour la version [Firebird]. Lançons le SGBD Postgres puis les tests Eclipse. Les résultats obtenus sont les suivants :</span></p>

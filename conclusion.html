@@ -920,26 +920,39 @@
 <h1 id="21-conclusion">21. Conclusion</h1>
 <p>Rappelons ce qui a été présenté dans ce document :</p>
 <ul>
-<li>les bases de la programmation web en Java avec les servlets et les pages JSP</li>
-<li>une introduction à l&#x27;architecture MVC</li>
-<li>une  introduction à l&#x27;architecture 3tier</li>
-<li>une introduction à Spring IoC</li>
-<li>des exemples pour illustrer ces points</li>
+  <li>les bases de la programmation web en Java avec les servlets et les pages JSP
+  </li>
+  <li>une introduction à l&#x27;architecture MVC
+  </li>
+  <li>une  introduction à l&#x27;architecture 3tier
+  </li>
+  <li>une introduction à Spring IoC
+  </li>
+  <li>des exemples pour illustrer ces points
+  </li>
 </ul>
+
 <p>Nous pensons que le lecteur arrivé jusqu&#x27;ici est prêt pour développer lui-même ses propres applications web en Java. Il est également prêt à aborder d&#x27;autres méthodes de développement proches de celles étudiées dans ce document. Rappelons l&#x27;architecture des applications web développées ici :</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000046200000161FC07A7FF.png" style="display:inline-block; margin:4px;width:14.843cm;height:4.671cm;" class="odt-zoomable" data-zoom-src="images/100000000000046200000161FC07A7FF.png" /></td></tr></table>
 
 <p>Pour des applications simples, cette architecture est suffisante. Lorsqu&#x27;on a écrit plusieurs applications de ce type, on s&#x27;aperçoit que les servlets de deux applications différentes :</p>
 <ol>
-<li>ont le même mécanisme pour déterminer quelle méthode [doAction] il faut exécuter pour traiter l&#x27;action demandée par l&#x27;utilisateur</li>
-<li>ne diffèrent en fait que par le contenu de ces méthodes [doAction]</li>
+  <li>ont le même mécanisme pour déterminer quelle méthode [doAction] il faut exécuter pour traiter l&#x27;action demandée par l&#x27;utilisateur
+  </li>
+  <li>ne diffèrent en fait que par le contenu de ces méthodes [doAction]
+  </li>
 </ol>
+
 <p>La tentation est alors grande de :</p>
 <ul>
-<li>factoriser le traitement (1) dans une servlet générique ignorante de l&#x27;application qui l&#x27;utilise</li>
-<li>déléguer le traitement (2) à des classes externes puisque la servlet générique ne sait pas dans quelle application elle est utilisée</li>
-<li>faire le lien entre l&#x27;action demandée par l&#x27;utilisateur et la classe qui doit la traiter à l&#x27;aide d&#x27;un fichier de configuration</li>
+  <li>factoriser le traitement (1) dans une servlet générique ignorante de l&#x27;application qui l&#x27;utilise
+  </li>
+  <li>déléguer le traitement (2) à des classes externes puisque la servlet générique ne sait pas dans quelle application elle est utilisée
+  </li>
+  <li>faire le lien entre l&#x27;action demandée par l&#x27;utilisateur et la classe qui doit la traiter à l&#x27;aide d&#x27;un fichier de configuration
+  </li>
 </ul>
+
 <p>Des outils, souvent appelés  &quot; frameworks &quot;, sont apparus pour apporter les facilités précédentes aux développeurs. Le plus ancien et probablement le plus connu d&#x27;entre-eux est  <strong>Struts</strong> (http://struts.apache.org/). <strong>Jakarta Struts</strong> est un projet de l&#x27;<strong>Apache Software Foundation</strong> (www.apache.org). Ce framework est décrit dans (http://tahe.developpez.com/java/struts/).</p>
 <p>Apparu plus récemment, le framework <strong>Spring</strong> (http://www.springframework.org/) offre des facilités analogues à celles de Struts. C&#x27;est en réalité son module <strong>Spring MVC.</strong> Son utilisation a été décrite dans plusieurs articles (http://tahe.developpez.com/java/springmvc-part1/).</p>
 <p>Spring ne s&#x27;arrête pas au seul concept MVC de la couche [web] d&#x27;une application 3tier. Il est utile même dans des applications situées en-dehors du web.</p>
